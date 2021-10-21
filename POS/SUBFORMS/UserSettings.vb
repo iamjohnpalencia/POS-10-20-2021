@@ -1,25 +1,10 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class UserSettings
-    'Dim gender As String
     Dim userid As String
     Dim fullname As String
-    'Dim result As Integer
-    'Dim r As Random = New Random(Guid.NewGuid().GetHashCode())
-    'Dim uniqid As String
     Private Sub UserSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabControl1.TabPages(0).Text = "User Accounts"
         Usersloadusers()
-    End Sub
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Enabled = False
-        AddUser.AddUserText = "ADD USER"
-        AddUser.Show()
-    End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Enabled = False
-        AddUser.AddUserText = "EDIT USER"
-        AddUser.userid = DataGridViewUserSettings.SelectedRows(0).Cells(14).Value.ToString
-        AddUser.Show()
     End Sub
     Public Sub Usersloadusers()
         Try
@@ -58,13 +43,6 @@ Public Class UserSettings
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeleteProducts.Click
-        If ClientRole = "Head Crew" Then
-            deactivateuser()
-        Else
-            MsgBox("You do not have permission to perform this task" & vbNewLine & "Please contact your administrator for help.")
-        End If
-    End Sub
     Private Sub deactivateuser()
         userid = DataGridViewUserSettings.SelectedRows(0).Cells(0).Value.ToString()
         fullname = DataGridViewUserSettings.SelectedRows(0).Cells(2).Value.ToString()
@@ -95,6 +73,27 @@ Public Class UserSettings
     Private Sub UserSettings_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Application.OpenForms().OfType(Of AddUser).Any Then
             AddUser.Close()
+        End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Enabled = False
+        AddUser.AddUserText = "ADD USER"
+        AddUser.Show()
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Enabled = False
+        AddUser.AddUserText = "EDIT USER"
+        AddUser.userid = DataGridViewUserSettings.SelectedRows(0).Cells(14).Value.ToString
+        AddUser.Show()
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        If ClientRole = "Head Crew" Then
+            deactivateuser()
+        Else
+            MsgBox("You do not have permission to perform this task" & vbNewLine & "Please contact your administrator for help.")
         End If
     End Sub
 End Class

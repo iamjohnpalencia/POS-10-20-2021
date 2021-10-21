@@ -257,7 +257,7 @@ Partial Class ManageProducts
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 11.0!)
         Me.TabControl1.Location = New System.Drawing.Point(20, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -268,10 +268,10 @@ Partial Class ManageProducts
         '
         Me.TabPage1.Controls.Add(Me.TableLayoutPanel12)
         Me.TabPage1.Controls.Add(Me.Panel4)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 27)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1108, 471)
+        Me.TabPage1.Size = New System.Drawing.Size(1108, 472)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -288,7 +288,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel12.RowCount = 2
         Me.TableLayoutPanel12.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel12.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel12.Size = New System.Drawing.Size(1102, 428)
+        Me.TableLayoutPanel12.Size = New System.Drawing.Size(1102, 429)
         Me.TableLayoutPanel12.TabIndex = 166
         '
         'GroupBox20
@@ -298,7 +298,7 @@ Partial Class ManageProducts
         Me.GroupBox20.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox20.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(1096, 352)
+        Me.GroupBox20.Size = New System.Drawing.Size(1096, 353)
         Me.GroupBox20.TabIndex = 164
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "Product List"
@@ -336,7 +336,7 @@ Partial Class ManageProducts
         Me.DataGridViewProductList.EnableHeadersVisualStyles = False
         Me.DataGridViewProductList.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewProductList.Name = "DataGridViewProductList"
-        Me.DataGridViewProductList.Size = New System.Drawing.Size(1090, 327)
+        Me.DataGridViewProductList.Size = New System.Drawing.Size(1090, 328)
         Me.DataGridViewProductList.TabIndex = 6
         '
         'GroupBox21
@@ -344,7 +344,7 @@ Partial Class ManageProducts
         Me.GroupBox21.Controls.Add(Me.Panel20)
         Me.GroupBox21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox21.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox21.Location = New System.Drawing.Point(3, 361)
+        Me.GroupBox21.Location = New System.Drawing.Point(3, 362)
         Me.GroupBox21.Name = "GroupBox21"
         Me.GroupBox21.Size = New System.Drawing.Size(1096, 64)
         Me.GroupBox21.TabIndex = 166
@@ -448,10 +448,10 @@ Partial Class ManageProducts
         '
         Me.TabPage5.Controls.Add(Me.TableLayoutPanel1)
         Me.TabPage5.Controls.Add(Me.Panel3)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 27)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage5.Size = New System.Drawing.Size(1094, 434)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -468,7 +468,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1088, 391)
         Me.TableLayoutPanel1.TabIndex = 167
         '
         'GroupBox1
@@ -478,7 +478,7 @@ Partial Class ManageProducts
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox1.Size = New System.Drawing.Size(1082, 315)
         Me.GroupBox1.TabIndex = 164
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Cutom Product List(Approved)"
@@ -516,7 +516,7 @@ Partial Class ManageProducts
         Me.DataGridViewOthersApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewOthersApproved.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewOthersApproved.Name = "DataGridViewOthersApproved"
-        Me.DataGridViewOthersApproved.Size = New System.Drawing.Size(1076, 289)
+        Me.DataGridViewOthersApproved.Size = New System.Drawing.Size(1076, 290)
         Me.DataGridViewOthersApproved.TabIndex = 6
         '
         'GroupBox2
@@ -524,7 +524,7 @@ Partial Class ManageProducts
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 324)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox2.TabIndex = 166
@@ -623,10 +623,10 @@ Partial Class ManageProducts
         '
         Me.TabPage6.Controls.Add(Me.TableLayoutPanel2)
         Me.TabPage6.Controls.Add(Me.Panel5)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage6.Size = New System.Drawing.Size(1094, 439)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -643,7 +643,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1088, 396)
         Me.TableLayoutPanel2.TabIndex = 167
         '
         'GroupBox3
@@ -653,7 +653,7 @@ Partial Class ManageProducts
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox3.Size = New System.Drawing.Size(1082, 320)
         Me.GroupBox3.TabIndex = 164
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Cutom Product List(Pending)"
@@ -691,7 +691,7 @@ Partial Class ManageProducts
         Me.DataGridViewOthersPending.EnableHeadersVisualStyles = False
         Me.DataGridViewOthersPending.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewOthersPending.Name = "DataGridViewOthersPending"
-        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1076, 289)
+        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1076, 295)
         Me.DataGridViewOthersPending.TabIndex = 6
         '
         'GroupBox4
@@ -699,7 +699,7 @@ Partial Class ManageProducts
         Me.GroupBox4.Controls.Add(Me.Panel8)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 329)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox4.TabIndex = 166
@@ -837,10 +837,10 @@ Partial Class ManageProducts
         '
         Me.TabPage4.Controls.Add(Me.TableLayoutPanel3)
         Me.TabPage4.Controls.Add(Me.Panel9)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 27)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage4.Size = New System.Drawing.Size(1094, 434)
         Me.TabPage4.TabIndex = 0
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -857,14 +857,14 @@ Partial Class ManageProducts
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1088, 391)
         Me.TableLayoutPanel3.TabIndex = 9
         '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Button5)
         Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox6.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox6.Location = New System.Drawing.Point(3, 324)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox6.TabIndex = 233
@@ -878,9 +878,9 @@ Partial Class ManageProducts
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(948, 23)
+        Me.Button5.Location = New System.Drawing.Point(948, 21)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(131, 38)
+        Me.Button5.Size = New System.Drawing.Size(131, 40)
         Me.Button5.TabIndex = 0
         Me.Button5.Text = "Cancel request"
         Me.Button5.UseVisualStyleBackColor = False
@@ -891,7 +891,7 @@ Partial Class ManageProducts
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox5.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox5.Size = New System.Drawing.Size(1082, 315)
         Me.GroupBox5.TabIndex = 232
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Price change(Pending)"
@@ -909,7 +909,7 @@ Partial Class ManageProducts
         Me.DataGridViewPriceRequest.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 11.0!)
         DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -919,7 +919,7 @@ Partial Class ManageProducts
         Me.DataGridViewPriceRequest.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column6, Me.Column1, Me.Column5, Me.Column2, Me.Column3, Me.Column4})
         DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 11.0!)
         DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -928,9 +928,9 @@ Partial Class ManageProducts
         Me.DataGridViewPriceRequest.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPriceRequest.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewPriceRequest.EnableHeadersVisualStyles = False
-        Me.DataGridViewPriceRequest.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPriceRequest.Location = New System.Drawing.Point(3, 21)
         Me.DataGridViewPriceRequest.Name = "DataGridViewPriceRequest"
-        Me.DataGridViewPriceRequest.Size = New System.Drawing.Size(1076, 288)
+        Me.DataGridViewPriceRequest.Size = New System.Drawing.Size(1076, 291)
         Me.DataGridViewPriceRequest.TabIndex = 7
         '
         'Column6
@@ -1015,10 +1015,10 @@ Partial Class ManageProducts
         '
         Me.TabPage7.Controls.Add(Me.TableLayoutPanel4)
         Me.TabPage7.Controls.Add(Me.Panel10)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage7.Size = New System.Drawing.Size(1094, 439)
         Me.TabPage7.TabIndex = 1
         Me.TabPage7.Text = "TabPage7"
         Me.TabPage7.UseVisualStyleBackColor = True
@@ -1035,13 +1035,13 @@ Partial Class ManageProducts
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1088, 396)
         Me.TableLayoutPanel4.TabIndex = 0
         '
         'GroupBox8
         '
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox8.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 329)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox8.TabIndex = 233
@@ -1054,7 +1054,7 @@ Partial Class ManageProducts
         Me.GroupBox7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox7.Size = New System.Drawing.Size(1082, 320)
         Me.GroupBox7.TabIndex = 232
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Price change(Approved)"
@@ -1072,7 +1072,7 @@ Partial Class ManageProducts
         Me.DataGridViewPriceChangeApproved.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 11.0!)
         DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -1082,7 +1082,7 @@ Partial Class ManageProducts
         Me.DataGridViewPriceChangeApproved.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
         DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Tahoma", 11.0!)
         DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -1091,9 +1091,9 @@ Partial Class ManageProducts
         Me.DataGridViewPriceChangeApproved.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPriceChangeApproved.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewPriceChangeApproved.EnableHeadersVisualStyles = False
-        Me.DataGridViewPriceChangeApproved.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPriceChangeApproved.Location = New System.Drawing.Point(3, 21)
         Me.DataGridViewPriceChangeApproved.Name = "DataGridViewPriceChangeApproved"
-        Me.DataGridViewPriceChangeApproved.Size = New System.Drawing.Size(1076, 288)
+        Me.DataGridViewPriceChangeApproved.Size = New System.Drawing.Size(1076, 296)
         Me.DataGridViewPriceChangeApproved.TabIndex = 8
         '
         'DataGridViewTextBoxColumn1

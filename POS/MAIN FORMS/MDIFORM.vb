@@ -51,19 +51,22 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            If Application.OpenForms().OfType(Of ManageProducts).Any Then
-            Else
-                newMDIchildManageproduct = New ManageProducts
-                btndefaut(defaultcolor:=Button5)
-                btncolor(changecolor:=Button5)
-                formclose(closeform:=ManageProducts)
-                newMDIchildManageproduct.MdiParent = Me
-                newMDIchildManageproduct.ShowIcon = False
-                newMDIchildManageproduct.Show()
+            If DisableFormClose = False Then
+                If Application.OpenForms().OfType(Of ManageProducts).Any Then
+                Else
+                    newMDIchildManageproduct = New ManageProducts
+                    btndefaut(defaultcolor:=Button5)
+                    btncolor(changecolor:=Button5)
+                    formclose(closeform:=ManageProducts)
+                    newMDIchildManageproduct.MdiParent = Me
+                    newMDIchildManageproduct.ShowIcon = False
+                    newMDIchildManageproduct.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -75,19 +78,22 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            newMDIchildInventory = New Inventory
-            If Application.OpenForms().OfType(Of Inventory).Any Then
-            Else
-                btncolor(changecolor:=Button6)
-                btndefaut(defaultcolor:=Button6)
-                formclose(closeform:=Inventory)
-                newMDIchildInventory.MdiParent = Me
-                newMDIchildInventory.ShowIcon = False
-                newMDIchildInventory.Show()
+            If DisableFormClose = False Then
+                newMDIchildInventory = New Inventory
+                If Application.OpenForms().OfType(Of Inventory).Any Then
+                Else
+                    btncolor(changecolor:=Button6)
+                    btndefaut(defaultcolor:=Button6)
+                    formclose(closeform:=Inventory)
+                    newMDIchildInventory.MdiParent = Me
+                    newMDIchildInventory.ShowIcon = False
+                    newMDIchildInventory.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -98,19 +104,22 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New Reports()
-            If Application.OpenForms().OfType(Of Reports).Any Then
-            Else
-                btncolor(changecolor:=Button3)
-                btndefaut(defaultcolor:=Button3)
-                formclose(closeform:=Reports)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+            If DisableFormClose = False Then
+                Dim newMDIchild As New Reports()
+                If Application.OpenForms().OfType(Of Reports).Any Then
+                Else
+                    btncolor(changecolor:=Button3)
+                    btndefaut(defaultcolor:=Button3)
+                    formclose(closeform:=Reports)
+                    newMDIchild.MdiParent = Me
+                    newMDIchild.ShowIcon = False
+                    newMDIchild.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -122,20 +131,22 @@
             SynctoCloud.TopMost = False
         End If
         Try
+            If DisableFormClose = False Then
+                If Application.OpenForms().OfType(Of UserSettings).Any Then
+                Else
+                    newMDIchildUser = New UserSettings
+                    btncolor(changecolor:=Button8)
+                    btndefaut(defaultcolor:=Button8)
+                    formclose(closeform:=UserSettings)
+                    newMDIchildUser.MdiParent = Me
+                    newMDIchildUser.ShowIcon = False
+                    newMDIchildUser.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
+            End If
 
-            If Application.OpenForms().OfType(Of UserSettings).Any Then
-            Else
-                newMDIchildUser = New UserSettings
-                btncolor(changecolor:=Button8)
-                btndefaut(defaultcolor:=Button8)
-                formclose(closeform:=UserSettings)
-                newMDIchildUser.MdiParent = Me
-                newMDIchildUser.ShowIcon = False
-                newMDIchildUser.Show()
-            End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -170,19 +181,21 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New Leaderboards()
-            If Application.OpenForms().OfType(Of Leaderboards).Any Then
-                Leaderboards.TopMost = True
-            Else
-                btncolor(changecolor:=Button2)
-                btndefaut(defaultcolor:=Button2)
-                formclose(closeform:=Leaderboards)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
-            End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
+            If DisableFormClose = False Then
+                Dim newMDIchild As New Leaderboards()
+                If Application.OpenForms().OfType(Of Leaderboards).Any Then
+                    Leaderboards.TopMost = True
+                Else
+                    btncolor(changecolor:=Button2)
+                    btndefaut(defaultcolor:=Button2)
+                    formclose(closeform:=Leaderboards)
+                    newMDIchild.MdiParent = Me
+                    newMDIchild.ShowIcon = False
+                    newMDIchild.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -194,18 +207,20 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New About()
-            If Application.OpenForms().OfType(Of About).Any Then
-            Else
-                btncolor(changecolor:=Button4)
-                btndefaut(defaultcolor:=Button4)
-                formclose(closeform:=About)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
-            End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
+            If DisableFormClose = False Then
+                Dim newMDIchild As New About()
+                If Application.OpenForms().OfType(Of About).Any Then
+                Else
+                    btncolor(changecolor:=Button4)
+                    btndefaut(defaultcolor:=Button4)
+                    formclose(closeform:=About)
+                    newMDIchild.MdiParent = Me
+                    newMDIchild.ShowIcon = False
+                    newMDIchild.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -218,19 +233,22 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New DepositSlip()
-            If Application.OpenForms().OfType(Of DepositSlip).Any Then
-            Else
-                btncolor(changecolor:=Button12)
-                btndefaut(defaultcolor:=Button12)
-                formclose(closeform:=DepositSlip)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+            If DisableFormClose = False Then
+                Dim newMDIchild As New DepositSlip()
+                If Application.OpenForms().OfType(Of DepositSlip).Any Then
+                Else
+                    btncolor(changecolor:=Button12)
+                    btndefaut(defaultcolor:=Button12)
+                    formclose(closeform:=DepositSlip)
+                    newMDIchild.MdiParent = Me
+                    newMDIchild.ShowIcon = False
+                    newMDIchild.Show()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -242,19 +260,21 @@
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New Message()
-            If Application.OpenForms().OfType(Of Message).Any Then
-            Else
-                btncolor(changecolor:=Button9)
-                btndefaut(defaultcolor:=Button9)
-                formclose(closeform:=Message)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+            If DisableFormClose = False Then
+                Dim newMDIchild As New Message()
+                If Application.OpenForms().OfType(Of Message).Any Then
+                Else
+                    btncolor(changecolor:=Button9)
+                    btndefaut(defaultcolor:=Button9)
+                    formclose(closeform:=Message)
+                    newMDIchild.MdiParent = Me
+                    newMDIchild.ShowIcon = False
+                    newMDIchild.Show()
 
-            End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
+                End If
+                If SyncIsOnProcess = False Then
+                    SynctoCloud.Close()
+                End If
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -262,13 +282,15 @@
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
-            SynctoCloud.TopMost = False
-        End If
         Try
-            iflogout = False
-            Me.Close()
-            SynctoCloud.Close()
+            If DisableFormClose = False Then
+                If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+                    SynctoCloud.TopMost = False
+                End If
+                iflogout = False
+                Me.Close()
+                SynctoCloud.Close()
+            End If
         Catch ex As Exception
             Dispose()
             MsgBox(ex.ToString)
