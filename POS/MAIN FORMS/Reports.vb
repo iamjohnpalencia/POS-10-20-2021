@@ -1828,12 +1828,14 @@ Public Class Reports
 
     Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
         Try
-            BackgroundWorkerEJournal.WorkerReportsProgress = True
-            BackgroundWorkerEJournal.WorkerSupportsCancellation = True
-            BackgroundWorkerEJournal.RunWorkerAsync()
-            DisableFormClose = True
-            ToolStripButton7.Enabled = False
-            ToolStripButton4.Enabled = False
+            'BackgroundWorkerEJournal.WorkerReportsProgress = True
+            'BackgroundWorkerEJournal.WorkerSupportsCancellation = True
+            'BackgroundWorkerEJournal.RunWorkerAsync()
+            'DisableFormClose = True
+            'ToolStripButton7.Enabled = False
+            'ToolStripButton4.Enabled = False
+
+            GenerateTxtFile()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1847,7 +1849,7 @@ Public Class Reports
                 Thread.Sleep(20)
                 If i = 0 Then
                     ToolStripStatusLabel1.Text = "Loading please wait"
-                    ThreadEJournal = New Thread(Sub() GenerateEJournal())
+                    ThreadEJournal = New Thread(Sub() GenerateTxtFile())
                     ThreadEJournal.Start()
                     ThreadListEJournal.Add(ThreadEJournal)
                 End If
@@ -1883,116 +1885,290 @@ Public Class Reports
         End Try
     End Sub
 
-    Private Sub GenerateEJournal()
+
+    Private Sub GenerateTxtFile()
         Try
+            Dim connectionlocal As MySqlConnection = LocalhostConn()
+            Dim sql As String = ""
+            Dim cmd As MySqlCommand
+            Dim dt As DataTable = New DataTable
+            Dim da As MySqlDataAdapter
+
+            Dim CompleteDirectoryPath As String = ""
+
+            If Not Directory.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-Journal") Then
+                Directory.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-journal")
+                CompleteDirectoryPath = My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-journal\" & FullDateFormatForSaving()
+                Directory.CreateDirectory(CompleteDirectoryPath)
+            Else
+                CompleteDirectoryPath = My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-journal\" & FullDateFormatForSaving()
+                Directory.CreateDirectory(CompleteDirectoryPath)
+            End If
+
+            Dim TotalRowsToAdd As Integer = 0
             With DataGridViewDaily
-                For Each row As DataGridViewRow In .Rows
-                    If row.Selected Then
-                        Dim CompletePath As String = My.Computer.FileSystem.SpecialDirectories.Desktop & "\ejournal" & FullDateFormatForSaving() & ".txt"
-                        Dim transactionnumber As String = row.Cells(0).Value.ToString
-
-                        Dim connectionlocal As MySqlConnection = LocalhostConn()
-                        Dim dt As DataTable = New DataTable
-                        Dim sql = "SELECT product_name,quantity,price,total,product_category,addontype FROM loc_daily_transaction_details WHERE transaction_number = '" & transactionnumber & "'"
-                        Dim cmd As MySqlCommand = New MySqlCommand(sql, connectionlocal)
-                        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-                        da.Fill(dt)
-
-                        Dim RowToAdd As Integer = .Rows.Count * 2
-                        RowToAdd += 30
-
-                        Dim ConnString(RowToAdd) As String
-
-                        ConnString(0) = "Terminal No. " & S_Terminal_No
-                        ConnString(1) = "SO/TB #: N/A"
-                        ConnString(2) = "No. of Guest: 1"
-                        ConnString(3) = "Sales Invoice #: " & transactionnumber
-                        ConnString(4) = row.Cells(11).Value.ToString
-                        ConnString(5) = "Cshr: " & returnfullname(row.Cells(15).Value)
-                        ConnString(6) = "-------------------------------"
-                        ConnString(7) = "Qty     Description(s)    Price"
-                        ConnString(8) = "-------------------------------"
-
-                        Dim inc As Integer = 9
-
-                        For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                            ConnString(inc) = dt(i)(0)
-                            inc += 1
-                            ConnString(inc) = "     " & dt(i)(1) & " @" & dt(i)(2) & "             " & dt(i)(3)
-                            inc += 1
-                        Next
-                        Dim qty = dt.Compute("SUM(quantity)", String.Empty)
-                        Dim subtotal = dt.Compute("SUM(price)", String.Empty)
-                        ConnString(inc) = "----------" & qty & " item(s)------------"
-                        inc += 1
-                        ConnString(inc) = "   Sub Total              " & NUMBERFORMAT(subtotal)
-                        inc += 1
-                        Dim SeniorName As String = ""
-
-
-                        If row.Cells(2).Value > 0 Then
-                            ConnString(inc) = "   Discount              " & NUMBERFORMAT(row.Cells(2).Value)
-                            Dim Query1 As String = "SELECT senior_name FROM loc_senior_details WHERE transaction_number = '" & transactionnumber & "'"
-                            Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
-                            Dim result = CmdQ.ExecuteScalar()
-                            SeniorName = result
-                        Else
-                            ConnString(inc) = "   Discount               0.00"
-                        End If
-                        inc += 1
-                        ConnString(inc) = "-------------------------------"
-                        inc += 1
-                        ConnString(inc) = "Total                     " & row.Cells(5).Value
-                        inc += 1
-                        ConnString(inc) = ""
-                        inc += 1
-                        ConnString(inc) = "Tendered:"
-                        inc += 1
-                        ConnString(inc) = "     CASH                 " & row.Cells(3).Value
-                        inc += 1
-                        ConnString(inc) = "Change                    " & row.Cells(4).Value
-                        inc += 1
-                        ConnString(inc) = "-------------------------------"
-                        inc += 1
-                        ConnString(inc) = "    VaTable Sales         " & row.Cells(6).Value
-                        inc += 1
-                        ConnString(inc) = "    VAT 12.00%            " & row.Cells(9).Value
-                        inc += 1
-                        ConnString(inc) = "    VAT Exempt Sales      " & row.Cells(7).Value
-                        inc += 1
-                        ConnString(inc) = "    Zero Rated Sales      " & row.Cells(8).Value
-                        inc += 1
-                        ConnString(inc) = "    Less Vat              " & row.Cells(10).Value
-                        inc += 1
-                        ConnString(inc) = "-------------------------------"
-                        inc += 1
-                        ConnString(inc) = ""
-                        inc += 1
-
-                        Dim iDate As String = row.Cells(16).Value
-                        Dim oDate As DateTime = Convert.ToDateTime(iDate)
-
-                        ConnString(inc) = "      " & oDate.Month & "/" & oDate.Day & "/" & oDate.Year & " " & oDate.Hour.ToString("D2") & ":" & oDate.Minute.ToString("D2") & ":" & oDate.Second.ToString("D2")
-                        inc += 1
-                        ConnString(inc) = ""
-                        inc += 1
-
-                        If SeniorName <> "" Then
-                            ConnString(inc) = "Name : " & SeniorName
-                        Else
-                            ConnString(inc) = "Name : ________________________"
-                        End If
-
-                        inc += 1
-                        ConnString(inc) = "Address : _____________________"
-                        inc += 1
-                        ConnString(inc) = "TIN : _________________________"
-                        File.WriteAllLines(CompletePath, ConnString, Encoding.UTF8)
-
-                    End If
-                    Thread.Sleep(1000)
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim transactionnumber As String = .Rows(i).Cells(0).Value.ToString
+                    dt = New DataTable
+                    sql = "SELECT product_name,quantity,price,total,product_category,addontype FROM loc_daily_transaction_details WHERE transaction_number = '" & transactionnumber & "'"
+                    cmd = New MySqlCommand(sql, connectionlocal)
+                    da = New MySqlDataAdapter(cmd)
+                    da.Fill(dt)
+                    TotalRowsToAdd += dt.Rows.Count
                 Next
             End With
+
+            Dim TotalDgvRows As Integer = DataGridViewDaily.Rows.Count * 34
+            TotalRowsToAdd += TotalRowsToAdd + TotalDgvRows
+
+            Dim TxtFileLine(TotalRowsToAdd) As String
+            Console.Write(TotalRowsToAdd)
+            'Console.Write("Total Rows " & TotalRowsToAdd)
+            'Console.WriteLine(TxtFileLine.Length)
+            With DataGridViewDaily
+                Dim a As Integer = 0
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+
+                    Dim transactionnumber As String = .Rows(i).Cells(0).Value.ToString
+                    dt = New DataTable
+                    sql = "SELECT product_name,quantity,price,total,product_category,addontype FROM loc_daily_transaction_details WHERE transaction_number = '" & transactionnumber & "'"
+                    cmd = New MySqlCommand(sql, connectionlocal)
+                    da = New MySqlDataAdapter(cmd)
+                    da.Fill(dt)
+
+                    TxtFileLine(a) = "Terminal No. " & S_Terminal_No
+                    a += 1
+                    TxtFileLine(a) = "SO/TB #: N/A"
+                    a += 1
+                    TxtFileLine(a) = "No. of Guest: 1"
+                    a += 1
+                    TxtFileLine(a) = "Sales Invoice #: " & transactionnumber
+                    a += 1
+                    TxtFileLine(a) = .Rows(i).Cells(11).Value.ToString
+                    a += 1
+                    TxtFileLine(a) = "Cshr: " & returnfullname(.Rows(i).Cells(15).Value)
+                    a += 1
+                    TxtFileLine(a) = "-------------------------------"
+                    a += 1
+                    TxtFileLine(a) = "Qty     Description(s)    Price"
+                    a += 1
+                    TxtFileLine(a) = "-------------------------------"
+                    a += 1
+
+                    For ai As Integer = 0 To dt.Rows.Count - 1 Step +1
+                        TxtFileLine(a) = dt(ai)(0)
+                        a += 1
+                        TxtFileLine(a) = "     " & dt(ai)(1) & " @" & dt(ai)(2) & "             " & dt(ai)(3)
+                        a += 1
+                    Next
+
+                    Dim qty = dt.Compute("SUM(quantity)", String.Empty)
+                    Dim subtotal = dt.Compute("SUM(price)", String.Empty)
+
+                    TxtFileLine(a) = "----------" & qty & " item(s)------------"
+                    a += 1
+                    TxtFileLine(a) = "   Sub Total              " & NUMBERFORMAT(subtotal)
+                    a += 1
+                    If .Rows(i).Cells(2).Value > 0 Then
+                        TxtFileLine(a) = "   Discount              " & NUMBERFORMAT(.Rows(i).Cells(2).Value)
+                        a += 1
+                    Else
+                        TxtFileLine(a) = "   Discount               0.00"
+                        a += 1
+                    End If
+
+                    TxtFileLine(a) = "-------------------------------"
+                    a += 1
+                    TxtFileLine(a) = "Total                     " & .Rows(i).Cells(5).Value
+                    a += 1
+                    TxtFileLine(a) = ""
+                    a += 1
+                    TxtFileLine(a) = "Tendered:"
+                    a += 1
+                    TxtFileLine(a) = "     CASH                 " & .Rows(i).Cells(3).Value
+                    a += 1
+                    TxtFileLine(a) = "Change                    " & .Rows(i).Cells(4).Value
+                    a += 1
+                    TxtFileLine(a) = "-------------------------------"
+                    a += 1
+                    TxtFileLine(a) = "    VaTable Sales         " & .Rows(i).Cells(6).Value
+                    a += 1
+                    TxtFileLine(a) = "    VAT 12.00%            " & .Rows(i).Cells(9).Value
+                    a += 1
+                    TxtFileLine(a) = "    VAT Exempt Sales      " & .Rows(i).Cells(7).Value
+                    a += 1
+                    TxtFileLine(a) = "    Zero Rated Sales      " & .Rows(i).Cells(8).Value
+                    a += 1
+                    TxtFileLine(a) = "    Less Vat              " & .Rows(i).Cells(10).Value
+                    a += 1
+                    TxtFileLine(a) = "-------------------------------"
+                    a += 1
+                    TxtFileLine(a) = ""
+                    a += 1
+
+                    Dim iDate As String = .Rows(i).Cells(16).Value
+                    Dim oDate As DateTime = Convert.ToDateTime(iDate)
+
+                    TxtFileLine(a) = "      " & oDate.Month & "/" & oDate.Day & "/" & oDate.Year & " " & oDate.Hour.ToString("D2") & ":" & oDate.Minute.ToString("D2") & ":" & oDate.Second.ToString("D2")
+                    a += 1
+                    TxtFileLine(a) = ""
+                    a += 1
+
+                    Dim SCN As String = ""
+                    If .Rows(i).Cells(2).Value > 0 Then
+                        Dim Query1 As String = "SELECT senior_name FROM loc_senior_details WHERE transaction_number = '" & transactionnumber & "'"
+                        Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
+                        Dim result = CmdQ.ExecuteScalar()
+                        SCN = result
+                    End If
+
+                    If SCN <> "" Then
+                        TxtFileLine(a) = "Name : " & SCN
+                        a += 1
+                    Else
+                        TxtFileLine(a) = "Name : ________________________"
+                        a += 1
+                    End If
+
+                    TxtFileLine(a) = "Address : _____________________"
+                    a += 1
+                    TxtFileLine(a) = "TIN : _________________________"
+                    a += 1
+                    TxtFileLine(a) = ""
+                    a += 1
+                    TxtFileLine(a) = "   ---***---***---***---***---  "
+                    a += 1
+                    TxtFileLine(a) = ""
+                    a += 1
+                Next
+                Dim CompletePath As String = CompleteDirectoryPath & "\ejournal" & FullDateFormatForSaving() & ".txt"
+                File.WriteAllLines(CompletePath, TxtFileLine, Encoding.UTF8)
+            End With
+            'With DataGridViewDaily
+            '    For i As Integer = 0 To .Rows.Count - 1 Step +1
+
+            '        Dim transactionnumber As String = .Rows(i).Cells(0).Value.ToString
+
+
+            '        dt = New DataTable
+            '        sql = "SELECT product_name,quantity,price,total,product_category,addontype FROM loc_daily_transaction_details WHERE transaction_number = '" & transactionnumber & "'"
+            '        cmd = New MySqlCommand(sql, connectionlocal)
+            '        da = New MySqlDataAdapter(cmd)
+            '        da.Fill(dt)
+
+            '        Dim RowToAdd As Integer = dt.Rows.Count * 2
+            '        RowToAdd += 33
+
+            '        Dim TxtFileLine(RowToAdd) As String
+
+            '        TxtFileLine(0) = "Terminal No. " & S_Terminal_No
+            '        TxtFileLine(1) = "SO/TB #: N/A"
+            '        TxtFileLine(2) = "No. of Guest: 1"
+            '        TxtFileLine(3) = "Sales Invoice #: " & transactionnumber
+            '        TxtFileLine(4) = .Rows(i).Cells(11).Value.ToString
+            '        TxtFileLine(5) = "Cshr: " & returnfullname(.Rows(i).Cells(15).Value)
+            '        TxtFileLine(6) = "-------------------------------"
+            '        TxtFileLine(7) = "Qty     Description(s)    Price"
+            '        TxtFileLine(8) = "-------------------------------"
+
+            '        Dim inc As Integer = 9
+
+            '        For a As Integer = 0 To dt.Rows.Count - 1 Step +1
+            '            TxtFileLine(inc) = dt(a)(0)
+            '            inc += 1
+            '            TxtFileLine(inc) = "     " & dt(a)(1) & " @" & dt(a)(2) & "             " & dt(a)(3)
+            '            inc += 1
+            '        Next
+
+            '        Dim qty = dt.Compute("SUM(quantity)", String.Empty)
+            '        Dim subtotal = dt.Compute("SUM(price)", String.Empty)
+
+            '        TxtFileLine(inc) = "----------" & qty & " item(s)------------"
+            '        inc += 1
+            '        TxtFileLine(inc) = "   Sub Total              " & NUMBERFORMAT(subtotal)
+            '        inc += 1
+
+
+            '        If .Rows(i).Cells(2).Value > 0 Then
+            '            TxtFileLine(inc) = "   Discount              " & NUMBERFORMAT(.Rows(i).Cells(2).Value)
+            '            inc += 1
+            '        Else
+            '            TxtFileLine(inc) = "   Discount               0.00"
+            '            inc += 1
+            '        End If
+
+
+            '        TxtFileLine(inc) = "-------------------------------"
+            '        inc += 1
+            '        TxtFileLine(inc) = "Total                     " & .Rows(i).Cells(5).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = ""
+            '        inc += 1
+            '        TxtFileLine(inc) = "Tendered:"
+            '        inc += 1
+            '        TxtFileLine(inc) = "     CASH                 " & .Rows(i).Cells(3).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "Change                    " & .Rows(i).Cells(4).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "-------------------------------"
+            '        inc += 1
+            '        TxtFileLine(inc) = "    VaTable Sales         " & .Rows(i).Cells(6).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "    VAT 12.00%            " & .Rows(i).Cells(9).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "    VAT Exempt Sales      " & .Rows(i).Cells(7).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "    Zero Rated Sales      " & .Rows(i).Cells(8).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "    Less Vat              " & .Rows(i).Cells(10).Value
+            '        inc += 1
+            '        TxtFileLine(inc) = "-------------------------------"
+            '        inc += 1
+            '        TxtFileLine(inc) = ""
+            '        inc += 1
+
+            '        Dim iDate As String = .Rows(i).Cells(16).Value
+            '        Dim oDate As DateTime = Convert.ToDateTime(iDate)
+
+            '        TxtFileLine(inc) = "      " & oDate.Month & "/" & oDate.Day & "/" & oDate.Year & " " & oDate.Hour.ToString("D2") & ":" & oDate.Minute.ToString("D2") & ":" & oDate.Second.ToString("D2")
+            '        inc += 1
+            '        TxtFileLine(inc) = ""
+            '        inc += 1
+
+            '        Dim SCN As String = ""
+            '        If .Rows(i).Cells(2).Value > 0 Then
+            '            Dim Query1 As String = "SELECT senior_name FROM loc_senior_details WHERE transaction_number = '" & transactionnumber & "'"
+            '            Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
+            '            Dim result = CmdQ.ExecuteScalar()
+            '            SCN = result
+            '        End If
+
+
+            '        If SCN <> "" Then
+            '            TxtFileLine(inc) = "Name : " & SCN
+            '            inc += 1
+            '        Else
+            '            TxtFileLine(inc) = "Name : ________________________"
+            '            inc += 1
+            '        End If
+
+            '        TxtFileLine(inc) = "Address : _____________________"
+            '        inc += 1
+            '        TxtFileLine(inc) = "TIN : _________________________"
+            '        inc += 1
+            '        TxtFileLine(inc) = ""
+            '        inc += 1
+            '        TxtFileLine(inc) = "   ---***---***---***---***---  "
+            '        inc += 1
+            '        TxtFileLine(inc) = ""
+            '        inc += 1
+
+            '    Next
+            '    Dim CompletePath As String = CompleteDirectoryPath & "\ejournal" & FullDateFormatForSaving() & ".txt"
+            '    File.WriteAllLines(CompletePath, TxtFileLine, Encoding.UTF8)
+            '    'Console.WriteLine("Rows to add " & RowToAdd & " - inc " & inc)
+            'End With
+            connectionlocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
