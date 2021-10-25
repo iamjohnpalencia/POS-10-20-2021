@@ -36,6 +36,7 @@ Partial Class Loading
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridViewScript = New System.Windows.Forms.DataGridView()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel24.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +117,7 @@ Partial Class Loading
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel24.Controls.Add(Me.LabelFOOTER)
         Me.Panel24.Controls.Add(Me.LabelVersion)
+        Me.Panel24.Controls.Add(Me.Panel2)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 72)
         Me.Panel24.Name = "Panel24"
@@ -124,26 +126,30 @@ Partial Class Loading
         '
         'LabelFOOTER
         '
+        Me.LabelFOOTER.AutoSize = True
         Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(131, 0)
+        Me.LabelFOOTER.Location = New System.Drawing.Point(339, 3)
         Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.Size = New System.Drawing.Size(43, 14)
         Me.LabelFOOTER.TabIndex = 17
+        Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelVersion
         '
+        Me.LabelVersion.AutoSize = True
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelVersion.ForeColor = System.Drawing.Color.White
-        Me.LabelVersion.Location = New System.Drawing.Point(0, 0)
+        Me.LabelVersion.Location = New System.Drawing.Point(0, 3)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(124, 20)
+        Me.LabelVersion.Size = New System.Drawing.Size(47, 14)
         Me.LabelVersion.TabIndex = 16
+        Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PictureBox1
@@ -169,6 +175,14 @@ Partial Class Loading
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
+        'Panel2
+        '
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(382, 3)
+        Me.Panel2.TabIndex = 18
+        '
         'Loading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -184,6 +198,7 @@ Partial Class Loading
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)
+        Me.Panel24.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -203,4 +218,5 @@ Partial Class Loading
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents LabelFOOTER As Label
     Friend WithEvents DataGridViewScript As DataGridView
+    Friend WithEvents Panel2 As Panel
 End Class

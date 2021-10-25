@@ -1199,7 +1199,7 @@ Public Class POS
                     End If
                 Next
                 If CouponApplied Then
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 540 + b)
                 Else
                     printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                 End If
@@ -1280,14 +1280,14 @@ Public Class POS
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
             With Me
-                a = 20
+                a = 30
                 Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
                 Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
                 Dim font As New Font("Tahoma", 6)
                 Dim fontaddon As New Font("Tahoma", 5)
                 ReceiptHeader(sender, e, False)
                 Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                Dim abc As Integer = 20
+                Dim abc As Integer = 30
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                     Dim rect1st As RectangleF = New RectangleF(10.0F, 145 + abc, 173.0F, 100.0F)
                     Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "###,###,##0.00")
@@ -1316,7 +1316,7 @@ Public Class POS
                 If CouponApplied = True Then
                     a += 100
                     If SeniorGCDiscount Then
-                        SimpleTextDisplay(sender, e, CouponName, font, 0, a)
+                        SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     Else
                         SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     End If
@@ -1429,8 +1429,8 @@ Public Class POS
                     End If
                     a += 6
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 190)
-                    a += 16
-                    ReceiptFooter(sender, e, a, False)
+
+                    ReceiptFooter(sender, e, a + 20, False)
                 End If
             End With
         Catch ex As Exception

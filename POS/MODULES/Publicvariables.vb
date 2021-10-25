@@ -105,6 +105,7 @@ Module publicVariables
     Public S_Waffle_Bag As Integer
     Public S_Packets As Integer
     Public S_PrintCount As Integer
+    Public S_Dev_Comp_Name As String
     'Training MOde
     Public S_TrainingMode As Boolean = False
     '=============================================================================================================

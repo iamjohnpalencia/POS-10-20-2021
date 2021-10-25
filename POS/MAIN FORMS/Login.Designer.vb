@@ -26,6 +26,7 @@ Partial Class Login
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
@@ -45,13 +46,13 @@ Partial Class Login
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ButttonLogin = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel24.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -91,6 +92,16 @@ Partial Class Login
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(315, 370)
         Me.Panel8.TabIndex = 82
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox3.Location = New System.Drawing.Point(259, 182)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(33, 23)
+        Me.PictureBox3.TabIndex = 231
+        Me.PictureBox3.TabStop = False
         '
         'LinkLabel3
         '
@@ -249,6 +260,7 @@ Partial Class Login
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel24.Controls.Add(Me.LabelFOOTER)
+        Me.Panel24.Controls.Add(Me.Panel2)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 350)
         Me.Panel24.Name = "Panel24"
@@ -257,14 +269,16 @@ Partial Class Login
         '
         'LabelFOOTER
         '
+        Me.LabelFOOTER.AutoSize = True
         Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
+        Me.LabelFOOTER.Location = New System.Drawing.Point(272, 3)
         Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.Size = New System.Drawing.Size(43, 14)
         Me.LabelFOOTER.TabIndex = 18
+        Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label4
@@ -306,15 +320,13 @@ Partial Class Login
         Me.ButttonLogin.Text = "LOGIN"
         Me.ButttonLogin.UseVisualStyleBackColor = False
         '
-        'PictureBox3
+        'Panel2
         '
-        Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox3.Location = New System.Drawing.Point(259, 182)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(33, 23)
-        Me.PictureBox3.TabIndex = 231
-        Me.PictureBox3.TabStop = False
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(315, 3)
+        Me.Panel2.TabIndex = 19
         '
         'Login
         '
@@ -334,10 +346,11 @@ Partial Class Login
         Me.Panel1.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel24.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel24.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -364,4 +377,5 @@ Partial Class Login
     Friend WithEvents LabelFOOTER As Label
     Friend WithEvents LinkLabel3 As LinkLabel
     Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents Panel2 As Panel
 End Class

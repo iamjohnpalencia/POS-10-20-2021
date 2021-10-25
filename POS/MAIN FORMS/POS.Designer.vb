@@ -204,6 +204,7 @@ Partial Class POS
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -283,8 +284,9 @@ Partial Class POS
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel24.Controls.Add(Me.ProgressBar1)
         Me.Panel24.Controls.Add(Me.LabelFOOTER)
+        Me.Panel24.Controls.Add(Me.Panel20)
+        Me.Panel24.Controls.Add(Me.ProgressBar1)
         Me.Panel24.Controls.Add(Me.Panel34)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel24.Location = New System.Drawing.Point(0, 10)
@@ -302,15 +304,16 @@ Partial Class POS
         '
         'LabelFOOTER
         '
+        Me.LabelFOOTER.AutoSize = True
         Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(1115, 0)
+        Me.LabelFOOTER.Location = New System.Drawing.Point(1323, 8)
         Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 31)
+        Me.LabelFOOTER.Size = New System.Drawing.Size(43, 14)
         Me.LabelFOOTER.TabIndex = 16
-        Me.LabelFOOTER.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel34
@@ -2004,6 +2007,14 @@ Partial Class POS
         Me.Panel3.Size = New System.Drawing.Size(977, 70)
         Me.Panel3.TabIndex = 39
         '
+        'Panel20
+        '
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel20.Location = New System.Drawing.Point(355, 0)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(1011, 8)
+        Me.Panel20.TabIndex = 19
+        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2030,6 +2041,7 @@ Partial Class POS
         Me.Text = "Point Of Sales"
         Me.Panel8.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
+        Me.Panel24.PerformLayout()
         Me.Panel34.ResumeLayout(False)
         Me.Panel34.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -2244,4 +2256,5 @@ Partial Class POS
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel20 As Panel
 End Class

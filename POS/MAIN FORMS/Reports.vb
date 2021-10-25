@@ -688,13 +688,13 @@ Public Class Reports
                         If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
                             AddLine += 40
                         End If
-                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b + AddLine)
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b + AddLine)
                     Else
                         Dim AddLine As Integer = 0
                         If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
                             AddLine += 40
                         End If
-                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b + AddLine)
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 540 + b + AddLine)
                     End If
 
                     If S_Reprint = "YES" Then
@@ -817,7 +817,7 @@ Public Class Reports
     Private Sub pdoc_PrintPage(sender As Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles printdoc.PrintPage
         Try
             Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "###,###,##0.00")
-            a = 20
+            a = 30
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
             Dim font As New Font("Tahoma", 6)
@@ -832,15 +832,15 @@ Public Class Reports
             Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
             Dim abc As Integer = 0
             If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
-                abc = 30
+                abc = 40
             Else
-                abc = 20
+                abc = 30
             End If
             Try
                 Dim Query1 As String = "SELECT senior_name FROM loc_senior_details WHERE transaction_number = '" & DataGridViewDaily.SelectedRows(0).Cells(0).Value & "'"
                 Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
                 Dim result = CmdQ.ExecuteScalar()
-                SimpleTextDisplay(sender, e, result, font, 30, 45)
+                SimpleTextDisplay(sender, e, result, font, 30, 72)
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
@@ -899,7 +899,7 @@ Public Class Reports
                     SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 150)
                     SimpleTextDisplay(sender, e, "Reprint Copy", font, 0, a + 160)
                     SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 170)
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 185)
 
                     If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 1 Then
                         ReceiptFooter(sender, e, a + 12, False)
@@ -954,9 +954,9 @@ Public Class Reports
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 190)
                     a += 16
                     If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 1 Then
-                        ReceiptFooter(sender, e, a + 12, False)
+                        ReceiptFooter(sender, e, a, False)
                     Else
-                        ReceiptFooter(sender, e, a + 12, True)
+                        ReceiptFooter(sender, e, a, True)
                     End If
                 End If
             End With
