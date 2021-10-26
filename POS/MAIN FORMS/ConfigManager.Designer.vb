@@ -3692,6 +3692,7 @@ Partial Class ConfigManager
         Me.TextBoxMunName.ReadOnly = True
         Me.TextBoxMunName.Size = New System.Drawing.Size(117, 23)
         Me.TextBoxMunName.TabIndex = 0
+        Me.TextBoxMunName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBoxProvName
         '
@@ -3702,6 +3703,7 @@ Partial Class ConfigManager
         Me.TextBoxProvName.ReadOnly = True
         Me.TextBoxProvName.Size = New System.Drawing.Size(117, 23)
         Me.TextBoxProvName.TabIndex = 272
+        Me.TextBoxProvName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ConfigManager
         '
