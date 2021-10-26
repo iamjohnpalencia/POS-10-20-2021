@@ -343,6 +343,8 @@ Partial Class ConfigManager
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TextBoxMunName = New System.Windows.Forms.TextBox()
+        Me.TextBoxProvName = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -2302,8 +2304,10 @@ Partial Class ConfigManager
         'Panel15
         '
         Me.Panel15.AutoScroll = True
+        Me.Panel15.Controls.Add(Me.TextBoxProvName)
         Me.Panel15.Controls.Add(Me.TextBoxBrandname)
         Me.Panel15.Controls.Add(Me.TextBoxMIN)
+        Me.Panel15.Controls.Add(Me.TextBoxMunName)
         Me.Panel15.Controls.Add(Me.TextBoxLocation)
         Me.Panel15.Controls.Add(Me.TextBoxAddress)
         Me.Panel15.Controls.Add(Me.Label67)
@@ -3679,6 +3683,26 @@ Partial Class ConfigManager
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'TextBoxMunName
+        '
+        Me.TextBoxMunName.BackColor = System.Drawing.Color.White
+        Me.TextBoxMunName.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.TextBoxMunName.Location = New System.Drawing.Point(117, 110)
+        Me.TextBoxMunName.Name = "TextBoxMunName"
+        Me.TextBoxMunName.ReadOnly = True
+        Me.TextBoxMunName.Size = New System.Drawing.Size(117, 23)
+        Me.TextBoxMunName.TabIndex = 0
+        '
+        'TextBoxProvName
+        '
+        Me.TextBoxProvName.BackColor = System.Drawing.Color.White
+        Me.TextBoxProvName.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.TextBoxProvName.Location = New System.Drawing.Point(311, 110)
+        Me.TextBoxProvName.Name = "TextBoxProvName"
+        Me.TextBoxProvName.ReadOnly = True
+        Me.TextBoxProvName.Size = New System.Drawing.Size(117, 23)
+        Me.TextBoxProvName.TabIndex = 272
+        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4127,4 +4151,6 @@ Partial Class ConfigManager
     Friend WithEvents Column29 As DataGridViewTextBoxColumn
     Friend WithEvents Column30 As DataGridViewTextBoxColumn
     Friend WithEvents Column31 As DataGridViewTextBoxColumn
+    Friend WithEvents TextBoxProvName As TextBox
+    Friend WithEvents TextBoxMunName As TextBox
 End Class

@@ -628,6 +628,8 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Dim MunicipalityName As String
+    Dim ProvinceName As String
     Private Function LoadOutlets() As DataTable
         Dim CloudDT As DataTable = New DataTable
         Try
@@ -853,6 +855,8 @@ Public Class ConfigManager
                     TextBoxPTUN.Text = DataGridViewOutlets.SelectedRows(0).Cells(17).Value.ToString
                     TextBoxMIN.Text = DataGridViewOutlets.SelectedRows(0).Cells(15).Value.ToString
                     TextBoxMSN.Text = DataGridViewOutlets.SelectedRows(0).Cells(16).Value.ToString
+                    TextBoxMunName.Text = ReturnMunicipalityName(TextBoxMun.Text)
+                    TextBoxProvName.Text = ReturnProvinceName(TextBoxProv.Text)
                     DataGridViewOutletDetails.Rows.Add(DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString, TextBoxBrandname.Text, DataGridViewOutlets.SelectedRows(0).Cells(2).Value.ToString, UserGUID, TextBoxLocation.Text, TextBoxPostalCode.Text, TextBoxAddress.Text, DataGridViewOutlets.SelectedRows(0).Cells(7).Value.ToString, TextBoxMun.Text, TextBoxProv.Text, TextBoxTIN.Text, TextBoxTEL.Text, TextBoxMIN.Text, TextBoxMSN.Text, TextBoxPTUN.Text)
                     FranchiseeStoreValidation = True
                 End With
