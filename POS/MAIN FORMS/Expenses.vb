@@ -3,75 +3,18 @@ Imports System.IO
 Imports System.Threading
 
 Public Class Expenses
-    Dim thread1 As System.Threading.Thread
+    Dim thread1 As Thread
     Dim encodeType As ImageFormat = ImageFormat.Jpeg
     Dim decodingstring As String = String.Empty
     Private ImagePath As String = ""
     Dim insertcurrenttime As String
     Dim insertcurrentdate As String
-
-
     Private Sub Expenses_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Start()
         If Application.OpenForms().OfType(Of Expenses).Any Then
             Me.BringToFront()
         Else
         End If
-    End Sub
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        Addexpense.Show()
-    End Sub
-    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
-        Me.Close()
-    End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Try
-            If String.IsNullOrWhiteSpace(ComboBoxType.Text) Then
-                MsgBox("Fill up blanks")
-            ElseIf String.IsNullOrWhiteSpace(TextBoxITEMINF.Text) Then
-                MsgBox("Fill up blanks")
-            ElseIf String.IsNullOrWhiteSpace(TextBoxQTY.Text) Then
-                MsgBox("Fill up blanks")
-            ElseIf String.IsNullOrWhiteSpace(TextBoxPRICE.Text) Then
-                MsgBox("Fill up blanks")
-            Else
-                With Addexpense
-                    .ButtonClickCount += 1
-                    .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, TextBoxAttatchment.Text, .ButtonClickCount)
-                    .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
-                End With
-                Me.Close()
-                ClearTextBox(root:=GroupBox1)
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        TextBoxAttatchment.Clear()
-        Try
-            With OpenFileDialog1
-                .Filter = ("Images | *.png; *.bmp; *.jpg; *.jpeg; *.gif; *.ico;")
-                .FilterIndex = 4
-            End With
-            OpenFileDialog1.FileName = ""
-            If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-                If My.Computer.FileSystem.FileExists(ImagePath) Then
-                    Button4.Enabled = False
-                    Button5.Enabled = False
-                    BackgroundWorker1.WorkerSupportsCancellation = True
-                    BackgroundWorker1.WorkerReportsProgress = True
-                    BackgroundWorker1.RunWorkerAsync()
-                End If
-                PictureBoxAttachment.Image = Image.FromFile(OpenFileDialog1.FileName)
-                PictureBoxAttachment.SizeMode = PictureBoxSizeMode.Zoom
-                Button1.Enabled = False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -80,13 +23,13 @@ Public Class Expenses
                 ToolStripStatusLabel1.Text = "Uploading image please wait " & i & " %"
                 BackgroundWorker1.ReportProgress(i)
                 If i = 10 Then
-                    thread1 = New System.Threading.Thread(AddressOf convertimage)
+                    thread1 = New Thread(AddressOf convertimage)
                     thread1.Start()
                     threadList.Add(thread1)
                 ElseIf i = 100 Then
 
                 End If
-                Threading.Thread.Sleep(10)
+                Thread.Sleep(10)
             Next
             For Each t In threadList
                 t.Join()
@@ -110,9 +53,8 @@ Public Class Expenses
             Label1.Text = "Task Cancelled!"
         Else
             '' otherwise it completed normally
-            Button1.Enabled = True
-            Button4.Enabled = True
-            Button5.Enabled = True
+            ToolStripButton1.Enabled = True
+            ToolStripButton2.Enabled = True
             ToolStripStatusLabel1.Text = "Successfully Uploaded!"
             'expensesload()
         End If
@@ -145,7 +87,6 @@ Public Class Expenses
         insertcurrenttime = TimeOfDay.ToString("h:mm:ss")
         insertcurrentdate = String.Format("{0:yyyy/MM/dd}", DateTime.Now)
     End Sub
-
     Private Sub TextBoxQTY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxQTY.TextChanged
         TextBoxTOTAL.Text = Val(TextBoxQTY.Text) * Val(TextBoxPRICE.Text)
     End Sub
@@ -156,11 +97,9 @@ Public Class Expenses
     Private Sub Expenses_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Addexpense.Enabled = True
     End Sub
-
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
     End Sub
-
     Private Sub TextBoxQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxQTY.KeyPress, TextBoxPRICE.KeyPress, TextBoxTOTAL.KeyPress
         Try
             Numeric(sender, e)
@@ -169,7 +108,6 @@ Public Class Expenses
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub TextBoxITEMINF_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxITEMINF.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
@@ -177,6 +115,55 @@ Public Class Expenses
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Try
+            If String.IsNullOrWhiteSpace(ComboBoxType.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxITEMINF.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxQTY.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxPRICE.Text) Then
+                MsgBox("Fill up blanks")
+            Else
+                With Addexpense
+                    .ButtonClickCount += 1
+                    .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, TextBoxAttatchment.Text, .ButtonClickCount)
+                    .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
+                End With
+                Me.Close()
+                ClearTextBox(root:=Me)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        TextBoxAttatchment.Clear()
+        Try
+            With OpenFileDialog1
+                .Filter = ("Images | *.png; *.bmp; *.jpg; *.jpeg; *.gif; *.ico;")
+                .FilterIndex = 4
+            End With
+            OpenFileDialog1.FileName = ""
+            If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+                If My.Computer.FileSystem.FileExists(ImagePath) Then
+                    ToolStripButton1.Enabled = False
+                    ToolStripButton2.Enabled = False
+                    BackgroundWorker1.WorkerSupportsCancellation = True
+                    BackgroundWorker1.WorkerReportsProgress = True
+                    BackgroundWorker1.RunWorkerAsync()
+                End If
+                PictureBoxAttachment.Image = Image.FromFile(OpenFileDialog1.FileName)
+                PictureBoxAttachment.SizeMode = PictureBoxSizeMode.Zoom
+                ToolStripButton1.Enabled = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

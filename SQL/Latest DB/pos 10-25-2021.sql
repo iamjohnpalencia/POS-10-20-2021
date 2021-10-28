@@ -690,7 +690,7 @@ CREATE TABLE IF NOT EXISTS `loc_settings` (
   `printreturns` text NOT NULL,
   `S_DateModified` text NOT NULL,
   `autoresetinv` text NOT NULL,
-  `printcount` int(11) NOT NULL DEFAULT 1,
+  `printcount` int(11) NOT NULL DEFAULT 2,
   PRIMARY KEY (`settings_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

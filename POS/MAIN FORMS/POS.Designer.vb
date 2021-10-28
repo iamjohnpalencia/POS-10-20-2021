@@ -35,8 +35,9 @@ Partial Class POS
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.LabelFOOTER = New System.Windows.Forms.Label()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
@@ -204,7 +205,6 @@ Partial Class POS
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -294,14 +294,6 @@ Partial Class POS
         Me.Panel24.Size = New System.Drawing.Size(1366, 31)
         Me.Panel24.TabIndex = 17
         '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Location = New System.Drawing.Point(361, 8)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(312, 15)
-        Me.ProgressBar1.TabIndex = 17
-        Me.ProgressBar1.Visible = False
-        '
         'LabelFOOTER
         '
         Me.LabelFOOTER.AutoSize = True
@@ -315,6 +307,22 @@ Partial Class POS
         Me.LabelFOOTER.TabIndex = 16
         Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel20
+        '
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel20.Location = New System.Drawing.Point(355, 0)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(1011, 8)
+        Me.Panel20.TabIndex = 19
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(361, 8)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(312, 15)
+        Me.ProgressBar1.TabIndex = 17
+        Me.ProgressBar1.Visible = False
         '
         'Panel34
         '
@@ -1991,9 +1999,6 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.ReadOnly = True
         '
-        'BackgroundWorker2
-        '
-        '
         'BackgroundWorker3
         '
         '
@@ -2006,14 +2011,6 @@ Partial Class POS
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(977, 70)
         Me.Panel3.TabIndex = 39
-        '
-        'Panel20
-        '
-        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel20.Location = New System.Drawing.Point(355, 0)
-        Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(1011, 8)
-        Me.Panel20.TabIndex = 19
         '
         'POS
         '

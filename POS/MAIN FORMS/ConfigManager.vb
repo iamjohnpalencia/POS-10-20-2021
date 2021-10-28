@@ -112,11 +112,15 @@ Public Class ConfigManager
         End Try
     End Sub
     Private Sub ButtonTestLocConn_Click(sender As Object, e As EventArgs) Handles ButtonTestLocConn.Click
-        TextboxEnableability(Panel5, False)
-        ButtonEnableability(Panel5, False)
-        BackgroundWorker1.WorkerSupportsCancellation = True
-        BackgroundWorker1.WorkerReportsProgress = True
-        BackgroundWorker1.RunWorkerAsync()
+        Try
+            TextboxEnableability(Panel5, False)
+            ButtonEnableability(Panel5, False)
+            BackgroundWorker1.WorkerSupportsCancellation = True
+            BackgroundWorker1.WorkerReportsProgress = True
+            BackgroundWorker1.RunWorkerAsync()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonClearLocal_Click(sender As Object, e As EventArgs) Handles ButtonClearLocal.Click
         ClearTextBox(Panel5)
@@ -135,6 +139,8 @@ Public Class ConfigManager
     Private Sub ButtonClearCloud_Click(sender As Object, e As EventArgs) Handles ButtonClearCloud.Click
         ClearTextBox(Panel9)
     End Sub
+    Dim threadListConLocal As List(Of Thread) = New List(Of Thread)
+    Dim threadconlocal As Thread
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             For i = 0 To 100
@@ -142,9 +148,13 @@ Public Class ConfigManager
                 BackgroundWorker1.ReportProgress(i)
                 Thread.Sleep(50)
                 If i = 10 Then
-                    thread1 = New Thread(AddressOf TestLocalConnection)
-                    thread1.Start()
+                    threadconlocal = New Thread(AddressOf TestLocalConnection)
+                    threadconlocal.Start()
+                    threadListConLocal.Add(threadconlocal)
                 End If
+            Next
+            For Each t In threadListConLocal
+                t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -169,12 +179,18 @@ Public Class ConfigManager
     End Sub
 
     Private Sub ButtonTestCloudConn_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudConn.Click
-        TextboxEnableability(Panel9, False)
-        ButtonEnableability(Panel9, False)
-        BackgroundWorker2.WorkerSupportsCancellation = True
-        BackgroundWorker2.WorkerReportsProgress = True
-        BackgroundWorker2.RunWorkerAsync()
+        Try
+            TextboxEnableability(Panel9, False)
+            ButtonEnableability(Panel9, False)
+            BackgroundWorker2.WorkerSupportsCancellation = True
+            BackgroundWorker2.WorkerReportsProgress = True
+            BackgroundWorker2.RunWorkerAsync()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
+    Dim threadListConCloud As List(Of Thread) = New List(Of Thread)
+    Dim threadcloud As Thread
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Try
             For i = 0 To 100
@@ -182,9 +198,13 @@ Public Class ConfigManager
                 BackgroundWorker2.ReportProgress(i)
                 Thread.Sleep(50)
                 If i = 10 Then
-                    thread1 = New Thread(AddressOf TestCloudConnection)
-                    thread1.Start()
+                    threadcloud = New Thread(AddressOf TestCloudConnection)
+                    threadcloud.Start()
+                    threadListConCloud.Add(threadcloud)
                 End If
+            Next
+            For Each t In threadListConCloud
+                t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -220,16 +240,17 @@ Public Class ConfigManager
             where = "settings_id = 1"
             If ValidLocalConnection = True Then
                 If ValidCloudConnection = True Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     fields = "C_Server, C_Username, C_Password, C_Database, C_Port"
                     sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         fields = "C_Server = '" & ConvertToBase64(Trim(TextBoxCloudServer.Text)) & "', C_Username = '" & ConvertToBase64(Trim(TextBoxCloudUsername.Text)) & "', C_Password = '" & ConvertToBase64(Trim(TextBoxCloudPassword.Text)) & "', C_Database = '" & ConvertToBase64(Trim(TextBoxCloudDatabase.Text)) & "', C_Port = '" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "'"
                         sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
                         If CLOUDCONDATA = False Then
                             MsgBox("Saved!")
@@ -243,7 +264,7 @@ Public Class ConfigManager
                      ,'" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "'
                      ,'" & Format(Now(), "yyyy-MM-dd") & "')"
                         sql = "INSERT INTO " & table & " " & fields & " VALUES " & value
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
                         If CLOUDCONDATA = False Then
                             MsgBox("Saved!")
@@ -259,6 +280,7 @@ Public Class ConfigManager
                     FillUp = True
                     SaveDevInfo()
                     SaveAddSettings()
+                    ConnectionLocal.Close()
                 Else
                     FillUp = False
                     BTNSaveCloudConn = False
@@ -267,6 +289,7 @@ Public Class ConfigManager
             Else
                 MsgBox("Local connection must be valid first.")
             End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -275,8 +298,9 @@ Public Class ConfigManager
     Private Sub LoadPrintOptions()
         Try
             If ValidLocalConnection Then
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 sql = "SELECT `printreceipt`, `reprintreceipt`, `printxzread`, `printreturns` FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -340,10 +364,11 @@ Public Class ConfigManager
     Private Sub LoadDefaultSettingsAdd()
         Try
             If ValidCloudConnection = True And ValidLocalConnection = True Then
-                If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
+                If File.Exists(My.Settings.LocalConnectionPath) Then
                     Dim EXPORTPATH = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention"
-                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` , `S_Waffle_Bag`, `S_Packets`, `P_Footer_Info` FROM admin_settings_org WHERE settings_id = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+                    Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
+                    Dim sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` , `S_Waffle_Bag`, `S_Packets`, `P_Footer_Info` FROM admin_settings_org WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionCloud)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
@@ -367,6 +392,7 @@ Public Class ConfigManager
                         TextBoxSugarPackets.Text = dt(0)(9)
                         ConfirmAdditionalSettings = True
                         FooterInfo = dt(0)(10)
+                        ConnectionCloud.Close()
                     Else
                         ConfirmAdditionalSettings = False
                     End If
@@ -379,8 +405,9 @@ Public Class ConfigManager
     Private Sub LoadDefaultSettingsDev()
         Try
             If ValidCloudConnection = True And ValidLocalConnection = True Then
-                sql = "SELECT `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until` FROM admin_settings_org WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+                Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
+                Dim sql = "SELECT `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until` FROM admin_settings_org WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionCloud)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -398,6 +425,7 @@ Public Class ConfigManager
                 Else
                     ConfirmDevInfoSettings = False
                 End If
+                ConnectionCloud.Close()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -406,7 +434,7 @@ Public Class ConfigManager
     Private Sub LoadConn()
         Try
             If My.Settings.LocalConnectionPath <> "" Then
-                If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
+                If File.Exists(My.Settings.LocalConnectionPath) Then
                     'The File exists 
                     Dim CreateConnString As String = ""
                     Dim filename As String = String.Empty
@@ -442,8 +470,9 @@ Public Class ConfigManager
     Public Sub LoadCloudConn()
         Try
             If ValidLocalConnection = True Then
-                sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
+                Dim sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -459,6 +488,7 @@ Public Class ConfigManager
                     ValidCloudConnection = False
                     CLOUDCONDATA = False
                 End If
+                ConnectionLocal.Close()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -467,8 +497,9 @@ Public Class ConfigManager
     Private Sub LoadAutoBackup()
         Try
             If ValidLocalConnection = True Then
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim sql = "SELECT `S_BackupInterval`, `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -495,6 +526,7 @@ Public Class ConfigManager
                         Exit For
                     End If
                 Next
+                ConnectionLocal.Close()
             Else
                 Autobackup = False
             End If
@@ -505,8 +537,9 @@ Public Class ConfigManager
     Private Sub LoadAdditionalSettings()
         Try
             If ValidLocalConnection = True Then
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -547,6 +580,7 @@ Public Class ConfigManager
                         Exit For
                     End If
                 Next
+                ConnectionLocal.Close()
             Else
                 ConfirmAdditionalSettings = False
             End If
@@ -558,8 +592,9 @@ Public Class ConfigManager
     Private Sub LoadDevInfo()
         Try
             If ValidLocalConnection = True Then
-                sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
+                Dim sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt = New DataTable
                 da.Fill(dt)
@@ -620,6 +655,7 @@ Public Class ConfigManager
                         Exit For
                     End If
                 Next
+                ConnectionLocal.Close()
             Else
                 ConfirmDevInfoSettings = False
             End If
@@ -633,11 +669,12 @@ Public Class ConfigManager
     Private Function LoadOutlets() As DataTable
         Dim CloudDT As DataTable = New DataTable
         Try
+            Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
             Dim sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & UserGUID & "' AND active = 1"
-            Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, ConnectionCloud)
             Dim CloudDa As MySqlDataAdapter = New MySqlDataAdapter(CloudCmd)
             CloudDa.Fill(CloudDT)
-
+            ConnectionCloud.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -645,12 +682,12 @@ Public Class ConfigManager
     End Function
     Private Sub GetLogo(BrandName)
         Try
-            Dim Logo
+            Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
             Dim sql = "SELECT brand_logo FROM admin_brand WHERE brand_name = '" & BrandName & "' "
             Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
-            Logo = CloudCmd.ExecuteScalar()
-            RichTextBoxLogo.Text = Logo
-            PictureBoxLogo.BackgroundImage = Base64ToImage(Logo)
+            RichTextBoxLogo.Text = CloudCmd.ExecuteScalar()
+            PictureBoxLogo.BackgroundImage = Base64ToImage(CloudCmd.ExecuteScalar())
+            ConnectionCloud.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -661,7 +698,7 @@ Public Class ConfigManager
             Dim CreateConnString As String = ""
             Dim filename As String = String.Empty
             Dim TextLine As String = ""
-            Dim objReader As New System.IO.StreamReader(path)
+            Dim objReader As New StreamReader(path)
             Dim lineCount As Integer
             Do While objReader.Peek() <> -1
                 TextLine = objReader.ReadLine()
@@ -720,31 +757,35 @@ Public Class ConfigManager
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker3_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker3.DoWork
-        For i = 0 To 100
-            LabelAccCheck.Text = "Checking Account " & i & " %"
-            BackgroundWorker3.ReportProgress(i)
-            If i = 0 Then
-                thread1 = New System.Threading.Thread(AddressOf checkacc)
-                thread1.Start()
-                threadList.Add(thread1)
-            End If
-            Thread.Sleep(20)
-        Next
-        For Each t In threadList
-            t.Join()
-        Next
+        Try
+            For i = 0 To 100
+                LabelAccCheck.Text = "Checking Account " & i & " %"
+                BackgroundWorker3.ReportProgress(i)
+                If i = 0 Then
+                    thread1 = New Thread(AddressOf checkacc)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                End If
+                Thread.Sleep(20)
+            Next
+            For Each t In threadList
+                t.Join()
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Dim AccountExist As Boolean
     Dim UserGUID As String
-    Dim UserStoreID As Integer
-    Dim CloudConn2 As MySqlConnection
+
     Public Sub checkacc()
         Try
             AccountExist = False
             FranchiseeStoreValidation = False
-            sql = "SELECT user_guid, user_id FROM admin_user WHERE user_name = '" & TextBoxFrancUser.Text & "' AND user_pass = '" & ConvertPassword(TextBoxFrancPass.Text) & "' AND user_role = 'Client' AND status = 1; "
-            cmd = New MySqlCommand(sql, TestCloudConnection())
+            Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
+            Dim sql = "SELECT user_guid, user_id FROM admin_user WHERE user_name = '" & TextBoxFrancUser.Text & "' AND user_pass = '" & ConvertPassword(TextBoxFrancPass.Text) & "' AND user_role = 'Client' AND status = 1; "
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionCloud)
             Dim DataadapterCheckAcc As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim DatatableCheckAcc As DataTable = New DataTable
             DataadapterCheckAcc.Fill(DatatableCheckAcc)
@@ -766,6 +807,7 @@ Public Class ConfigManager
 
                 End If
             Next
+            ConnectionCloud.Close()
         Catch ex As MySqlException
             MsgBox(ex.ToString)
         Finally
@@ -892,11 +934,12 @@ Public Class ConfigManager
             Dim Tax = Val(TextBoxTax.Text) / 100
             If TextboxIsEmpty(GroupBox10) = True Then
                 If ValidLocalConnection = True Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     Dim table = "loc_settings"
                     Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version, S_Waffle_Bag , S_Packets , P_Footer_Info"
                     Dim where = "settings_id = 1"
                     Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
@@ -906,16 +949,16 @@ Public Class ConfigManager
                         ElseIf RadioButtonNO.Checked = True Then
                             RButton = 0
                         End If
-                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "' , `S_Waffle_Bag` = '" & Trim(TextBoxWaffleBag.Text) & "' , `S_Packets` = '" & Trim(TextBoxSugarPackets.Text) & "' , S_Update_Version = '" & POSVersion & "', P_Footer_Info = '" & FooterInfo & "'"
+                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "' , `S_Waffle_Bag` = '" & Trim(TextBoxWaffleBag.Text) & "' , `S_Packets` = '" & Trim(TextBoxSugarPackets.Text) & "' , S_Update_Version = '" & POSVersion & "', P_Footer_Info = '" & FooterInfo & "', printcount = 2"
                         sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
                         If FillUp = True Then
                         Else
                             MsgBox("Saved!")
                         End If
                     Else
-                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add , S_Update_Version , S_Waffle_Bag , S_Packets, P_Footer_Info)"
+                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add , S_Update_Version , S_Waffle_Bag , S_Packets, P_Footer_Info, printcount)"
                         Dim value = "('" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "'
                      ,'" & Tax & "'
                      ,'" & Trim(TextBoxSINumber.Text) & "'
@@ -927,11 +970,12 @@ Public Class ConfigManager
                      ,'" & Trim(TextBoxBROWNIEPRICE.Text) & "'
                      ,'" & POSVersion & "'
                      ,'" & Trim(TextBoxWaffleBag.Text) & "'
-                     ,'" & Trim(TextBoxSugarPackets.Text) & "')
-                     ,'" & FooterInfo & "')"
+                     ,'" & Trim(TextBoxSugarPackets.Text) & "'
+                     ,'" & FooterInfo & "'
+                     ,2)"
 
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
                         If FillUp = True Then
                         Else
@@ -942,6 +986,7 @@ Public Class ConfigManager
                     TextboxEnableability(GroupBox10, False)
                     RDButtons(False)
                     ButtonGetExportPath.Enabled = False
+                    ConnectionLocal.Close()
                 Else
                     ConfirmAdditionalSettings = False
                     MsgBox("Invalid Local Connection.")
@@ -1032,18 +1077,20 @@ Public Class ConfigManager
         SaveDevInfo()
     End Sub
     Private Sub SaveDevInfo()
-        Dim table = "loc_settings"
-        Dim where = "settings_id = 1"
-        If TextboxIsEmpty(GroupBox11) = True Then
-            If ValidLocalConnection = True Then
-                Dim fields = "Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until"
-                Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-                Dim dt As DataTable = New DataTable
-                da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Dim fields1 = "`Dev_Company_Name`= '" & Trim(TextBoxDevname.Text) & "',
+        Try
+            Dim table = "loc_settings"
+            Dim where = "settings_id = 1"
+            If TextboxIsEmpty(GroupBox11) = True Then
+                If ValidLocalConnection = True Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
+                    Dim fields = "Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until"
+                    Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields1 = "`Dev_Company_Name`= '" & Trim(TextBoxDevname.Text) & "',
                 `Dev_Address`= '" & Trim(TextBoxDevAdd.Text) & "',
                 `Dev_Tin`= '" & Trim(TextBoxDevTIN.Text) & "',
                 `Dev_Accr_No`= '" & Trim(TextBoxDevAccr.Text) & "' ,
@@ -1052,18 +1099,18 @@ Public Class ConfigManager
                 `Dev_PTU_No`= '" & Trim(TextBoxDEVPTU.Text) & "',
                 `Dev_PTU_Date_Issued`= '" & Format(DateTimePickerPTUVU.Value, "yyyy-MM-dd") & "',
                 `Dev_PTU_Valid_Until`= '" & Format(DateTimePicker4PTUDI.Value, "yyyy-MM-dd") & "'"
-                    sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
-                    cmd = New MySqlCommand(sql, TestLocalConnection)
-                    cmd.ExecuteNonQuery()
-                    ConfirmDevInfoSettings = True
-                    If FillUp = True Then
-                    Else
-                        MsgBox("Saved!")
-                    End If
+                        sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
+                        cmd.ExecuteNonQuery()
+                        ConfirmDevInfoSettings = True
+                        If FillUp = True Then
+                        Else
+                            MsgBox("Saved!")
+                        End If
 
-                Else
-                    Dim fields2 = "(Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until)"
-                    Dim value = "('" & Trim(TextBoxDevname.Text) & "'
+                    Else
+                        Dim fields2 = "(Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until)"
+                        Dim value = "('" & Trim(TextBoxDevname.Text) & "'
                 ,'" & Trim(TextBoxDevAdd.Text) & "'
                 ,'" & Trim(TextBoxDevTIN.Text) & "'
                 ,'" & Trim(TextBoxDevAccr.Text) & "'
@@ -1072,26 +1119,30 @@ Public Class ConfigManager
                 ,'" & Trim(TextBoxDEVPTU.Text) & "'
                 ,'" & Format(DateTimePickerPTUVU.Value, "yyyy-MM-dd") & "'
                 ,'" & Format(DateTimePicker4PTUDI.Value, "yyyy-MM-dd") & "')"
-                    sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
-                    cmd = New MySqlCommand(sql, TestLocalConnection)
-                    cmd.ExecuteNonQuery()
-                    ConfirmDevInfoSettings = True
-                    If FillUp = True Then
-                    Else
-                        MsgBox("Saved!")
-                    End If
+                        sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
+                        cmd.ExecuteNonQuery()
+                        ConfirmDevInfoSettings = True
+                        If FillUp = True Then
+                        Else
+                            MsgBox("Saved!")
+                        End If
 
+                    End If
+                    TextboxEnableability(GroupBox11, False)
+                    DatePickerState(False)
+                    ConnectionLocal.Close()
+                Else
+                    MsgBox("Invalid local connection")
+                    ConfirmDevInfoSettings = False
                 End If
-                TextboxEnableability(GroupBox11, False)
-                DatePickerState(False)
             Else
-                MsgBox("Invalid local connection")
+                MsgBox("All fields are required")
                 ConfirmDevInfoSettings = False
             End If
-        Else
-            MsgBox("All fields are required")
-            ConfirmDevInfoSettings = False
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonActivate.Click
         If ValidLocalConnection = True Then
@@ -1160,8 +1211,9 @@ Public Class ConfigManager
     Dim ValidProductKey As Boolean
     Private Sub SerialKey()
         Try
+            Dim CloudConnection As MySqlConnection = TestCloudConnection()
             Dim sql = "SELECT serial_key FROM admin_serialkeys WHERE active = 0 AND serial_key = '" & Trim(TextBoxProdKey.Text) & "'"
-            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, CloudConnection)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -1170,6 +1222,7 @@ Public Class ConfigManager
             Else
                 ValidProductKey = False
             End If
+            CloudConnection.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1292,12 +1345,14 @@ Public Class ConfigManager
     Private Sub adminserialkey()
         Try
             TextBox1.Text += FullDate24HR() & " :    Updating cloud server's table(Product Key)." & vbNewLine
+            Dim CloudConnection As MySqlConnection = TestCloudConnection()
             Dim sql = "UPDATE admin_serialkeys SET active = @1 , date_used = @2 WHERE serial_key = @3"
-            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, CloudConnection)
             cloudcmd.Parameters.Add("@1", MySqlDbType.Int64).Value = 1
             cloudcmd.Parameters.Add("@2", MySqlDbType.Text).Value = FullDate24HR()
             cloudcmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Trim(TextBoxProdKey.Text)
             cloudcmd.ExecuteNonQuery()
+            CloudConnection.Close()
             TextBox1.Text += FullDate24HR() & " :    Complete(Product key table updated)." & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Updating of product key)." & vbNewLine
@@ -1307,13 +1362,15 @@ Public Class ConfigManager
     Public Sub adminoutlets()
         Try
             TextBox1.Text += FullDate24HR() & " :    Updating cloud server's table(Outlets)." & vbNewLine
+            Dim CloudConnection As MySqlConnection = TestCloudConnection()
             Dim table = "admin_outlets"
             Dim fields = " active = @1 "
             Dim where = " store_id = " & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
-            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, CloudConnection)
             cloudcmd.Parameters.Add("@1", MySqlDbType.Int64).Value = 2
             cloudcmd.ExecuteNonQuery()
+            CloudConnection.Close()
             TextBox1.Text += FullDate24HR() & " :    Complete(Outlets table updated)." & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Updating of outlet)." & vbNewLine
@@ -1324,6 +1381,7 @@ Public Class ConfigManager
     Public Sub insertintocloud()
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to cloud server's table(Masterlist)." & vbNewLine
+            Dim CloudConnection As MySqlConnection = TestCloudConnection()
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
             Dim value1 = "('" & TextBoxFrancUser.Text & "'
@@ -1334,8 +1392,9 @@ Public Class ConfigManager
                      ," & 1 & "
                      ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value & "')"
             Dim sql = "INSERT INTO " + table1 + fields1 + " VALUES " + value1
-            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, CloudConnection)
             cloudcmd.ExecuteNonQuery()
+            CloudConnection.Close()
             TextBox1.Text += FullDate24HR() & " :    Complete(Masterlist data inserted)." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1348,15 +1407,16 @@ Public Class ConfigManager
             Dim Municipalityname
             Dim ProvinceName
             With DataGridViewOutletDetails
+                Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
                 Dim sql1 As String = "SELECT mn_name FROM admin_municipality WHERE mn_id = " & .Rows(0).Cells(8).Value.ToString
-                Dim cloudcmd1 As MySqlCommand = New MySqlCommand(sql1, TestCloudConnection)
+                Dim cloudcmd1 As MySqlCommand = New MySqlCommand(sql1, ConnectionCloud)
                 Dim da1 As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd1)
                 Dim dt1 As DataTable = New DataTable
                 da1.Fill(dt1)
                 Municipalityname = dt1(0)(0)
                 '=======================================================
                 Dim sql2 As String = "SELECT province FROM admin_province WHERE add_id = " & .Rows(0).Cells(9).Value.ToString
-                Dim cloudcmd2 As MySqlCommand = New MySqlCommand(sql2, TestCloudConnection)
+                Dim cloudcmd2 As MySqlCommand = New MySqlCommand(sql2, ConnectionCloud)
                 Dim da2 As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd2)
                 Dim dt2 As DataTable = New DataTable
                 da2.Fill(dt2)
@@ -1384,9 +1444,12 @@ Public Class ConfigManager
                         ,'" & .Rows(0).Cells(14).Value.ToString & "'
                         ,'" & FullDate24HR() & "')"
                 TextBox1.Text += FullDate24HR() & " :    Inserting outlet data." & vbNewLine
+                Dim Connectionlocal As MySqlConnection = TestLocalConnection()
                 Dim sql = "INSERT INTO " & table & fields & " VALUES " & value
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, Connectionlocal)
                 cmd.ExecuteNonQuery()
+                Connectionlocal.Close()
+                ConnectionCloud.Close()
                 TextBox1.Text += FullDate24HR() & " :    Complete(Outlet data inserted)." & vbNewLine
             End With
         Catch ex As Exception
@@ -1396,9 +1459,11 @@ Public Class ConfigManager
     End Sub
     Private Sub SaveLogo()
         Try
+            Dim Connectionlocal As MySqlConnection = TestLocalConnection()
             Dim sql = "UPDATE loc_settings SET S_logo = '" & RichTextBoxLogo.Text & "' WHERE settings_id = 1"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, Connectionlocal)
             cmd.ExecuteNonQuery()
+            Connectionlocal.Close()
         Catch ex As Exception
             MsgBox("Contact Administrator Error Code: 3.0")
         End Try
@@ -1417,9 +1482,11 @@ Public Class ConfigManager
                      ," & 1 & "
                      ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString & "'
                      ,'" & FullDate24HR() & "')"
+            Dim Connectionlocal As MySqlConnection = TestLocalConnection()
             Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, Connectionlocal)
             cmd.ExecuteNonQuery()
+            Connectionlocal.Close()
             TextBox1.Text += FullDate24HR() & " :    Complete(Masterlist data inserted)." & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Masterlist data insertion)." & vbNewLine
@@ -1430,11 +1497,13 @@ Public Class ConfigManager
         datagrid.Rows.Clear()
         Dim dt As DataTable = New DataTable()
         Try
+            Dim ConnectionCloud As MySqlConnection = TestCloudConnection()
             Dim sql = "SELECT " & flds & " FROM " & table
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionCloud)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             da.Fill(dt)
             datagrid.ReadOnly = True
+            ConnectionCloud.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1764,10 +1833,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Products)" & vbNewLine
             With DataGridViewPRODUCTS
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `server_inventory_id`, `guid`, `store_id`, `synced`, `addontype`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15 ,@16)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15 ,@16)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int32).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1799,10 +1869,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Inventories)." & vbNewLine
             With DataGridViewINVENTORY
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `server_date_modified`, `store_id`, `guid`, `date_modified`, `crew_id`, `synced`, `main_inventory_id`, `origin`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = 0
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1820,9 +1891,9 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value
                     cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value
-
                     cmdlocal.ExecuteNonQuery()
                 Next
+                ConnectionLocal.Close()
             End With
             TextBox1.Text += FullDate24HR() & " :    Complete(Inventories data insertion)" & vbNewLine
         Catch ex As Exception
@@ -1834,10 +1905,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Categories)." & vbNewLine
             With DataGridViewCATEGORIES
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
-                                             VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString
@@ -1845,6 +1917,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.ExecuteNonQuery()
                 Next
+                ConnectionLocal.Close()
             End With
             TextBox1.Text += FullDate24HR() & " :    Complete(Categories data insertion)" & vbNewLine
         Catch ex As Exception
@@ -1856,10 +1929,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Partners)." & vbNewLine
             With DataGridViewPartners
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_partners_transaction(`arrid`, `bankname`, `date_modified`, `crew_id`, `store_id`, `guid`, `active`, `synced`)
-                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString
@@ -1870,6 +1944,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
+                ConnectionLocal.Close()
             End With
             TextBox1.Text += FullDate24HR() & " :    Complete(Partners data insertion)" & vbNewLine
         Catch ex As Exception
@@ -1881,10 +1956,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Coupons)." & vbNewLine
             With DataGridViewCoupons
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO tbcoupon(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `date_created`, `store_id`, `crew_id`, `guid`, `origin`, `synced`, `active`)
-                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7 ,@8 ,@9 ,@10 ,@11 ,@12 ,@13, @14, @15, @16, @17)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7 ,@8 ,@9 ,@10 ,@11 ,@12 ,@13, @14, @15, @16, @17)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString
@@ -1903,9 +1979,9 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = "Server"
                     cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = "Synced"
                     cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = 1
-
                     cmdlocal.ExecuteNonQuery()
                 Next
+                ConnectionLocal.Close()
             End With
             TextBox1.Text += FullDate24HR() & " :    Complete(Coupons data insertion)" & vbNewLine
         Catch ex As Exception
@@ -1917,10 +1993,11 @@ Public Class ConfigManager
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Formulas)." & vbNewLine
             With DataGridViewFORMULA
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_product_formula(`server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `server_date_modified`, `store_id`, `guid`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", TestLocalConnection())
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", ConnectionLocal)
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1939,6 +2016,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
                 Next
+                ConnectionLocal.Close()
             End With
             TextBox1.Text += FullDate24HR() & " :    Complete(Formulas data insertion)" & vbNewLine
         Catch ex As Exception
@@ -2045,8 +2123,10 @@ Public Class ConfigManager
                     Interval = 4
                     IntervalName = "Yearly"
                 End If
+                Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
+
                 Dim sql = "SELECT `S_BackupInterval` , `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -2060,7 +2140,7 @@ Public Class ConfigManager
                     ElseIf Interval = 4 Then
                         sql = "UPDATE loc_settings SET `S_BackupInterval` = " & Interval & " , `S_BackupDate` = '" & Format(Now().AddYears(1), "yyyy-MM-dd") & "'"
                     End If
-                    cmd = New MySqlCommand(sql, TestLocalConnection)
+                    cmd = New MySqlCommand(sql, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                     Autobackup = True
                 Else
@@ -2073,11 +2153,12 @@ Public Class ConfigManager
                     ElseIf Interval = 4 Then
                         sql = "INSERT INTO loc_settings (`S_BackupInterval` , `S_BackupDate`) VALUES ('" & Interval & "','" & Format(Now().AddYears(1), "yyyy-MM-dd") & "')"
                     End If
-                    cmd = New MySqlCommand(sql, TestLocalConnection)
+                    cmd = New MySqlCommand(sql, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                     Autobackup = True
                 End If
                 MsgBox("Automatic system backup set to " & IntervalName & " backup")
+                ConnectionLocal.Close()
             Else
                 Autobackup = False
                 MsgBox("Local connection must be valid first.")
@@ -2108,7 +2189,7 @@ Public Class ConfigManager
             If myOpenFileDialog.ShowDialog = DialogResult.OK Then
                 Dim ImportPath = myOpenFileDialog.FileName
                 Dim TextLine As String = ""
-                Dim objReader As New System.IO.StreamReader(ImportPath)
+                Dim objReader As New StreamReader(ImportPath)
                 Dim lineCount As Integer
                 Do While objReader.Peek() <> -1
                     TextLine = objReader.ReadLine()
@@ -2199,25 +2280,25 @@ Public Class ConfigManager
                     PrintOption = ""
                 End If
                 If PrintOptionIsSet Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     Dim sql = "SELECT `printreceipt` FROM " & table & " WHERE `settings_id` = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         Dim fields = "`printreceipt` = '" & PrintOption & "' "
                         sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
-                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     Else
                         Dim fields = "`printreceipt`"
                         Dim value = "'" & PrintOption & "'"
                         sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     End If
+                    ConnectionLocal.Close()
                 Else
                     MsgBox("Select option first")
                     PrintOptionIsSet = False
@@ -2251,25 +2332,25 @@ Public Class ConfigManager
                     RePrintOptionIsSet = False
                 End If
                 If RePrintOptionIsSet Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     Dim sql = "Select `reprintreceipt` FROM " & table & " WHERE `settings_id` = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         Dim fields = "`reprintreceipt` = '" & RePrintOption & "' "
                         sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
-                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     Else
                         Dim fields = "`reprintreceipt`"
                         Dim value = "'" & RePrintOption & "'"
                         sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     End If
+                    ConnectionLocal.Close()
                 Else
                     MsgBox("Select option first")
                     RePrintOptionIsSet = False
@@ -2303,25 +2384,25 @@ Public Class ConfigManager
                     PrintXZRead = False
                 End If
                 If PrintXZRead Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     Dim sql = "Select `printxzread` FROM " & table & " WHERE `settings_id` = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         Dim fields = "`printxzread` = '" & PrintXZReadOption & "' "
                         sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
-                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     Else
                         Dim fields = "`printxzread`"
                         Dim value = "'" & PrintXZReadOption & "'"
                         sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     End If
+                    ConnectionLocal.Close()
                 Else
                     MsgBox("Select option first")
                     PrintXZRead = False
@@ -2356,25 +2437,25 @@ Public Class ConfigManager
                     PrintReturnsBool = False
                 End If
                 If PrintReturnsBool Then
+                    Dim ConnectionLocal As MySqlConnection = TestLocalConnection()
                     Dim sql = "Select `printreturns` FROM " & table & " WHERE `settings_id` = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         Dim fields = "`printreturns` = '" & PrintReturns & "' "
                         sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
-                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     Else
                         Dim fields = "`printreturns`"
                         Dim value = "'" & PrintReturns & "'"
                         sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
-                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
                         cmd.ExecuteNonQuery()
-                        MsgBox("Complete!")
                     End If
+                    ConnectionLocal.Close()
                 Else
                     MsgBox("Select option first")
                     PrintReturnsBool = False

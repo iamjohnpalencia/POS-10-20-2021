@@ -14,6 +14,7 @@ Public Class ChooseLayout
                 Dim sql = "UPDATE loc_settings SET S_Layout = '" & Layout & "' WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 cmd.ExecuteNonQuery()
+                ConnectionLocal.Close()
                 Loading.Show()
                 Close()
             End If

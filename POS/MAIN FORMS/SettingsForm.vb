@@ -1311,51 +1311,163 @@ Public Class SettingsForm
 
         End If
     End Sub
-    Private Function TestDBConnection(server, username, password, database, port) As MySqlConnection
+    Private Function TestDBConnectionLocal(server, username, password, database, port) As MySqlConnection
         Dim testcon As MySqlConnection = New MySqlConnection
         Try
             testcon.ConnectionString = "server=" & server & ";user id=" & username & ";password=" & password & ";database=" & database & ";port=" & port & ""
             testcon.Open()
+            If testcon.State = ConnectionState.Open Then
+                TestLocalCon = True
+            Else
+                TestLocalCon = False
+            End If
         Catch ex As Exception
+            TestLocalCon = False
             SendErrorReport(ex.ToString)
         End Try
         Return testcon
     End Function
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles ButtonTestLocCon.Click
         Try
-            Dim Con = TestDBConnection(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text)
-            If Con.State = ConnectionState.Open Then
-                MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Con.Close()
+            BackgroundWorkerLocalConnection.WorkerReportsProgress = True
+            BackgroundWorkerLocalConnection.WorkerSupportsCancellation = True
+            BackgroundWorkerLocalConnection.RunWorkerAsync()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Dim threadListConLocal As List(Of Thread) = New List(Of Thread)
+    Dim threadConlocal As Thread
+    Dim TestLocalCon As Boolean = False
+    Private Sub BackgroundWorkerLocalConnection_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerLocalConnection.DoWork
+        Try
+            For i = 0 To 100
+                BackgroundWorkerLocalConnection.ReportProgress(i)
+                Thread.Sleep(20)
+                ToolStripStatusLabel2.Text = "Checking Connection " & i & " %"
+                If i = 10 Then
+                    threadConlocal = New Thread(Sub() TestDBConnectionLocal(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text))
+                    threadConlocal.Start()
+                    threadListConLocal.Add(threadConlocal)
+                    For Each t In threadListConLocal
+                        t.Join()
+                    Next
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub BackgroundWorkerLocalConnection_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerLocalConnection.ProgressChanged
+        Try
+            ToolStripProgressBar1.Value = e.ProgressPercentage
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub BackgroundWorkerLocalConnection_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerLocalConnection.RunWorkerCompleted
+        Try
+            If TestLocalCon Then
+                ValidLocalConnection = True
+                ToolStripStatusLabel2.Text = "Connected Successfully"
             Else
-                MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ValidLocalConnection = False
+                ToolStripStatusLabel2.Text = "Cannot connect to server"
             End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Function TestDBConnectionCloud(server, username, password, database, port) As MySqlConnection
+        Dim testcon As MySqlConnection = New MySqlConnection
+        Try
+            testcon.ConnectionString = "server=" & server & ";user id=" & username & ";password=" & password & ";database=" & database & ";port=" & port & ""
+            testcon.Open()
+            If testcon.State = ConnectionState.Open Then
+                TestCloudCon = True
+            Else
+                TestCloudCon = False
+            End If
+        Catch ex As Exception
+            TestCloudCon = False
+        End Try
+        Return testcon
+    End Function
+
+
+    Private Sub ButtonTestCloudCon_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudCon.Click
+        Try
+            BackgroundWorkerCloudConnection.WorkerReportsProgress = True
+            BackgroundWorkerCloudConnection.WorkerSupportsCancellation = True
+            BackgroundWorkerCloudConnection.RunWorkerAsync()
+        Catch ex As Exception
+            ValidCloudConnection = False
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Dim threadListConCloud As List(Of Thread) = New List(Of Thread)
+    Dim threadConCloud As Thread
+    Dim TestCloudCon As Boolean = False
+    Dim ValidInternetCon As Boolean = False
+    Private Sub BackgroundWorkerCloudConnection_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerCloudConnection.DoWork
+        Try
+            For i = 0 To 100
+                BackgroundWorkerCloudConnection.ReportProgress(i)
+                Thread.Sleep(20)
+                ToolStripStatusLabel3.Text = "Checking Connection " & i & " %"
+                If i = 0 Then
+                    threadConCloud = New Thread(Sub() ValidInternetCon = CheckForInternetConnection())
+                    threadConCloud.Start()
+                    threadListConCloud.Add(threadConCloud)
+                End If
+                For Each t In threadListConCloud
+                    t.Join()
+                Next
+                If i = 10 Then
+                    If ValidInternetCon Then
+                        Console.Write("Has internet")
+                        threadConCloud = New Thread(Sub() TestDBConnectionCloud(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text))
+                        threadConCloud.Start()
+                        threadListConCloud.Add(threadConCloud)
+                    Else
+                        Console.Write("No internet")
+                    End If
+                End If
+                For Each t In threadListConCloud
+                    t.Join()
+                Next
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
 
-    Private Sub ButtonTestCloudCon_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudCon.Click
+    Private Sub BackgroundWorkerCloudConnection_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerCloudConnection.ProgressChanged
         Try
-            If CheckForInternetConnection() = True Then
-                Dim Con = TestDBConnection(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text)
-                If Con.State = ConnectionState.Open Then
-                    MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Con.Close()
-                    ValidCloudConnection = True
-                Else
-                    MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    ValidCloudConnection = False
-                End If
-            Else
-                MessageBox.Show("No internet connection available", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+            ToolStripProgressBar2.Value = e.ProgressPercentage
         Catch ex As Exception
-            ValidCloudConnection = False
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
         End Try
+    End Sub
+    Private Sub BackgroundWorkerCloudConnection_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerCloudConnection.RunWorkerCompleted
+        If ValidInternetCon Then
+            If TestCloudCon Then
+                ValidCloudConnection = True
+                POS.Button3.Enabled = True
+                ToolStripStatusLabel3.Text = "Connected Successfully"
+            Else
+                ValidCloudConnection = False
+                POS.Button3.Enabled = False
+                ToolStripStatusLabel3.Text = "Cannot connect to server"
+            End If
+        Else
+            ValidCloudConnection = False
+            POS.Button3.Enabled = False
+            ToolStripStatusLabel3.Text = "No internet connection available"
+        End If
     End Sub
     Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress, TextBoxCName.KeyPress, TextBoxCDesc.KeyPress, TextBoxCBV.KeyPress, TextBoxCBBP.KeyPress
         Try
@@ -1370,12 +1482,14 @@ Public Class SettingsForm
     Dim thread As Thread
     Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
     Dim WorkerCanceled As Boolean = False
+    Dim ValidInternetConn As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
-            If ValidDatabaseLocalConnection Then
+            If ValidLocalConnection Then
                 thread = New Thread(AddressOf ServerCloudCon)
                 thread.Start()
                 THREADLISTUPDATE.Add(thread)
+
                 For Each t In THREADLISTUPDATE
                     t.Join()
                     If (BackgroundWorker1.CancellationPending) Then
@@ -1385,8 +1499,15 @@ Public Class SettingsForm
                         Exit For
                     End If
                 Next
-                If CheckForInternetConnection() = True Then
-                    If ServerCloudCon.state = ConnectionState.Open Then
+
+                thread = New Thread(Sub() ValidInternetConn = CheckForInternetConnection())
+                thread.Start()
+                THREADLISTUPDATE.Add(thread)
+                For Each t In THREADLISTUPDATE
+                    t.Join()
+                Next
+                If ValidInternetConn Then
+                    If ValidCloudConnection Then
                         thread = New Thread(AddressOf CheckPriceChanges)
                         thread.Start()
                         THREADLISTUPDATE.Add(thread)
@@ -1411,12 +1532,8 @@ Public Class SettingsForm
                         thread = New Thread(AddressOf CouponApproval)
                         thread.Start()
                         THREADLISTUPDATE.Add(thread)
-                        'thread = New Thread(AddressOf SoftwareUpdate)
-                        'thread.Start()
-                        'THREADLISTUPDATE.Add(thread)
+
                     End If
-                Else
-                    MsgBox("Internet connection is not available. Please try again")
                 End If
                 For Each t In THREADLISTUPDATE
                     t.Join()
@@ -1427,7 +1544,6 @@ Public Class SettingsForm
                         Exit For
                     End If
                 Next
-
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -2980,6 +3096,12 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+
+
+
+
+
+
 
 #End Region
 End Class

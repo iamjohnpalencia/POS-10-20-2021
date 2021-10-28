@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Module serverlocalconn
-    Public Function ServerCloudCon()
+    Public Function ServerCloudCon() As MySqlConnection
         Dim servercloudconn As MySqlConnection = New MySqlConnection
         Try
             Dim sql = "SELECT `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port` FROM loc_settings WHERE settings_id = 1"

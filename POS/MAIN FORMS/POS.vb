@@ -1670,16 +1670,173 @@ Public Class POS
 #Region "Products Update"
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        If CheckForInternetConnection() = True Then
+        Try
             UPDATEPRODUCTONLY = True
             Button3.Enabled = False
             BackgroundWorker2.WorkerReportsProgress = True
             BackgroundWorker2.WorkerSupportsCancellation = True
             BackgroundWorker2.RunWorkerAsync()
             LabelCheckingUpdates.Text = "Checking for updates."
-        Else
-            MsgBox("Internet connection is not available")
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public POSISUPDATING As Boolean = False
+    Dim PRICECHANGE As Boolean = False
+    Dim TestInternetCon As Boolean = False
+    Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+        Try
+            If ValidLocalConnection Then
+                thread = New Thread(Sub() TestInternetCon = CheckForInternetConnection())
+                thread.Start()
+                THREADLISTUPDATE.Add(thread)
+                For Each t In THREADLISTUPDATE
+                    t.Join()
+                Next
+                If TestInternetCon Then
+                    thread = New Thread(AddressOf ServerCloudCon)
+                    thread.Start()
+                    THREADLISTUPDATE.Add(thread)
+                    For Each t In THREADLISTUPDATE
+                        t.Join()
+                    Next
+                    If ServerCloudCon.State = ConnectionState.Open Then
+                        If UPDATEPRODUCTONLY = False Then
+                            POSISUPDATING = True
+                            thread = New Thread(AddressOf CheckPriceChanges)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+
+                            For Each t In THREADLISTUPDATE
+                                t.Join()
+                            Next
+
+                            thread = New Thread(AddressOf PromptMessage)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+
+                            thread = New Thread(AddressOf Function1)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf GetProducts)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function3)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function4)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function5)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf CouponApproval)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf CustomProductApproval)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                        Else
+                            thread = New Thread(AddressOf CheckPriceChanges)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            For Each t In THREADLISTUPDATE
+                                t.Join()
+                            Next
+                            thread = New Thread(AddressOf GetProducts)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                        End If
+                    End If
+                End If
+                For Each t In THREADLISTUPDATE
+                    t.Join()
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
+        Try
+            If ValidCloudConnection Then
+                DataGridView2.DataSource = FillDatagridProduct
+                Button3.Enabled = True
+                UPDATEPRODUCTONLY = False
+                POSISUPDATING = False
+                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Or DataGridView5.Rows.Count > 0 Then
+                    Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    If updatemessage = DialogResult.Yes Then
+                        InstallUpdatesFormula()
+                        InstallUpdatesInventory()
+                        InstallUpdatesCategory()
+                        InstallUpdatesCoupons()
+                        InstallUpdatesProducts()
+                        InstallUpdatesPriceChange()
+                        InstallCoupons()
+                        InstallProducts()
+                        If PRICECHANGE = True Then
+                            MsgBox("Product price changes approved")
+                            PRICECHANGE = False
+                        End If
+                        If CouponApp = True Then
+                            MsgBox("Coupon Approved")
+                        End If
+                        If CustomProdctsAppBool = True Then
+                            MsgBox("Products Approved")
+                        End If
+                        LoadCategory()
+                        For Each btn As Button In Panel3.Controls.OfType(Of Button)()
+                            If btn.Text = "Simply Perfect" Then
+                                btn.PerformClick()
+                            End If
+                        Next
+                        LabelCheckingUpdates.Text = "Update Completed."
+                    Else
+                        LabelCheckingUpdates.Text = "Completed."
+                    End If
+                Else
+                    LabelCheckingUpdates.Text = "Complete Checking! No updates found."
+                End If
+                If DtMessage.Rows.Count > 0 Then
+                    Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                    For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
+                        Dim sql = "INSERT INTO loc_message (`server_message_id`,`from`, `subject`, `content`, `guid`, `store_id`, `active`, `created_at`, `origin`, `seen`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                        cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = DtMessage(i)(0).ToString
+                        cmd.Parameters.Add("@2", MySqlDbType.Text).Value = DtMessage(i)(1).ToString
+                        cmd.Parameters.Add("@3", MySqlDbType.Text).Value = DtMessage(i)(2).ToString
+                        cmd.Parameters.Add("@4", MySqlDbType.Text).Value = DtMessage(i)(3).ToString
+                        cmd.Parameters.Add("@5", MySqlDbType.Text).Value = DtMessage(i)(4).ToString
+                        cmd.Parameters.Add("@6", MySqlDbType.Text).Value = DtMessage(i)(5).ToString
+                        cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = DtMessage(i)(6)
+                        cmd.Parameters.Add("@8", MySqlDbType.Text).Value = DtMessage(i)(7).ToString
+                        cmd.Parameters.Add("@9", MySqlDbType.Text).Value = DtMessage(i)(8).ToString
+                        cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = 0
+                        cmd.ExecuteNonQuery()
+                        cmd.Dispose()
+                    Next
+                    Enabled = False
+                    For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
+                        If DtMessage(i)(4).ToString = "Server" Then
+                            Message.Show()
+                        ElseIf DtMessage(i)(4).ToString = ClientGuid Then
+                            If DtMessage(i)(5).ToString = ClientStoreID Then
+                                Message.Show()
+                            End If
+                        End If
+
+                    Next
+                End If
+            Else
+                Button3.Enabled = True
+                LabelCheckingUpdates.Text = "Invalid cloud connection."
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Dim UPDATEPRODUCTONLY As Boolean = False
     Dim FillDatagridProduct As DataTable
@@ -2026,163 +2183,7 @@ Public Class POS
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Public POSISUPDATING As Boolean = False
-    Dim PRICECHANGE As Boolean = False
-    Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
-        Try
-            If ValidDatabaseLocalConnection Then
-                thread = New Thread(AddressOf ServerCloudCon)
-                thread.Start()
-                THREADLISTUPDATE.Add(thread)
-                For Each t In THREADLISTUPDATE
-                    t.Join()
-                Next
-                If CheckForInternetConnection() = True Then
-                    If ServerCloudCon.state = ConnectionState.Open Then
-                        If UPDATEPRODUCTONLY = False Then
-                            POSISUPDATING = True
-                            thread = New Thread(AddressOf CheckPriceChanges)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
 
-                            For Each t In THREADLISTUPDATE
-                                t.Join()
-                            Next
-
-                            thread = New Thread(AddressOf PromptMessage)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-
-                            thread = New Thread(AddressOf Function1)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf GetProducts)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf Function3)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf Function4)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf Function5)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf CouponApproval)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf CustomProductApproval)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                        Else
-                            thread = New Thread(AddressOf CheckPriceChanges)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                            For Each t In THREADLISTUPDATE
-                                t.Join()
-                            Next
-                            thread = New Thread(AddressOf GetProducts)
-                            thread.Start()
-                            THREADLISTUPDATE.Add(thread)
-                        End If
-                    Else
-                    End If
-                End If
-
-                For Each t In THREADLISTUPDATE
-                    t.Join()
-                Next
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
-        Try
-            If CheckForInternetConnection() = True Then
-                If ValidCloudConnection = True Then
-                    DataGridView2.DataSource = FillDatagridProduct
-                    Button3.Enabled = True
-                    UPDATEPRODUCTONLY = False
-                    POSISUPDATING = False
-                    If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Or DataGridView5.Rows.Count > 0 Then
-                        Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                        If updatemessage = DialogResult.Yes Then
-                            InstallUpdatesFormula()
-                            InstallUpdatesInventory()
-                            InstallUpdatesCategory()
-                            InstallUpdatesCoupons()
-                            InstallUpdatesProducts()
-                            InstallUpdatesPriceChange()
-                            InstallCoupons()
-                            InstallProducts()
-                            If PRICECHANGE = True Then
-                                MsgBox("Product price changes approved")
-                                PRICECHANGE = False
-                            End If
-                            If CouponApp = True Then
-                                MsgBox("Coupon Approved")
-                            End If
-                            If CustomProdctsAppBool = True Then
-                                MsgBox("Products Approved")
-                            End If
-                            LoadCategory()
-                            For Each btn As Button In Panel3.Controls.OfType(Of Button)()
-                                If btn.Text = "Simply Perfect" Then
-                                    btn.PerformClick()
-                                End If
-                            Next
-                            LabelCheckingUpdates.Text = "Update Completed."
-                        Else
-                            LabelCheckingUpdates.Text = "Completed."
-                        End If
-                    Else
-                        LabelCheckingUpdates.Text = "Complete Checking! No updates found."
-                    End If
-                    If DtMessage.Rows.Count > 0 Then
-                        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-                        For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
-                            Dim sql = "INSERT INTO loc_message (`server_message_id`,`from`, `subject`, `content`, `guid`, `store_id`, `active`, `created_at`, `origin`, `seen`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)"
-                            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
-                            cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = DtMessage(i)(0).ToString
-                            cmd.Parameters.Add("@2", MySqlDbType.Text).Value = DtMessage(i)(1).ToString
-                            cmd.Parameters.Add("@3", MySqlDbType.Text).Value = DtMessage(i)(2).ToString
-                            cmd.Parameters.Add("@4", MySqlDbType.Text).Value = DtMessage(i)(3).ToString
-                            cmd.Parameters.Add("@5", MySqlDbType.Text).Value = DtMessage(i)(4).ToString
-                            cmd.Parameters.Add("@6", MySqlDbType.Text).Value = DtMessage(i)(5).ToString
-                            cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = DtMessage(i)(6)
-                            cmd.Parameters.Add("@8", MySqlDbType.Text).Value = DtMessage(i)(7).ToString
-                            cmd.Parameters.Add("@9", MySqlDbType.Text).Value = DtMessage(i)(8).ToString
-                            cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = 0
-                            cmd.ExecuteNonQuery()
-                            cmd.Dispose()
-                        Next
-                        Enabled = False
-                        For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
-                            If DtMessage(i)(4).ToString = "Server" Then
-                                Message.Show()
-                            ElseIf DtMessage(i)(4).ToString = ClientGuid Then
-                                If DtMessage(i)(5).ToString = ClientStoreID Then
-                                    Message.Show()
-                                End If
-                            End If
-
-                        Next
-                    End If
-                Else
-                    Button3.Enabled = True
-                    LabelCheckingUpdates.Text = "Invalid cloud connection."
-                End If
-            Else
-                Button3.Enabled = True
-                LabelCheckingUpdates.Text = "Internet connection is not available."
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
     Private Sub InstallUpdatesCategory()
         Try
             Dim Connection As MySqlConnection = LocalhostConn()

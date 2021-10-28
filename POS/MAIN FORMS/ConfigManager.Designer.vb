@@ -184,8 +184,10 @@ Partial Class ConfigManager
         Me.TableLayoutPanel7 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.TextBoxProvName = New System.Windows.Forms.TextBox()
         Me.TextBoxBrandname = New System.Windows.Forms.TextBox()
         Me.TextBoxMIN = New System.Windows.Forms.TextBox()
+        Me.TextBoxMunName = New System.Windows.Forms.TextBox()
         Me.TextBoxLocation = New System.Windows.Forms.TextBox()
         Me.TextBoxAddress = New System.Windows.Forms.TextBox()
         Me.Label67 = New System.Windows.Forms.Label()
@@ -343,8 +345,6 @@ Partial Class ConfigManager
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TextBoxMunName = New System.Windows.Forms.TextBox()
-        Me.TextBoxProvName = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -1932,6 +1932,7 @@ Partial Class ConfigManager
         '
         'TextBoxSugarPackets
         '
+        Me.TextBoxSugarPackets.BackColor = System.Drawing.Color.White
         Me.TextBoxSugarPackets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxSugarPackets.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxSugarPackets.Location = New System.Drawing.Point(160, 87)
@@ -1942,6 +1943,7 @@ Partial Class ConfigManager
         '
         'TextBoxWaffleBag
         '
+        Me.TextBoxWaffleBag.BackColor = System.Drawing.Color.White
         Me.TextBoxWaffleBag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxWaffleBag.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxWaffleBag.Location = New System.Drawing.Point(160, 45)
@@ -1982,6 +1984,7 @@ Partial Class ConfigManager
         '
         'TextBoxBROWNIEPRICE
         '
+        Me.TextBoxBROWNIEPRICE.BackColor = System.Drawing.Color.White
         Me.TextBoxBROWNIEPRICE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxBROWNIEPRICE.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxBROWNIEPRICE.Location = New System.Drawing.Point(36, 131)
@@ -1992,6 +1995,7 @@ Partial Class ConfigManager
         '
         'TextBoxBROWNIEID
         '
+        Me.TextBoxBROWNIEID.BackColor = System.Drawing.Color.White
         Me.TextBoxBROWNIEID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxBROWNIEID.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxBROWNIEID.Location = New System.Drawing.Point(36, 87)
@@ -2002,6 +2006,7 @@ Partial Class ConfigManager
         '
         'TextBoxBATTERID
         '
+        Me.TextBoxBATTERID.BackColor = System.Drawing.Color.White
         Me.TextBoxBATTERID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxBATTERID.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxBATTERID.Location = New System.Drawing.Point(36, 45)
@@ -2337,6 +2342,17 @@ Partial Class ConfigManager
         Me.Panel15.Size = New System.Drawing.Size(487, 264)
         Me.Panel15.TabIndex = 1
         '
+        'TextBoxProvName
+        '
+        Me.TextBoxProvName.BackColor = System.Drawing.Color.White
+        Me.TextBoxProvName.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.TextBoxProvName.Location = New System.Drawing.Point(311, 110)
+        Me.TextBoxProvName.Name = "TextBoxProvName"
+        Me.TextBoxProvName.ReadOnly = True
+        Me.TextBoxProvName.Size = New System.Drawing.Size(117, 23)
+        Me.TextBoxProvName.TabIndex = 272
+        Me.TextBoxProvName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'TextBoxBrandname
         '
         Me.TextBoxBrandname.BackColor = System.Drawing.Color.White
@@ -2361,6 +2377,17 @@ Partial Class ConfigManager
         Me.TextBoxMIN.Size = New System.Drawing.Size(117, 22)
         Me.TextBoxMIN.TabIndex = 268
         Me.TextBoxMIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TextBoxMunName
+        '
+        Me.TextBoxMunName.BackColor = System.Drawing.Color.White
+        Me.TextBoxMunName.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.TextBoxMunName.Location = New System.Drawing.Point(117, 110)
+        Me.TextBoxMunName.Name = "TextBoxMunName"
+        Me.TextBoxMunName.ReadOnly = True
+        Me.TextBoxMunName.Size = New System.Drawing.Size(117, 23)
+        Me.TextBoxMunName.TabIndex = 0
+        Me.TextBoxMunName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBoxLocation
         '
@@ -2927,12 +2954,16 @@ Partial Class ConfigManager
         Me.DataGridViewPartners.AllowUserToResizeColumns = False
         Me.DataGridViewPartners.AllowUserToResizeRows = False
         Me.DataGridViewPartners.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPartners.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.DataGridViewPartners.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewPartners.ColumnHeadersVisible = False
         Me.DataGridViewPartners.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
         Me.DataGridViewPartners.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPartners.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPartners.Name = "DataGridViewPartners"
+        Me.DataGridViewPartners.RowHeadersVisible = False
+        Me.DataGridViewPartners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewPartners.Size = New System.Drawing.Size(470, 70)
         Me.DataGridViewPartners.TabIndex = 65
         '
@@ -2974,12 +3005,16 @@ Partial Class ConfigManager
         Me.DataGridViewCoupons.AllowUserToResizeColumns = False
         Me.DataGridViewCoupons.AllowUserToResizeRows = False
         Me.DataGridViewCoupons.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCoupons.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.DataGridViewCoupons.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewCoupons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewCoupons.ColumnHeadersVisible = False
         Me.DataGridViewCoupons.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31})
         Me.DataGridViewCoupons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewCoupons.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewCoupons.Name = "DataGridViewCoupons"
+        Me.DataGridViewCoupons.RowHeadersVisible = False
+        Me.DataGridViewCoupons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewCoupons.Size = New System.Drawing.Size(470, 70)
         Me.DataGridViewCoupons.TabIndex = 65
         '
@@ -3682,28 +3717,6 @@ Partial Class ConfigManager
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'TextBoxMunName
-        '
-        Me.TextBoxMunName.BackColor = System.Drawing.Color.White
-        Me.TextBoxMunName.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxMunName.Location = New System.Drawing.Point(117, 110)
-        Me.TextBoxMunName.Name = "TextBoxMunName"
-        Me.TextBoxMunName.ReadOnly = True
-        Me.TextBoxMunName.Size = New System.Drawing.Size(117, 23)
-        Me.TextBoxMunName.TabIndex = 0
-        Me.TextBoxMunName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBoxProvName
-        '
-        Me.TextBoxProvName.BackColor = System.Drawing.Color.White
-        Me.TextBoxProvName.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxProvName.Location = New System.Drawing.Point(311, 110)
-        Me.TextBoxProvName.Name = "TextBoxProvName"
-        Me.TextBoxProvName.ReadOnly = True
-        Me.TextBoxProvName.Size = New System.Drawing.Size(117, 23)
-        Me.TextBoxProvName.TabIndex = 272
-        Me.TextBoxProvName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ConfigManager
         '
