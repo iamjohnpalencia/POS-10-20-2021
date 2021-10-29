@@ -22,6 +22,7 @@ Partial Class AddUser
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddUser))
         Me.ButtonUser = New System.Windows.Forms.Button()
         Me.RadioButtonFEMALE = New System.Windows.Forms.RadioButton()
         Me.RadioButtonMALE = New System.Windows.Forms.RadioButton()
@@ -43,7 +44,7 @@ Partial Class AddUser
         '
         'ButtonUser
         '
-        Me.ButtonUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonUser.FlatAppearance.BorderSize = 0
         Me.ButtonUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -223,11 +224,13 @@ Partial Class AddUser
         Me.Controls.Add(Me.TextBoxCONPASS)
         Me.Controls.Add(Me.TextBoxCONTACT)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "AddUser"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | ADD USER"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

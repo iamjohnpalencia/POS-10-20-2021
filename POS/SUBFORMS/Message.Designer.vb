@@ -70,7 +70,7 @@ Partial Class Message
         Me.MinimizeBox = False
         Me.Name = "Message"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Messages"
+        Me.Text = "POS | MESSAGE"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

@@ -47,11 +47,11 @@ Partial Class HoldOrder
         '
         'ButtonHoldOrder
         '
-        Me.ButtonHoldOrder.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.ButtonHoldOrder.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonHoldOrder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonHoldOrder.FlatAppearance.BorderSize = 0
         Me.ButtonHoldOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonHoldOrder.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.ButtonHoldOrder.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonHoldOrder.ForeColor = System.Drawing.Color.White
         Me.ButtonHoldOrder.Location = New System.Drawing.Point(15, 37)
         Me.ButtonHoldOrder.Name = "ButtonHoldOrder"
@@ -63,54 +63,55 @@ Partial Class HoldOrder
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(12, 9)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(98, 14)
+        Me.Label2.Size = New System.Drawing.Size(105, 16)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Customer Name:"
         '
         'TextBoxCustomerName
         '
         Me.TextBoxCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBoxCustomerName.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.TextBoxCustomerName.Location = New System.Drawing.Point(116, 8)
+        Me.TextBoxCustomerName.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCustomerName.Location = New System.Drawing.Point(117, 8)
         Me.TextBoxCustomerName.Name = "TextBoxCustomerName"
-        Me.TextBoxCustomerName.Size = New System.Drawing.Size(294, 15)
+        Me.TextBoxCustomerName.Size = New System.Drawing.Size(294, 16)
         Me.TextBoxCustomerName.TabIndex = 0
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(113, 9)
+        Me.Label6.Location = New System.Drawing.Point(124, 10)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(309, 17)
+        Me.Label6.Size = New System.Drawing.Size(295, 16)
         Me.Label6.TabIndex = 231
-        Me.Label6.Text = "___________________________________________"
+        Me.Label6.Text = "_________________________________________"
         '
         'HoldOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(430, 71)
+        Me.ClientSize = New System.Drawing.Size(433, 78)
+        Me.Controls.Add(Me.TextBoxCustomerName)
         Me.Controls.Add(Me.ButtonKeyboard)
         Me.Controls.Add(Me.ButtonHoldOrder)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBoxCustomerName)
         Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "HoldOrder"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "HOLD CUSTOMER ORDER(S)"
+        Me.Text = "POS | HOLD ORDER(S)"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

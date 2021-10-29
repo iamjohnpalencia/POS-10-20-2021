@@ -35,30 +35,30 @@ Partial Class TransactionTypeInfo
         '
         'TextBoxFULLNAME
         '
-        Me.TextBoxFULLNAME.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.TextBoxFULLNAME.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxFULLNAME.Location = New System.Drawing.Point(8, 26)
         Me.TextBoxFULLNAME.Name = "TextBoxFULLNAME"
-        Me.TextBoxFULLNAME.Size = New System.Drawing.Size(348, 26)
+        Me.TextBoxFULLNAME.Size = New System.Drawing.Size(348, 23)
         Me.TextBoxFULLNAME.TabIndex = 0
         '
         'TextBoxREFERENCE
         '
-        Me.TextBoxREFERENCE.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.TextBoxREFERENCE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxREFERENCE.Location = New System.Drawing.Point(8, 76)
         Me.TextBoxREFERENCE.Name = "TextBoxREFERENCE"
-        Me.TextBoxREFERENCE.Size = New System.Drawing.Size(265, 26)
+        Me.TextBoxREFERENCE.Size = New System.Drawing.Size(265, 23)
         Me.TextBoxREFERENCE.TabIndex = 1
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(8, 108)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(263, 40)
+        Me.Button2.Size = New System.Drawing.Size(263, 31)
         Me.Button2.TabIndex = 103
         Me.Button2.Text = "Submit"
         Me.Button2.UseVisualStyleBackColor = False
@@ -66,39 +66,39 @@ Partial Class TransactionTypeInfo
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(5, 5)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 18)
+        Me.Label1.Size = New System.Drawing.Size(65, 16)
         Me.Label1.TabIndex = 104
         Me.Label1.Text = "Full Name"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(5, 55)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(131, 18)
+        Me.Label2.Size = New System.Drawing.Size(115, 16)
         Me.Label2.TabIndex = 105
         Me.Label2.Text = "Reference Number"
         '
         'TextBoxMARKUP
         '
-        Me.TextBoxMARKUP.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.TextBoxMARKUP.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMARKUP.Location = New System.Drawing.Point(279, 76)
         Me.TextBoxMARKUP.Name = "TextBoxMARKUP"
         Me.TextBoxMARKUP.ReadOnly = True
-        Me.TextBoxMARKUP.Size = New System.Drawing.Size(77, 26)
+        Me.TextBoxMARKUP.Size = New System.Drawing.Size(77, 23)
         Me.TextBoxMARKUP.TabIndex = 107
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(276, 55)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(63, 18)
+        Me.Label3.Size = New System.Drawing.Size(55, 16)
         Me.Label3.TabIndex = 108
         Me.Label3.Text = "Mark Up"
         '
@@ -109,9 +109,10 @@ Partial Class TransactionTypeInfo
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(277, 109)
+        Me.ButtonKeyboard.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(277, 108)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(79, 40)
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(79, 31)
         Me.ButtonKeyboard.TabIndex = 240
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
@@ -120,7 +121,7 @@ Partial Class TransactionTypeInfo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(368, 162)
+        Me.ClientSize = New System.Drawing.Size(364, 154)
         Me.Controls.Add(Me.ButtonKeyboard)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label3)
@@ -130,12 +131,13 @@ Partial Class TransactionTypeInfo
         Me.Controls.Add(Me.TextBoxREFERENCE)
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "TransactionTypeInfo"
-        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | TRN. INFO"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

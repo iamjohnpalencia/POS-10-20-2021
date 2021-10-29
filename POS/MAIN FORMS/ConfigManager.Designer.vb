@@ -22,6 +22,7 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ConfigManager))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel40 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -457,11 +458,11 @@ Partial Class ConfigManager
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(3, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(596, 42)
+        Me.Label1.Size = New System.Drawing.Size(495, 35)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "POS CONFIGURATION MANAGER"
         '
@@ -619,7 +620,7 @@ Partial Class ConfigManager
         '
         'ButtonEditCloud
         '
-        Me.ButtonEditCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditCloud.FlatAppearance.BorderSize = 0
         Me.ButtonEditCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditCloud.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -722,7 +723,7 @@ Partial Class ConfigManager
         '
         'ButtonSaveCloudConn
         '
-        Me.ButtonSaveCloudConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonSaveCloudConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonSaveCloudConn.FlatAppearance.BorderSize = 0
         Me.ButtonSaveCloudConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSaveCloudConn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -750,7 +751,7 @@ Partial Class ConfigManager
         '
         'ButtonClearCloud
         '
-        Me.ButtonClearCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonClearCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonClearCloud.FlatAppearance.BorderSize = 0
         Me.ButtonClearCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonClearCloud.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -854,7 +855,7 @@ Partial Class ConfigManager
         '
         'ButtonEditLocal
         '
-        Me.ButtonEditLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditLocal.FlatAppearance.BorderSize = 0
         Me.ButtonEditLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditLocal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -868,7 +869,7 @@ Partial Class ConfigManager
         '
         'ButtonSaveLocalCon
         '
-        Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonSaveLocalCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSaveLocalCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSaveLocalCon.ForeColor = System.Drawing.Color.White
@@ -895,7 +896,7 @@ Partial Class ConfigManager
         '
         'ButtonClearLocal
         '
-        Me.ButtonClearLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonClearLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonClearLocal.FlatAppearance.BorderSize = 0
         Me.ButtonClearLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonClearLocal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1228,7 +1229,7 @@ Partial Class ConfigManager
         '
         'ButtonRepair
         '
-        Me.ButtonRepair.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonRepair.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonRepair.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonRepair.FlatAppearance.BorderSize = 0
         Me.ButtonRepair.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1252,7 +1253,7 @@ Partial Class ConfigManager
         '
         'ButtonMaintenance
         '
-        Me.ButtonMaintenance.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonMaintenance.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonMaintenance.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonMaintenance.FlatAppearance.BorderSize = 0
         Me.ButtonMaintenance.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1276,7 +1277,7 @@ Partial Class ConfigManager
         '
         'ButtonDatabaseReset
         '
-        Me.ButtonDatabaseReset.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonDatabaseReset.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonDatabaseReset.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonDatabaseReset.FlatAppearance.BorderSize = 0
         Me.ButtonDatabaseReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1379,7 +1380,7 @@ Partial Class ConfigManager
         '
         'ButtonExport
         '
-        Me.ButtonExport.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonExport.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonExport.Dock = System.Windows.Forms.DockStyle.Left
         Me.ButtonExport.FlatAppearance.BorderSize = 0
         Me.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1403,7 +1404,7 @@ Partial Class ConfigManager
         '
         'ButtonImport
         '
-        Me.ButtonImport.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonImport.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonImport.FlatAppearance.BorderSize = 0
         Me.ButtonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1440,11 +1441,11 @@ Partial Class ConfigManager
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(3, 5)
+        Me.Label3.Location = New System.Drawing.Point(3, 8)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(394, 39)
+        Me.Label3.Size = New System.Drawing.Size(360, 35)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Database Configuration"
         '
@@ -1510,7 +1511,7 @@ Partial Class ConfigManager
         '
         'ButtonEditDevSet
         '
-        Me.ButtonEditDevSet.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditDevSet.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditDevSet.FlatAppearance.BorderSize = 0
         Me.ButtonEditDevSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditDevSet.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1744,7 +1745,7 @@ Partial Class ConfigManager
         '
         'ButtonEditAddSettings
         '
-        Me.ButtonEditAddSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditAddSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditAddSettings.FlatAppearance.BorderSize = 0
         Me.ButtonEditAddSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditAddSettings.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2222,11 +2223,11 @@ Partial Class ConfigManager
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.Black
-        Me.Label13.Location = New System.Drawing.Point(3, 5)
+        Me.Label13.Location = New System.Drawing.Point(3, 7)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(321, 39)
+        Me.Label13.Size = New System.Drawing.Size(293, 35)
         Me.Label13.TabIndex = 4
         Me.Label13.Text = "Additional Settings"
         '
@@ -2680,7 +2681,7 @@ Partial Class ConfigManager
         '
         'ButtonEditAccount
         '
-        Me.ButtonEditAccount.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditAccount.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditAccount.FlatAppearance.BorderSize = 0
         Me.ButtonEditAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditAccount.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2848,7 +2849,7 @@ Partial Class ConfigManager
         '
         'ButtonBrowseLogo
         '
-        Me.ButtonBrowseLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonBrowseLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonBrowseLogo.FlatAppearance.BorderSize = 0
         Me.ButtonBrowseLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonBrowseLogo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2873,11 +2874,11 @@ Partial Class ConfigManager
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(3, 5)
+        Me.Label14.Location = New System.Drawing.Point(3, 7)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(411, 39)
+        Me.Label14.Size = New System.Drawing.Size(376, 35)
         Me.Label14.TabIndex = 4
         Me.Label14.Text = "Setup Franchisee's Store"
         '
@@ -2954,6 +2955,7 @@ Partial Class ConfigManager
         Me.DataGridViewPartners.AllowUserToResizeColumns = False
         Me.DataGridViewPartners.AllowUserToResizeRows = False
         Me.DataGridViewPartners.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewPartners.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewPartners.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3005,6 +3007,7 @@ Partial Class ConfigManager
         Me.DataGridViewCoupons.AllowUserToResizeColumns = False
         Me.DataGridViewCoupons.AllowUserToResizeRows = False
         Me.DataGridViewCoupons.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCoupons.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewCoupons.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewCoupons.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewCoupons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3096,6 +3099,7 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
         Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
         Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewINVENTORY.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewINVENTORY.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewINVENTORY.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3187,6 +3191,7 @@ Partial Class ConfigManager
         Me.DataGridViewCATEGORIES.AllowUserToResizeColumns = False
         Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
         Me.DataGridViewCATEGORIES.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCATEGORIES.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewCATEGORIES.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewCATEGORIES.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3243,6 +3248,7 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
         Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
         Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPRODUCTS.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewPRODUCTS.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewPRODUCTS.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3273,6 +3279,7 @@ Partial Class ConfigManager
         Me.DataGridViewFORMULA.AllowUserToResizeColumns = False
         Me.DataGridViewFORMULA.AllowUserToResizeRows = False
         Me.DataGridViewFORMULA.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewFORMULA.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewFORMULA.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridViewFORMULA.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -3424,7 +3431,7 @@ Partial Class ConfigManager
         Me.ButtonActivate.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ButtonActivate.FlatAppearance.BorderSize = 0
         Me.ButtonActivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonActivate.ForeColor = System.Drawing.Color.Black
+        Me.ButtonActivate.ForeColor = System.Drawing.Color.White
         Me.ButtonActivate.Location = New System.Drawing.Point(3, 56)
         Me.ButtonActivate.Name = "ButtonActivate"
         Me.ButtonActivate.Size = New System.Drawing.Size(487, 32)
@@ -3462,6 +3469,7 @@ Partial Class ConfigManager
         '
         'TextBox1
         '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(3, 23)
@@ -3485,11 +3493,11 @@ Partial Class ConfigManager
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(3, 5)
+        Me.Label21.Location = New System.Drawing.Point(3, 7)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(306, 39)
+        Me.Label21.Size = New System.Drawing.Size(279, 35)
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "System Activation"
         '
@@ -3726,9 +3734,10 @@ Partial Class ConfigManager
         Me.ClientSize = New System.Drawing.Size(1300, 700)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ConfigManager"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "ConfigManager"
+        Me.Text = "POS | CONFIG MANAGER"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)

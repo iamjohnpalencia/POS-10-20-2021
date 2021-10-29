@@ -149,7 +149,7 @@ Partial Class StockAdjustment
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(873, 293)
         Me.TableLayoutPanel3.TabIndex = 0
         '
@@ -162,7 +162,7 @@ Partial Class StockAdjustment
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(867, 217)
+        Me.GroupBox7.Size = New System.Drawing.Size(867, 227)
         Me.GroupBox7.TabIndex = 164
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Stock List"
@@ -201,7 +201,7 @@ Partial Class StockAdjustment
         Me.DataGridViewPanelStockAdjustment.EnableHeadersVisualStyles = False
         Me.DataGridViewPanelStockAdjustment.Location = New System.Drawing.Point(3, 46)
         Me.DataGridViewPanelStockAdjustment.Name = "DataGridViewPanelStockAdjustment"
-        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(324, 168)
+        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(324, 178)
         Me.DataGridViewPanelStockAdjustment.TabIndex = 116
         '
         'Column1
@@ -289,7 +289,7 @@ Partial Class StockAdjustment
         Me.Panel23.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel23.Location = New System.Drawing.Point(327, 22)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(537, 192)
+        Me.Panel23.Size = New System.Drawing.Size(537, 202)
         Me.Panel23.TabIndex = 119
         '
         'Label12
@@ -528,9 +528,9 @@ Partial Class StockAdjustment
         Me.GroupBox5.Controls.Add(Me.ButtonKeyboard)
         Me.GroupBox5.Controls.Add(Me.ButtonSave)
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 226)
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 236)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(867, 64)
+        Me.GroupBox5.Size = New System.Drawing.Size(867, 54)
         Me.GroupBox5.TabIndex = 0
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Action"
@@ -545,13 +545,13 @@ Partial Class StockAdjustment
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonKeyboard.Location = New System.Drawing.Point(3, 23)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 38)
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 28)
         Me.ButtonKeyboard.TabIndex = 231
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'ButtonSave
         '
-        Me.ButtonSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonSave.FlatAppearance.BorderSize = 0
         Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -559,7 +559,7 @@ Partial Class StockAdjustment
         Me.ButtonSave.ForeColor = System.Drawing.Color.White
         Me.ButtonSave.Location = New System.Drawing.Point(708, 23)
         Me.ButtonSave.Name = "ButtonSave"
-        Me.ButtonSave.Size = New System.Drawing.Size(156, 38)
+        Me.ButtonSave.Size = New System.Drawing.Size(156, 28)
         Me.ButtonSave.TabIndex = 114
         Me.ButtonSave.Text = "Save"
         Me.ButtonSave.UseVisualStyleBackColor = False
@@ -608,7 +608,7 @@ Partial Class StockAdjustment
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(859, 255)
         Me.TableLayoutPanel1.TabIndex = 121
         '
@@ -619,7 +619,7 @@ Partial Class StockAdjustment
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(853, 179)
+        Me.GroupBox1.Size = New System.Drawing.Size(853, 189)
         Me.GroupBox1.TabIndex = 164
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Reason (Categories/Active)"
@@ -657,7 +657,7 @@ Partial Class StockAdjustment
         Me.DataGridViewReasonCategories.EnableHeadersVisualStyles = False
         Me.DataGridViewReasonCategories.Location = New System.Drawing.Point(3, 20)
         Me.DataGridViewReasonCategories.Name = "DataGridViewReasonCategories"
-        Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(847, 156)
+        Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(847, 166)
         Me.DataGridViewReasonCategories.TabIndex = 116
         '
         'GroupBox2
@@ -665,9 +665,9 @@ Partial Class StockAdjustment
         Me.GroupBox2.Controls.Add(Me.Panel20)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 188)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 198)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(853, 64)
+        Me.GroupBox2.Size = New System.Drawing.Size(853, 54)
         Me.GroupBox2.TabIndex = 166
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Action"
@@ -680,12 +680,12 @@ Partial Class StockAdjustment
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel20.Location = New System.Drawing.Point(3, 20)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(847, 41)
+        Me.Panel20.Size = New System.Drawing.Size(847, 31)
         Me.Panel20.TabIndex = 6
         '
         'Button5
         '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button5.FlatAppearance.BorderSize = 0
@@ -694,7 +694,7 @@ Partial Class StockAdjustment
         Me.Button5.ForeColor = System.Drawing.Color.White
         Me.Button5.Location = New System.Drawing.Point(379, 0)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(156, 41)
+        Me.Button5.Size = New System.Drawing.Size(156, 31)
         Me.Button5.TabIndex = 163
         Me.Button5.Text = "Add Category"
         Me.Button5.UseVisualStyleBackColor = False
@@ -710,14 +710,14 @@ Partial Class StockAdjustment
         Me.ButtonDeleteProducts.ForeColor = System.Drawing.Color.White
         Me.ButtonDeleteProducts.Location = New System.Drawing.Point(535, 0)
         Me.ButtonDeleteProducts.Name = "ButtonDeleteProducts"
-        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(156, 41)
+        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(156, 31)
         Me.ButtonDeleteProducts.TabIndex = 164
         Me.ButtonDeleteProducts.Text = "Deactivate"
         Me.ButtonDeleteProducts.UseVisualStyleBackColor = False
         '
         'Button9
         '
-        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button9.FlatAppearance.BorderSize = 0
@@ -726,7 +726,7 @@ Partial Class StockAdjustment
         Me.Button9.ForeColor = System.Drawing.Color.White
         Me.Button9.Location = New System.Drawing.Point(691, 0)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(156, 41)
+        Me.Button9.Size = New System.Drawing.Size(156, 31)
         Me.Button9.TabIndex = 165
         Me.Button9.Text = "Edit"
         Me.Button9.UseVisualStyleBackColor = False

@@ -24,7 +24,6 @@ Module RetrieveModule
     Dim product
     Dim cipherText As String
 
-
     Public Sub retrieveLoginDetails()
         Try
             If Login.txtusername.Text = "" Then

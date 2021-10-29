@@ -44,16 +44,16 @@ Partial Class WaitFrm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(310, 64)
+        Me.Panel1.Size = New System.Drawing.Size(282, 64)
         Me.Panel1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(7, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(257, 18)
+        Me.Label1.Size = New System.Drawing.Size(230, 16)
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "Transaction is processing. Please wait."
         '
@@ -62,7 +62,7 @@ Partial Class WaitFrm
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 37)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(308, 15)
+        Me.ProgressBar1.Size = New System.Drawing.Size(280, 15)
         Me.ProgressBar1.TabIndex = 25
         '
         'Panel23
@@ -71,13 +71,13 @@ Partial Class WaitFrm
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel23.Location = New System.Drawing.Point(0, 52)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(308, 10)
+        Me.Panel23.Size = New System.Drawing.Size(280, 10)
         Me.Panel23.TabIndex = 27
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(180, -56)
+        Me.PictureBox1.Location = New System.Drawing.Point(149, -55)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(178, 97)
         Me.PictureBox1.TabIndex = 26
@@ -87,7 +87,7 @@ Partial Class WaitFrm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(310, 64)
+        Me.ClientSize = New System.Drawing.Size(282, 64)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "WaitFrm"

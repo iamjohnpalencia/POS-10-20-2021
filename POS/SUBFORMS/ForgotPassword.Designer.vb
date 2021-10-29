@@ -50,27 +50,27 @@ Partial Class ForgotPassword
         'TextBoxEMAIL
         '
         Me.TextBoxEMAIL.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBoxEMAIL.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.TextBoxEMAIL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxEMAIL.Location = New System.Drawing.Point(17, 212)
         Me.TextBoxEMAIL.Name = "TextBoxEMAIL"
-        Me.TextBoxEMAIL.Size = New System.Drawing.Size(272, 19)
+        Me.TextBoxEMAIL.Size = New System.Drawing.Size(272, 16)
         Me.TextBoxEMAIL.TabIndex = 0
         '
         'TextBoxCONTACTNUMBER
         '
         Me.TextBoxCONTACTNUMBER.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBoxCONTACTNUMBER.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.TextBoxCONTACTNUMBER.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCONTACTNUMBER.Location = New System.Drawing.Point(17, 262)
         Me.TextBoxCONTACTNUMBER.Name = "TextBoxCONTACTNUMBER"
-        Me.TextBoxCONTACTNUMBER.Size = New System.Drawing.Size(272, 19)
+        Me.TextBoxCONTACTNUMBER.Size = New System.Drawing.Size(272, 16)
         Me.TextBoxCONTACTNUMBER.TabIndex = 1
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(15, 290)
         Me.Button1.Name = "Button1"
@@ -82,20 +82,20 @@ Partial Class ForgotPassword
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(15, 187)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(103, 18)
+        Me.Label1.Size = New System.Drawing.Size(94, 16)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Email Address:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(15, 237)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(120, 18)
+        Me.Label2.Size = New System.Drawing.Size(105, 16)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Contact Number:"
         '
@@ -127,12 +127,12 @@ Partial Class ForgotPassword
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(15, 267)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(274, 17)
+        Me.Label4.Size = New System.Drawing.Size(274, 16)
         Me.Label4.TabIndex = 254
         Me.Label4.Text = "______________________________________"
         '
@@ -140,24 +140,24 @@ Partial Class ForgotPassword
         '
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.White
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(15, 217)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(274, 17)
+        Me.Label7.Size = New System.Drawing.Size(274, 16)
         Me.Label7.TabIndex = 253
         Me.Label7.Text = "______________________________________"
         '
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.LinkLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel2.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel2.LinkColor = System.Drawing.Color.Firebrick
         Me.LinkLabel2.Location = New System.Drawing.Point(258, 332)
         Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(31, 18)
+        Me.LinkLabel2.Size = New System.Drawing.Size(28, 16)
         Me.LinkLabel2.TabIndex = 252
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Exit"
@@ -165,11 +165,11 @@ Partial Class ForgotPassword
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.LinkLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LinkLabel1.Location = New System.Drawing.Point(203, 332)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(49, 18)
+        Me.LinkLabel1.Size = New System.Drawing.Size(47, 16)
         Me.LinkLabel1.TabIndex = 250
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "Sign in"
@@ -177,12 +177,12 @@ Partial Class ForgotPassword
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label11.Location = New System.Drawing.Point(14, 332)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(182, 18)
+        Me.Label11.Size = New System.Drawing.Size(158, 16)
         Me.Label11.TabIndex = 251
         Me.Label11.Text = "Already have an account ?"
         '
@@ -224,6 +224,7 @@ Partial Class ForgotPassword
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonKeyboard.Location = New System.Drawing.Point(229, 290)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
         Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
@@ -243,10 +244,10 @@ Partial Class ForgotPassword
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.Label3.Location = New System.Drawing.Point(14, 129)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(29, 129)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(278, 54)
+        Me.Label3.Size = New System.Drawing.Size(241, 48)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Please provide your email address and " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "contact number to validate your account." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -260,9 +261,10 @@ Partial Class ForgotPassword
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ForgotPassword"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "ForgotPassword"
+        Me.Text = "POS | FORGOT PASSWORD"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel3.ResumeLayout(False)

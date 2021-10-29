@@ -24,6 +24,8 @@ Partial Class PaymentForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBoxDiscType = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ButtonClear = New System.Windows.Forms.Button()
         Me.TextBoxTransactionType = New System.Windows.Forms.TextBox()
@@ -49,8 +51,6 @@ Partial Class PaymentForm
         Me.ButtonNo7 = New System.Windows.Forms.Button()
         Me.TextBoxMONEY = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBoxDiscType = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -89,6 +89,29 @@ Partial Class PaymentForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(372, 529)
         Me.Panel1.TabIndex = 0
+        '
+        'TextBoxDiscType
+        '
+        Me.TextBoxDiscType.BackColor = System.Drawing.Color.White
+        Me.TextBoxDiscType.Enabled = False
+        Me.TextBoxDiscType.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxDiscType.ForeColor = System.Drawing.Color.DimGray
+        Me.TextBoxDiscType.Location = New System.Drawing.Point(9, 142)
+        Me.TextBoxDiscType.Name = "TextBoxDiscType"
+        Me.TextBoxDiscType.ReadOnly = True
+        Me.TextBoxDiscType.Size = New System.Drawing.Size(352, 27)
+        Me.TextBoxDiscType.TabIndex = 113
+        Me.TextBoxDiscType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(6, 121)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(102, 18)
+        Me.Label5.TabIndex = 112
+        Me.Label5.Text = "Discount Type"
         '
         'Button2
         '
@@ -265,7 +288,7 @@ Partial Class PaymentForm
         '
         'ButtonESC
         '
-        Me.ButtonESC.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonESC.BackColor = System.Drawing.Color.Red
         Me.ButtonESC.FlatAppearance.BorderSize = 0
         Me.ButtonESC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonESC.Font = New System.Drawing.Font("Tahoma", 11.25!)
@@ -309,7 +332,7 @@ Partial Class PaymentForm
         '
         'ButtonSubmitPayment
         '
-        Me.ButtonSubmitPayment.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonSubmitPayment.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonSubmitPayment.FlatAppearance.BorderSize = 0
         Me.ButtonSubmitPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSubmitPayment.Font = New System.Drawing.Font("Tahoma", 11.25!)
@@ -418,29 +441,6 @@ Partial Class PaymentForm
         Me.TextBoxMONEY.Size = New System.Drawing.Size(216, 36)
         Me.TextBoxMONEY.TabIndex = 95
         Me.TextBoxMONEY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(6, 121)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(102, 18)
-        Me.Label5.TabIndex = 112
-        Me.Label5.Text = "Discount Type"
-        '
-        'TextBoxDiscType
-        '
-        Me.TextBoxDiscType.BackColor = System.Drawing.Color.White
-        Me.TextBoxDiscType.Enabled = False
-        Me.TextBoxDiscType.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDiscType.ForeColor = System.Drawing.Color.DimGray
-        Me.TextBoxDiscType.Location = New System.Drawing.Point(9, 142)
-        Me.TextBoxDiscType.Name = "TextBoxDiscType"
-        Me.TextBoxDiscType.ReadOnly = True
-        Me.TextBoxDiscType.Size = New System.Drawing.Size(352, 27)
-        Me.TextBoxDiscType.TabIndex = 113
-        Me.TextBoxDiscType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'PaymentForm
         '

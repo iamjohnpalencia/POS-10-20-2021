@@ -52,6 +52,7 @@ Partial Class MDIFORM
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.LabelFOOTER = New System.Windows.Forms.Label()
+        Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel10 = New System.Windows.Forms.Panel()
@@ -84,7 +85,6 @@ Partial Class MDIFORM
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -485,6 +485,14 @@ Partial Class MDIFORM
         Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Panel14
+        '
+        Me.Panel14.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel14.Location = New System.Drawing.Point(0, 0)
+        Me.Panel14.Name = "Panel14"
+        Me.Panel14.Size = New System.Drawing.Size(1366, 8)
+        Me.Panel14.TabIndex = 20
+        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
@@ -847,14 +855,6 @@ Partial Class MDIFORM
         Me.MenuStrip.Text = "MenuStrip"
         Me.MenuStrip.Visible = False
         '
-        'Panel14
-        '
-        Me.Panel14.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel14.Location = New System.Drawing.Point(0, 0)
-        Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(1366, 8)
-        Me.Panel14.TabIndex = 20
-        '
         'MDIFORM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -878,6 +878,7 @@ Partial Class MDIFORM
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "MDIFORM"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | MENU"
         Me.Panel1.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

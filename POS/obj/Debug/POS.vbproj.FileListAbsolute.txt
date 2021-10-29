@@ -98,7 +98,6 @@ C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.SettingsForm.resour
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.AddBank.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.AddEditProducts.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.AddUser.resources
-C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.AdminConfirmation.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.Loading.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.MDIFORM.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.ManageProducts.resources
@@ -126,9 +125,7 @@ C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.POS.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.Inventory.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.CouponCode.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.HoldOrder.resources
-C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.ImportandExport.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.PaymentForm.resources
-C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.Refund.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.Leaderboards.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.PendingOrders.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.DepositSlip.resources

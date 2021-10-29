@@ -22,6 +22,7 @@ Partial Class Changeproductformula
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Changeproductformula))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.DataGridViewProducts = New System.Windows.Forms.DataGridView()
         Me.ButtonArrangeFormulaIDs = New System.Windows.Forms.Button()
@@ -42,9 +43,9 @@ Partial Class Changeproductformula
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.White
         Me.FlowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 51)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 50)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(669, 133)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(669, 134)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'DataGridViewProducts
@@ -54,11 +55,11 @@ Partial Class Changeproductformula
         Me.DataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewProducts.ColumnHeadersVisible = False
         Me.DataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewProducts.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewProducts.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewProducts.Name = "DataGridViewProducts"
         Me.DataGridViewProducts.ReadOnly = True
         Me.DataGridViewProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewProducts.Size = New System.Drawing.Size(669, 179)
+        Me.DataGridViewProducts.Size = New System.Drawing.Size(669, 180)
         Me.DataGridViewProducts.TabIndex = 1
         '
         'ButtonArrangeFormulaIDs
@@ -87,7 +88,7 @@ Partial Class Changeproductformula
         '
         Me.GroupBox1.Controls.Add(Me.DataGridViewProducts)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(675, 205)
@@ -100,7 +101,7 @@ Partial Class Changeproductformula
         Me.GroupBox2.Controls.Add(Me.FlowLayoutPanel1)
         Me.GroupBox2.Controls.Add(Me.Panel1)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(0, 205)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(675, 187)
@@ -113,7 +114,7 @@ Partial Class Changeproductformula
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(3, 23)
+        Me.Panel1.Location = New System.Drawing.Point(3, 22)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(669, 28)
         Me.Panel1.TabIndex = 1
@@ -141,10 +142,12 @@ Partial Class Changeproductformula
         Me.Controls.Add(Me.ButtonArrangeFormulaIDs)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Changeproductformula"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | CHANGE FORMULA"
         CType(Me.DataGridViewProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)

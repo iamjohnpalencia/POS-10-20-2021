@@ -29,13 +29,6 @@ Partial Class PendingOrders
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ButtonSelectCustomer = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.ComboBoxCustomerName = New System.Windows.Forms.ComboBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -44,10 +37,17 @@ Partial Class PendingOrders
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ButtonSelectCustomer = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ComboBoxCustomerName = New System.Windows.Forms.ComboBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ButtonKeyboard
@@ -61,7 +61,7 @@ Partial Class PendingOrders
         Me.ButtonKeyboard.Location = New System.Drawing.Point(3, 23)
         Me.ButtonKeyboard.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(81, 35)
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(81, 25)
         Me.ButtonKeyboard.TabIndex = 231
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
@@ -97,96 +97,12 @@ Partial Class PendingOrders
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView1.EnableHeadersVisualStyles = False
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 59)
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 57)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(466, 93)
+        Me.DataGridView1.Size = New System.Drawing.Size(466, 105)
         Me.DataGridView1.TabIndex = 150
-        '
-        'ButtonSelectCustomer
-        '
-        Me.ButtonSelectCustomer.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ButtonSelectCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonSelectCustomer.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ButtonSelectCustomer.FlatAppearance.BorderSize = 0
-        Me.ButtonSelectCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSelectCustomer.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.ButtonSelectCustomer.ForeColor = System.Drawing.Color.White
-        Me.ButtonSelectCustomer.Location = New System.Drawing.Point(317, 23)
-        Me.ButtonSelectCustomer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ButtonSelectCustomer.Name = "ButtonSelectCustomer"
-        Me.ButtonSelectCustomer.Size = New System.Drawing.Size(152, 35)
-        Me.ButtonSelectCustomer.TabIndex = 149
-        Me.ButtonSelectCustomer.Text = "Submit"
-        Me.ButtonSelectCustomer.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 26)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(120, 18)
-        Me.Label1.TabIndex = 90
-        Me.Label1.Text = "Customer Name:"
-        '
-        'ComboBoxCustomerName
-        '
-        Me.ComboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxCustomerName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBoxCustomerName.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.ComboBoxCustomerName.FormattingEnabled = True
-        Me.ComboBoxCustomerName.Location = New System.Drawing.Point(132, 23)
-        Me.ComboBoxCustomerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ComboBoxCustomerName.Name = "ComboBoxCustomerName"
-        Me.ComboBoxCustomerName.Size = New System.Drawing.Size(334, 26)
-        Me.ComboBoxCustomerName.TabIndex = 91
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(478, 234)
-        Me.TableLayoutPanel1.TabIndex = 232
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.ButtonSelectCustomer)
-        Me.GroupBox1.Controls.Add(Me.ButtonKeyboard)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 168)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(472, 62)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Action"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.DataGridView1)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.ComboBoxCustomerName)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 4)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox2.Size = New System.Drawing.Size(472, 156)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Select Customer"
         '
         'Column1
         '
@@ -232,6 +148,90 @@ Partial Class PendingOrders
         Me.Column8.Name = "Column8"
         Me.Column8.Visible = False
         '
+        'ButtonSelectCustomer
+        '
+        Me.ButtonSelectCustomer.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSelectCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonSelectCustomer.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonSelectCustomer.FlatAppearance.BorderSize = 0
+        Me.ButtonSelectCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSelectCustomer.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.ButtonSelectCustomer.ForeColor = System.Drawing.Color.White
+        Me.ButtonSelectCustomer.Location = New System.Drawing.Point(317, 23)
+        Me.ButtonSelectCustomer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonSelectCustomer.Name = "ButtonSelectCustomer"
+        Me.ButtonSelectCustomer.Size = New System.Drawing.Size(152, 25)
+        Me.ButtonSelectCustomer.TabIndex = 149
+        Me.ButtonSelectCustomer.Text = "Submit"
+        Me.ButtonSelectCustomer.UseVisualStyleBackColor = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(6, 26)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(120, 18)
+        Me.Label1.TabIndex = 90
+        Me.Label1.Text = "Customer Name:"
+        '
+        'ComboBoxCustomerName
+        '
+        Me.ComboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxCustomerName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBoxCustomerName.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.ComboBoxCustomerName.FormattingEnabled = True
+        Me.ComboBoxCustomerName.Location = New System.Drawing.Point(132, 23)
+        Me.ComboBoxCustomerName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ComboBoxCustomerName.Name = "ComboBoxCustomerName"
+        Me.ComboBoxCustomerName.Size = New System.Drawing.Size(334, 26)
+        Me.ComboBoxCustomerName.TabIndex = 91
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(478, 234)
+        Me.TableLayoutPanel1.TabIndex = 232
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.DataGridView1)
+        Me.GroupBox2.Controls.Add(Me.Label1)
+        Me.GroupBox2.Controls.Add(Me.ComboBoxCustomerName)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 4)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox2.Size = New System.Drawing.Size(472, 166)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Select Customer"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.ButtonSelectCustomer)
+        Me.GroupBox1.Controls.Add(Me.ButtonKeyboard)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 178)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(472, 52)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Action"
+        '
         'PendingOrders
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 18.0!)
@@ -251,9 +251,9 @@ Partial Class PendingOrders
         Me.Text = "PENDING ORDERS"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

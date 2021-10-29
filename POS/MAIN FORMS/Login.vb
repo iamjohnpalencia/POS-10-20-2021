@@ -1,30 +1,18 @@
-﻿
-Imports MySql.Data.MySqlClient
-
+﻿Imports MySql.Data.MySqlClient
 Public Class Login
-    Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
-        LabelFOOTER.Text = My.Settings.Footer
-        CheckDatabaseBackup()
-        txtusername.Focus()
-        Timer1.Enabled = True
-        ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
-    End Sub
-    Public Function FirstDayOfMonth(ByVal sourceDate As DateTime)
-        Dim displaythis = ""
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Dim FirstDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
-            Dim FormatDay As String = "yyyy-MM-dd"
-            displaythis = FirstDay.ToString(FormatDay)
+            LabelFOOTER.Text = My.Settings.Footer
+            CheckDatabaseBackup()
+            txtusername.Focus()
+            Timer1.Enabled = True
+            ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
         Catch ex As Exception
             MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
         End Try
-        Return displaythis
-    End Function
-    Dim p() As Process
+    End Sub
     Private Sub BackupDatabase()
         Try
-
             Dim DatabaseName = "\POS" & Format(Now(), "yyyy-MM-dd") & ".sql"
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & connectionModule.LocServer & " -u " & connectionModule.LocUser & " -p " & connectionModule.LocPass & " " & connectionModule.LocDatabase & " > """ & S_ExportPath & DatabaseName & """")
             'CheckIfRunning()
@@ -33,16 +21,6 @@ Public Class Login
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    'Private Sub CheckIfRunning()
-    '    p = Process.GetProcessesByName("cmd.exe")
-    '    If p.Count > 0 Then
-    '        ' Process is running
-    '    Else
-    '        MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-    '        ' Process is not running
-    '    End If
-    'End Sub
     Private Sub CheckDatabaseBackup()
         Try
             If S_Backup_Interval = "1" Then
@@ -87,13 +65,11 @@ Public Class Login
                 End If
 
             ElseIf S_Backup_Interval = "4" Then
-
+                'Yearly
                 Dim iDate As String = S_Backup_Date
                 Dim oDate As DateTime = Convert.ToDateTime(iDate)
-
                 Dim iDate1 As String = Now()
                 Dim oDate1 As DateTime = Convert.ToDateTime(iDate1)
-
                 If oDate1.Year = oDate.Year Then
                     S_Backup_Date = Format(Now().AddYears(1), "yyyy-MM-dd")
                     BackupDatabase()
@@ -101,7 +77,6 @@ Public Class Login
                     Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
                     cmd1.ExecuteNonQuery()
                 End If
-                'Yearly
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -161,7 +136,6 @@ Public Class Login
         ForgotPassword.Show()
         Close()
     End Sub
-
     Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
         Try
             If txtpassword.UseSystemPasswordChar Then

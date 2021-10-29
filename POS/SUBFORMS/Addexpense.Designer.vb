@@ -26,6 +26,7 @@ Partial Class Addexpense
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Addexpense))
         Me.TextBoxMAXID = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -109,7 +110,7 @@ Partial Class Addexpense
         '
         'ButtonSubmitReport
         '
-        Me.ButtonSubmitReport.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonSubmitReport.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonSubmitReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonSubmitReport.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonSubmitReport.FlatAppearance.BorderSize = 0
@@ -118,7 +119,7 @@ Partial Class Addexpense
         Me.ButtonSubmitReport.ForeColor = System.Drawing.Color.White
         Me.ButtonSubmitReport.Location = New System.Drawing.Point(775, 19)
         Me.ButtonSubmitReport.Name = "ButtonSubmitReport"
-        Me.ButtonSubmitReport.Size = New System.Drawing.Size(114, 42)
+        Me.ButtonSubmitReport.Size = New System.Drawing.Size(114, 32)
         Me.ButtonSubmitReport.TabIndex = 203
         Me.ButtonSubmitReport.Text = "Submit"
         Me.ButtonSubmitReport.UseVisualStyleBackColor = False
@@ -134,7 +135,7 @@ Partial Class Addexpense
         Me.ButtonRemove.ForeColor = System.Drawing.Color.White
         Me.ButtonRemove.Location = New System.Drawing.Point(889, 19)
         Me.ButtonRemove.Name = "ButtonRemove"
-        Me.ButtonRemove.Size = New System.Drawing.Size(114, 42)
+        Me.ButtonRemove.Size = New System.Drawing.Size(114, 32)
         Me.ButtonRemove.TabIndex = 203
         Me.ButtonRemove.Text = "Remove"
         Me.ButtonRemove.UseVisualStyleBackColor = False
@@ -150,7 +151,7 @@ Partial Class Addexpense
         Me.ButtonSaveCustomProducts.ForeColor = System.Drawing.Color.White
         Me.ButtonSaveCustomProducts.Location = New System.Drawing.Point(3, 19)
         Me.ButtonSaveCustomProducts.Name = "ButtonSaveCustomProducts"
-        Me.ButtonSaveCustomProducts.Size = New System.Drawing.Size(114, 42)
+        Me.ButtonSaveCustomProducts.Size = New System.Drawing.Size(114, 32)
         Me.ButtonSaveCustomProducts.TabIndex = 202
         Me.ButtonSaveCustomProducts.Text = "Create Report"
         Me.ButtonSaveCustomProducts.UseVisualStyleBackColor = False
@@ -190,7 +191,7 @@ Partial Class Addexpense
         Me.DataGridViewExpenses.Location = New System.Drawing.Point(3, 19)
         Me.DataGridViewExpenses.Name = "DataGridViewExpenses"
         Me.DataGridViewExpenses.RowHeadersVisible = False
-        Me.DataGridViewExpenses.Size = New System.Drawing.Size(1000, 328)
+        Me.DataGridViewExpenses.Size = New System.Drawing.Size(1000, 338)
         Me.DataGridViewExpenses.TabIndex = 209
         '
         'Column1
@@ -268,7 +269,7 @@ Partial Class Addexpense
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1006, 376)
+        Me.GroupBox1.Size = New System.Drawing.Size(1006, 386)
         Me.GroupBox1.TabIndex = 218
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Expense List"
@@ -280,7 +281,7 @@ Partial Class Addexpense
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(3, 347)
+        Me.Panel1.Location = New System.Drawing.Point(3, 357)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1000, 26)
         Me.Panel1.TabIndex = 210
@@ -309,7 +310,7 @@ Partial Class Addexpense
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1012, 452)
         Me.TableLayoutPanel1.TabIndex = 219
         '
@@ -321,9 +322,9 @@ Partial Class Addexpense
         Me.GroupBox2.Controls.Add(Me.ButtonRemove)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 385)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 395)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1006, 64)
+        Me.GroupBox2.Size = New System.Drawing.Size(1006, 54)
         Me.GroupBox2.TabIndex = 219
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Action"
@@ -338,12 +339,12 @@ Partial Class Addexpense
         Me.Controls.Add(Me.StatusStrip1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Addexpense"
-        Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "EXPENSES"
+        Me.Text = "POS | EXPENSES"
         CType(Me.DataGridViewExpenses, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()

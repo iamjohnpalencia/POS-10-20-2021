@@ -23,6 +23,7 @@ Partial Class TransactionType
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TransactionType))
         Me.ButtonOthers = New System.Windows.Forms.Button()
         Me.ButtonFoodP = New System.Windows.Forms.Button()
         Me.ButtonRepEx = New System.Windows.Forms.Button()
@@ -41,7 +42,7 @@ Partial Class TransactionType
         Me.ButtonOthers.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonOthers.FlatAppearance.BorderSize = 0
         Me.ButtonOthers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonOthers.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonOthers.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonOthers.ForeColor = System.Drawing.Color.White
         Me.ButtonOthers.Location = New System.Drawing.Point(3, 171)
         Me.ButtonOthers.Name = "ButtonOthers"
@@ -55,7 +56,7 @@ Partial Class TransactionType
         Me.ButtonFoodP.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonFoodP.FlatAppearance.BorderSize = 0
         Me.ButtonFoodP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonFoodP.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonFoodP.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonFoodP.ForeColor = System.Drawing.Color.White
         Me.ButtonFoodP.Location = New System.Drawing.Point(185, 129)
         Me.ButtonFoodP.Name = "ButtonFoodP"
@@ -66,10 +67,10 @@ Partial Class TransactionType
         '
         'ButtonRepEx
         '
-        Me.ButtonRepEx.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonRepEx.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonRepEx.FlatAppearance.BorderSize = 0
         Me.ButtonRepEx.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRepEx.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonRepEx.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRepEx.ForeColor = System.Drawing.Color.White
         Me.ButtonRepEx.Location = New System.Drawing.Point(3, 129)
         Me.ButtonRepEx.Name = "ButtonRepEx"
@@ -83,7 +84,7 @@ Partial Class TransactionType
         Me.ButtonPayMaya.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonPayMaya.FlatAppearance.BorderSize = 0
         Me.ButtonPayMaya.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPayMaya.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPayMaya.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPayMaya.ForeColor = System.Drawing.Color.White
         Me.ButtonPayMaya.Location = New System.Drawing.Point(3, 87)
         Me.ButtonPayMaya.Name = "ButtonPayMaya"
@@ -94,10 +95,10 @@ Partial Class TransactionType
         '
         'Buttonlalafood
         '
-        Me.Buttonlalafood.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Buttonlalafood.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Buttonlalafood.FlatAppearance.BorderSize = 0
         Me.Buttonlalafood.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Buttonlalafood.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Buttonlalafood.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Buttonlalafood.ForeColor = System.Drawing.Color.White
         Me.Buttonlalafood.Location = New System.Drawing.Point(185, 87)
         Me.Buttonlalafood.Name = "Buttonlalafood"
@@ -108,10 +109,10 @@ Partial Class TransactionType
         '
         'ButtonGcash
         '
-        Me.ButtonGcash.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonGcash.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonGcash.FlatAppearance.BorderSize = 0
         Me.ButtonGcash.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGcash.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGcash.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGcash.ForeColor = System.Drawing.Color.White
         Me.ButtonGcash.Location = New System.Drawing.Point(3, 45)
         Me.ButtonGcash.Name = "ButtonGcash"
@@ -125,7 +126,7 @@ Partial Class TransactionType
         Me.ButtonGrab.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonGrab.FlatAppearance.BorderSize = 0
         Me.ButtonGrab.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGrab.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGrab.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGrab.ForeColor = System.Drawing.Color.White
         Me.ButtonGrab.Location = New System.Drawing.Point(185, 45)
         Me.ButtonGrab.Name = "ButtonGrab"
@@ -136,10 +137,10 @@ Partial Class TransactionType
         '
         'ButtonRegistered
         '
-        Me.ButtonRegistered.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonRegistered.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonRegistered.FlatAppearance.BorderSize = 0
         Me.ButtonRegistered.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRegistered.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonRegistered.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRegistered.ForeColor = System.Drawing.Color.White
         Me.ButtonRegistered.Location = New System.Drawing.Point(185, 3)
         Me.ButtonRegistered.Name = "ButtonRegistered"
@@ -153,7 +154,7 @@ Partial Class TransactionType
         Me.ButtonWalkIn.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonWalkIn.FlatAppearance.BorderSize = 0
         Me.ButtonWalkIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonWalkIn.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonWalkIn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonWalkIn.ForeColor = System.Drawing.Color.White
         Me.ButtonWalkIn.Location = New System.Drawing.Point(3, 3)
         Me.ButtonWalkIn.Name = "ButtonWalkIn"
@@ -164,10 +165,10 @@ Partial Class TransactionType
         '
         'ButtonCancel
         '
-        Me.ButtonCancel.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonCancel.BackColor = System.Drawing.Color.Red
         Me.ButtonCancel.FlatAppearance.BorderSize = 0
         Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCancel.ForeColor = System.Drawing.Color.White
         Me.ButtonCancel.Location = New System.Drawing.Point(185, 171)
         Me.ButtonCancel.Name = "ButtonCancel"
@@ -193,13 +194,13 @@ Partial Class TransactionType
         Me.Controls.Add(Me.ButtonGrab)
         Me.Controls.Add(Me.ButtonGcash)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "TransactionType"
-        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SELECT TRANSACTION TYPE"
+        Me.Text = "POS | TRANSACTION TYPE"
         Me.ResumeLayout(False)
 
     End Sub

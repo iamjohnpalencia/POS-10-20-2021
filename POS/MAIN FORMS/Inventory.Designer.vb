@@ -239,6 +239,7 @@ Partial Class Inventory
         Me.Panel2.Controls.Add(Me.Panel22)
         Me.Panel2.Controls.Add(Me.Button7)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1095, 37)
@@ -274,10 +275,10 @@ Partial Class Inventory
         'TabPage11
         '
         Me.TabPage11.Controls.Add(Me.TabControl5)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(1101, 408)
+        Me.TabPage11.Size = New System.Drawing.Size(1101, 413)
         Me.TabPage11.TabIndex = 1
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -290,7 +291,7 @@ Partial Class Inventory
         Me.TabControl5.Location = New System.Drawing.Point(3, 3)
         Me.TabControl5.Name = "TabControl5"
         Me.TabControl5.SelectedIndex = 0
-        Me.TabControl5.Size = New System.Drawing.Size(1095, 402)
+        Me.TabControl5.Size = New System.Drawing.Size(1095, 407)
         Me.TabControl5.TabIndex = 4
         '
         'TabPage12
@@ -300,7 +301,7 @@ Partial Class Inventory
         Me.TabPage12.Location = New System.Drawing.Point(4, 27)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1087, 371)
+        Me.TabPage12.Size = New System.Drawing.Size(1087, 376)
         Me.TabPage12.TabIndex = 0
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -337,7 +338,7 @@ Partial Class Inventory
         Me.DataGridViewCustomInvApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomInvApproved.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomInvApproved.Name = "DataGridViewCustomInvApproved"
-        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1081, 328)
+        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1081, 333)
         Me.DataGridViewCustomInvApproved.TabIndex = 3
         '
         'Panel3
@@ -357,7 +358,7 @@ Partial Class Inventory
         Me.TabPage13.Location = New System.Drawing.Point(4, 22)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(1087, 380)
+        Me.TabPage13.Size = New System.Drawing.Size(1087, 381)
         Me.TabPage13.TabIndex = 1
         Me.TabPage13.Text = "TabPage13"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -394,7 +395,7 @@ Partial Class Inventory
         Me.DataGridViewCustomDisapp.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomDisapp.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomDisapp.Name = "DataGridViewCustomDisapp"
-        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1081, 337)
+        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1081, 338)
         Me.DataGridViewCustomDisapp.TabIndex = 4
         '
         'Panel18
@@ -562,7 +563,7 @@ Partial Class Inventory
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 2
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel5.Size = New System.Drawing.Size(1109, 402)
         Me.TableLayoutPanel5.TabIndex = 8
         '
@@ -572,7 +573,7 @@ Partial Class Inventory
         Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1103, 326)
+        Me.GroupBox10.Size = New System.Drawing.Size(1103, 336)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Stock Adjustment"
@@ -610,16 +611,17 @@ Partial Class Inventory
         Me.DataGridViewStockAdjustment.EnableHeadersVisualStyles = False
         Me.DataGridViewStockAdjustment.Location = New System.Drawing.Point(3, 21)
         Me.DataGridViewStockAdjustment.Name = "DataGridViewStockAdjustment"
-        Me.DataGridViewStockAdjustment.Size = New System.Drawing.Size(1097, 302)
+        Me.DataGridViewStockAdjustment.Size = New System.Drawing.Size(1097, 312)
         Me.DataGridViewStockAdjustment.TabIndex = 5
         '
         'GroupBox8
         '
         Me.GroupBox8.Controls.Add(Me.Button3)
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox8.Location = New System.Drawing.Point(3, 335)
+        Me.GroupBox8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 345)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(1103, 64)
+        Me.GroupBox8.Size = New System.Drawing.Size(1103, 54)
         Me.GroupBox8.TabIndex = 0
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Action"
@@ -632,9 +634,9 @@ Partial Class Inventory
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(944, 21)
+        Me.Button3.Location = New System.Drawing.Point(944, 19)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(156, 40)
+        Me.Button3.Size = New System.Drawing.Size(156, 32)
         Me.Button3.TabIndex = 5
         Me.Button3.Text = "New"
         Me.Button3.UseVisualStyleBackColor = False
@@ -717,7 +719,7 @@ Partial Class Inventory
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(1109, 402)
         Me.TableLayoutPanel3.TabIndex = 55
         '
@@ -725,9 +727,10 @@ Partial Class Inventory
         '
         Me.GroupBox5.Controls.Add(Me.Button8)
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 335)
+        Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 345)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1103, 64)
+        Me.GroupBox5.Size = New System.Drawing.Size(1103, 54)
         Me.GroupBox5.TabIndex = 7
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Action"
@@ -740,9 +743,9 @@ Partial Class Inventory
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(966, 21)
+        Me.Button8.Location = New System.Drawing.Point(966, 19)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(134, 40)
+        Me.Button8.Size = New System.Drawing.Size(134, 32)
         Me.Button8.TabIndex = 1
         Me.Button8.Text = "Add Stock"
         Me.Button8.UseVisualStyleBackColor = False
@@ -753,7 +756,7 @@ Partial Class Inventory
         Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1103, 326)
+        Me.GroupBox6.Size = New System.Drawing.Size(1103, 336)
         Me.GroupBox6.TabIndex = 8
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Stock in (Receiving) Entry"
@@ -791,7 +794,7 @@ Partial Class Inventory
         Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
         Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 21)
         Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
-        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1097, 302)
+        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1097, 312)
         Me.DataGridViewSTOCKENTRY.TabIndex = 6
         '
         'Panel16
@@ -927,8 +930,10 @@ Partial Class Inventory
         Me.Controls.Add(Me.Panel6)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Inventory"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "POS | INVENTORY"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel6.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)

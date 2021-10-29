@@ -3,22 +3,11 @@ Imports System.Threading
 Imports MySql.Data.MySqlClient
 Public Class Loading
     Inherits Form
-    Dim strHostName As String
-    Dim strIPAddress As String
     Dim RowsReturned As Integer
     Dim thread As Thread
     Dim IfItsIstDayOfTheMonth As Boolean
     Dim IfInternetIsAvailable As Boolean
     Dim IfNeedsToReset As Boolean = False
-    Declare Auto Function SendMessage Lib "user32.dll" (ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
-    Enum ProgressBarColor
-        Green = &H1
-        Red = &H2
-        Yellow = &H3
-    End Enum
-    Private Shared Sub ChangeProgBarColor(ByVal ProgressBar_Name As System.Windows.Forms.ProgressBar, ByVal ProgressBar_Color As ProgressBarColor)
-        SendMessage(ProgressBar_Name.Handle, &H410, ProgressBar_Color, 0)
-    End Sub
     Dim if1stdayofthemonth
     Private Sub Loadme()
         Try
@@ -26,7 +15,6 @@ Public Class Loading
             LabelFOOTER.Text = My.Settings.Footer
             CheckForIllegalCrossThreadCalls = False
             Label1.Text = "Initializing component..."
-            strHostName = Dns.GetHostName()
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
@@ -35,7 +23,7 @@ Public Class Loading
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Load2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Loading_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
             Loadme()
@@ -235,8 +223,12 @@ Public Class Loading
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-        ProgressBar1.Value = e.ProgressPercentage
-        Label2.Text = e.ProgressPercentage
+        Try
+            ProgressBar1.Value = e.ProgressPercentage
+            Label2.Text = e.ProgressPercentage
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try

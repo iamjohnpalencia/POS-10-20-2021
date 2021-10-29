@@ -33,6 +33,7 @@ Partial Class ChangePrice
         '
         'TextBoxPriceFrom
         '
+        Me.TextBoxPriceFrom.BackColor = System.Drawing.Color.White
         Me.TextBoxPriceFrom.Location = New System.Drawing.Point(11, 25)
         Me.TextBoxPriceFrom.Name = "TextBoxPriceFrom"
         Me.TextBoxPriceFrom.ReadOnly = True
@@ -68,7 +69,7 @@ Partial Class ChangePrice
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.White
@@ -106,11 +107,12 @@ Partial Class ChangePrice
         Me.Controls.Add(Me.TextBoxPriceFrom)
         Me.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "ChangePrice"
-        Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | CHANGE PRICE"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

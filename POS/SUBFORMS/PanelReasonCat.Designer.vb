@@ -31,12 +31,12 @@ Partial Class PanelReasonCat
         '
         'Button6
         '
-        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(15, 54)
+        Me.Button6.Location = New System.Drawing.Point(15, 57)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(213, 27)
         Me.Button6.TabIndex = 14
@@ -46,18 +46,19 @@ Partial Class PanelReasonCat
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(12, 9)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(66, 16)
+        Me.Label14.Size = New System.Drawing.Size(64, 16)
         Me.Label14.TabIndex = 13
         Me.Label14.Text = "Category:"
         '
         'TextBoxReasonsCat
         '
+        Me.TextBoxReasonsCat.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxReasonsCat.Location = New System.Drawing.Point(15, 28)
         Me.TextBoxReasonsCat.Name = "TextBoxReasonsCat"
-        Me.TextBoxReasonsCat.Size = New System.Drawing.Size(280, 20)
+        Me.TextBoxReasonsCat.Size = New System.Drawing.Size(280, 23)
         Me.TextBoxReasonsCat.TabIndex = 12
         '
         'ButtonKeyboard
@@ -67,7 +68,7 @@ Partial Class PanelReasonCat
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(234, 54)
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(234, 57)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
         Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 27)
         Me.ButtonKeyboard.TabIndex = 232
@@ -84,12 +85,13 @@ Partial Class PanelReasonCat
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.TextBoxReasonsCat)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "PanelReasonCat"
-        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "POS | CATEGORY"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

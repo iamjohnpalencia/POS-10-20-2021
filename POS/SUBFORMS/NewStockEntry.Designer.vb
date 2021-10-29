@@ -58,7 +58,7 @@ Partial Class NewStockEntry
         '
         'ButtonENTRYADDSTOCK
         '
-        Me.ButtonENTRYADDSTOCK.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonENTRYADDSTOCK.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonENTRYADDSTOCK.FlatAppearance.BorderSize = 0
         Me.ButtonENTRYADDSTOCK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonENTRYADDSTOCK.Font = New System.Drawing.Font("Tahoma", 9.0!)
@@ -94,6 +94,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEPrimary
         '
+        Me.TextBoxEPrimary.BackColor = System.Drawing.Color.White
         Me.TextBoxEPrimary.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEPrimary.Location = New System.Drawing.Point(12, 72)
         Me.TextBoxEPrimary.Name = "TextBoxEPrimary"
@@ -113,6 +114,7 @@ Partial Class NewStockEntry
         '
         'TextBoxESecondary
         '
+        Me.TextBoxESecondary.BackColor = System.Drawing.Color.White
         Me.TextBoxESecondary.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxESecondary.Location = New System.Drawing.Point(12, 116)
         Me.TextBoxESecondary.Name = "TextBoxESecondary"
@@ -122,6 +124,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEQuantity
         '
+        Me.TextBoxEQuantity.BackColor = System.Drawing.Color.White
         Me.TextBoxEQuantity.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEQuantity.Location = New System.Drawing.Point(178, 206)
         Me.TextBoxEQuantity.Name = "TextBoxEQuantity"
@@ -130,6 +133,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEFPUnit
         '
+        Me.TextBoxEFPUnit.BackColor = System.Drawing.Color.White
         Me.TextBoxEFPUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEFPUnit.Location = New System.Drawing.Point(261, 72)
         Me.TextBoxEFPUnit.Name = "TextBoxEFPUnit"
@@ -149,6 +153,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEFPrimaryVal
         '
+        Me.TextBoxEFPrimaryVal.BackColor = System.Drawing.Color.White
         Me.TextBoxEFPrimaryVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEFPrimaryVal.Location = New System.Drawing.Point(177, 72)
         Me.TextBoxEFPrimaryVal.Name = "TextBoxEFPrimaryVal"
@@ -168,6 +173,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEFSUnit
         '
+        Me.TextBoxEFSUnit.BackColor = System.Drawing.Color.White
         Me.TextBoxEFSUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEFSUnit.Location = New System.Drawing.Point(261, 116)
         Me.TextBoxEFSUnit.Name = "TextBoxEFSUnit"
@@ -187,6 +193,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEFSecondVal
         '
+        Me.TextBoxEFSecondVal.BackColor = System.Drawing.Color.White
         Me.TextBoxEFSecondVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEFSecondVal.Location = New System.Drawing.Point(177, 116)
         Me.TextBoxEFSecondVal.Name = "TextBoxEFSecondVal"
@@ -206,6 +213,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEServingValue
         '
+        Me.TextBoxEServingValue.BackColor = System.Drawing.Color.White
         Me.TextBoxEServingValue.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEServingValue.Location = New System.Drawing.Point(177, 161)
         Me.TextBoxEServingValue.Name = "TextBoxEServingValue"
@@ -225,6 +233,7 @@ Partial Class NewStockEntry
         '
         'TextBoxEServingVal
         '
+        Me.TextBoxEServingVal.BackColor = System.Drawing.Color.White
         Me.TextBoxEServingVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxEServingVal.Location = New System.Drawing.Point(12, 161)
         Me.TextBoxEServingVal.Name = "TextBoxEServingVal"
@@ -234,6 +243,7 @@ Partial Class NewStockEntry
         '
         'TextBoxENoServings
         '
+        Me.TextBoxENoServings.BackColor = System.Drawing.Color.White
         Me.TextBoxENoServings.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.TextBoxENoServings.Location = New System.Drawing.Point(12, 206)
         Me.TextBoxENoServings.Name = "TextBoxENoServings"
@@ -282,13 +292,13 @@ Partial Class NewStockEntry
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.TextBoxEFPrimaryVal)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "NewStockEntry"
-        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Entry"
+        Me.Text = "POS | STOCK ENTRY"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

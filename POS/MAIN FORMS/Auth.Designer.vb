@@ -58,25 +58,25 @@ Partial Class Auth
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(269, 78)
+        Me.Panel1.Size = New System.Drawing.Size(292, 84)
         Me.Panel1.TabIndex = 0
         '
         'Panel23
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 56)
+        Me.Panel23.Location = New System.Drawing.Point(0, 62)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(267, 10)
+        Me.Panel23.Size = New System.Drawing.Size(290, 10)
         Me.Panel23.TabIndex = 223
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 66)
+        Me.Panel2.Location = New System.Drawing.Point(0, 72)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(267, 10)
+        Me.Panel2.Size = New System.Drawing.Size(290, 10)
         Me.Panel2.TabIndex = 221
         '
         'Panel3
@@ -85,7 +85,7 @@ Partial Class Auth
         Me.Panel3.Controls.Add(Me.Label4)
         Me.Panel3.Location = New System.Drawing.Point(46, 38)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(220, 26)
+        Me.Panel3.Size = New System.Drawing.Size(232, 44)
         Me.Panel3.TabIndex = 229
         '
         'Label1
@@ -94,7 +94,7 @@ Partial Class Auth
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(134, 0)
+        Me.Label1.Location = New System.Drawing.Point(138, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(0, 15)
         Me.Label1.TabIndex = 228
@@ -103,30 +103,30 @@ Partial Class Auth
         '
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(134, 14)
+        Me.Label4.Size = New System.Drawing.Size(138, 16)
         Me.Label4.TabIndex = 225
         Me.Label4.Text = "Connecting to server..."
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(249, 15)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(264, 15)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(19, 14)
+        Me.Label3.Size = New System.Drawing.Size(20, 16)
         Me.Label3.TabIndex = 227
         Me.Label3.Text = "%"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(225, 15)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(240, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(14, 14)
+        Me.Label2.Size = New System.Drawing.Size(15, 16)
         Me.Label2.TabIndex = 226
         Me.Label2.Text = "0"
         '
@@ -134,7 +134,7 @@ Partial Class Auth
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(46, 10)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(178, 25)
+        Me.ProgressBar1.Size = New System.Drawing.Size(188, 25)
         Me.ProgressBar1.TabIndex = 219
         '
         'PictureBox1
@@ -171,12 +171,13 @@ Partial Class Auth
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(269, 78)
+        Me.ClientSize = New System.Drawing.Size(292, 84)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Auth"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Auth"
+        Me.Text = "POS | AUTH"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel3.ResumeLayout(False)

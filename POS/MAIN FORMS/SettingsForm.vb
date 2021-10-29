@@ -68,14 +68,92 @@ Public Class SettingsForm
                 ButtonOptimizeDB.Visible = False
                 ButtonImport.Visible = False
                 ButtonExport.Visible = False
-                Button1.Visible = False
-                Button2.Visible = False
+                ToolStripButtonSelectP.Visible = False
+                ToolStripButtonClear.Visible = False
                 ButtonCHelp.Visible = False
                 ButtonSaveCoupon.Visible = False
             End If
+            FillDgvReset()
+
+            With DataGridViewReset
+                '.ColumnHeadersVisible = False
+                .RowHeadersVisible = False
+                .AllowUserToAddRows = False
+                .AllowUserToDeleteRows = False
+                .AllowUserToOrderColumns = False
+                .AllowUserToResizeColumns = False
+                .AllowUserToResizeRows = False
+                .Font = New Font("tahoma", 10)
+                .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+                .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+                .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            End With
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub FillDgvReset()
+        Try
+            DataGridViewReset.ColumnCount = 1
+            DataGridViewReset.Columns(0).HeaderText = "Category"
+            DataGridViewReset.Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft
+            Dim row As String() = New String() {"Sales  /Senior citizen  data/ Transaction mode details"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Deposits data"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Expenses"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Fast moving stocks"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Categories"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Message"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Inventory temp data"}
+            DataGridViewReset.Rows.Add(row)
+
+            row = New String() {"Pending orders"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Inventory"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Price request data"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Formula"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Returns"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Error logs"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Stock adjustment categories"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"System logs"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Transfer inventory data"}
+            DataGridViewReset.Rows.Add(row)
+
+            row = New String() {"Users/ Triggers"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Zread inventory"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Coupons"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Products/ Triggers	"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Coupon data"}
+            DataGridViewReset.Rows.Add(row)
+            row = New String() {"Partners transaction list"}
+            DataGridViewReset.Rows.Add(row)
+
+            Dim chk As New DataGridViewCheckBoxColumn()
+            DataGridViewReset.Columns.Add(chk)
+            chk.Name = "ChkBox"
+            chk.HeaderText = "Select"
+            chk.Width = 100
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub LoadLedDisplaySettings()
@@ -90,7 +168,21 @@ Public Class SettingsForm
         End Try
     End Sub
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        POS.Enabled = True
+        Try
+            POS.Enabled = True
+            If BackgroundWorkerLocalConnection.IsBusy Or BackgroundWorkerCloudConnection.IsBusy Then
+                If BackgroundWorkerLocalConnection.IsBusy Then
+                    BackgroundWorkerLocalConnection.CancelAsync()
+                End If
+                If BackgroundWorkerCloudConnection.IsBusy Then
+                    BackgroundWorkerCloudConnection.CancelAsync()
+                End If
+                CancelTestLocalCon = True
+                CancelTestCloudCon = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedIndex = 1 Then
@@ -117,13 +209,13 @@ Public Class SettingsForm
                 ShowAllCoupons()
                 ShowAllCouponsPending()
                 FillComboboxSearch()
-                ComboBoxCategorySearch.SelectedIndex = 0
+                ToolStripComboBoxCategorySearch.SelectedIndex = 0
                 ShowAllProducts("All")
                 Coupons = True
             End If
         ElseIf TabControl1.SelectedIndex = 5 Then
             If My.Settings.Updatedatetime = "" Then
-                LabelCheckingUpdates.Text = "Last Checked: 2020-06-01 11:12:30"
+                LabelCheckingUpdates.Text = "Last Checked:  2020-06-01 11:12:30"
             Else
                 LabelCheckingUpdates.Text = "Last Checked: " & My.Settings.Updatedatetime
             End If
@@ -569,7 +661,7 @@ Public Class SettingsForm
 #Region "Coupons"
     Private Sub FillComboboxSearch()
         Try
-            ComboBoxCategorySearch.Items.Clear()
+            ToolStripComboBoxCategorySearch.Items.Clear()
             Dim FillThisDt As DataTable
             FillThisDt = New DataTable
             FillThisDt.Columns.Add("Category")
@@ -585,7 +677,7 @@ Public Class SettingsForm
                 FillThisDt.Rows.Add(Cat)
             Next
             For Each row As DataRow In FillThisDt.Rows
-                ComboBoxCategorySearch.Items.Add(row("Category"))
+                ToolStripComboBoxCategorySearch.Items.Add(row("Category"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -671,16 +763,30 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub ComboBoxCategorySearch_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCategorySearch.SelectedIndexChanged
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBoxCategorySearch.SelectedIndexChanged
         Try
-            ShowAllProducts(ComboBoxCategorySearch.Text)
+            ShowAllProducts(ToolStripComboBoxCategorySearch.Text)
             CheckBox1.Checked = False
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    'Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    '    For i As Integer = 0 To DataGridViewProducts.Rows.Count - 1 Step +1
+    '        If TypeOf DataGridViewProducts.Rows(i).Cells(3) Is DataGridViewCheckBoxCell Then
+    '            Dim checked As Boolean = DataGridViewProducts.Rows(i).Cells(3).Value
+    '            If checked = True Then
+    '                TextBoxCBBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
+    '                TextBoxCBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
+    '            End If
+    '        End If
+    '    Next
+    '    TextBoxCBBP.Text = TextBoxCBBP.Text.TrimEnd(CChar(","))
+    '    TextBoxCBP.Text = TextBoxCBP.Text.TrimEnd(CChar(","))
+    'End Sub
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSelectP.Click
         For i As Integer = 0 To DataGridViewProducts.Rows.Count - 1 Step +1
             If TypeOf DataGridViewProducts.Rows(i).Cells(3) Is DataGridViewCheckBoxCell Then
                 Dim checked As Boolean = DataGridViewProducts.Rows(i).Cells(3).Value
@@ -694,6 +800,7 @@ Public Class SettingsForm
         TextBoxCBP.Text = TextBoxCBP.Text.TrimEnd(CChar(","))
     End Sub
 
+
     Private Sub ComboBoxCType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.SelectedIndexChanged
         If ComboBoxCType.Text = "Percentage(w/o vat)" Then
             TextBoxCDVal.Enabled = True
@@ -702,8 +809,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            Button1.Enabled = False
-            Button2.Enabled = False
+            ToolStripButtonSelectP.Enabled = False
+            ToolStripButtonClear.Enabled = False
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -720,8 +827,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            Button1.Enabled = False
-            Button2.Enabled = False
+            ToolStripButtonSelectP.Enabled = False
+            ToolStripButtonClear.Enabled = False
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -738,8 +845,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            Button1.Enabled = False
-            Button2.Enabled = False
+            ToolStripButtonSelectP.Enabled = False
+            ToolStripButtonClear.Enabled = False
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -756,8 +863,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            Button1.Enabled = False
-            Button2.Enabled = False
+            ToolStripButtonSelectP.Enabled = False
+            ToolStripButtonClear.Enabled = False
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -774,8 +881,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            Button1.Enabled = True
-            Button2.Enabled = True
+            ToolStripButtonSelectP.Enabled = True
+            ToolStripButtonClear.Enabled = True
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -792,8 +899,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            Button1.Enabled = True
-            Button2.Enabled = True
+            ToolStripButtonSelectP.Enabled = True
+            ToolStripButtonClear.Enabled = True
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -810,8 +917,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            Button1.Enabled = True
-            Button2.Enabled = True
+            ToolStripButtonSelectP.Enabled = True
+            ToolStripButtonClear.Enabled = True
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -828,8 +935,8 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            Button1.Enabled = True
-            Button2.Enabled = True
+            ToolStripButtonSelectP.Enabled = True
+            ToolStripButtonClear.Enabled = True
             For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
@@ -842,7 +949,7 @@ Public Class SettingsForm
         End If
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButtonClear.Click
         TextBoxCBBP.Clear()
         TextBoxCBP.Clear()
     End Sub
@@ -1340,18 +1447,25 @@ Public Class SettingsForm
     Dim threadListConLocal As List(Of Thread) = New List(Of Thread)
     Dim threadConlocal As Thread
     Dim TestLocalCon As Boolean = False
+    Dim CancelTestLocalCon As Boolean = False
     Private Sub BackgroundWorkerLocalConnection_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerLocalConnection.DoWork
         Try
             For i = 0 To 100
                 BackgroundWorkerLocalConnection.ReportProgress(i)
                 Thread.Sleep(20)
-                ToolStripStatusLabel2.Text = "Checking Connection " & i & " %"
+
                 If i = 10 Then
                     threadConlocal = New Thread(Sub() TestDBConnectionLocal(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text))
                     threadConlocal.Start()
                     threadListConLocal.Add(threadConlocal)
                     For Each t In threadListConLocal
                         t.Join()
+                        If (BackgroundWorkerLocalConnection.CancellationPending) Then
+                            ' Indicate that the task was canceled.
+                            CancelTestLocalCon = True
+                            e.Cancel = True
+                            Exit For
+                        End If
                     Next
                 End If
             Next
@@ -1362,7 +1476,11 @@ Public Class SettingsForm
     End Sub
     Private Sub BackgroundWorkerLocalConnection_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerLocalConnection.ProgressChanged
         Try
-            ToolStripProgressBar1.Value = e.ProgressPercentage
+            If CancelTestLocalCon = False Then
+                ToolStripProgressBar1.Value = e.ProgressPercentage
+                ToolStripStatusLabel2.Text = "Checking Connection " & e.ProgressPercentage & " %"
+            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1412,6 +1530,7 @@ Public Class SettingsForm
     Dim threadConCloud As Thread
     Dim TestCloudCon As Boolean = False
     Dim ValidInternetCon As Boolean = False
+    Dim CancelTestCloudCon As Boolean = False
     Private Sub BackgroundWorkerCloudConnection_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerCloudConnection.DoWork
         Try
             For i = 0 To 100
@@ -1425,6 +1544,12 @@ Public Class SettingsForm
                 End If
                 For Each t In threadListConCloud
                     t.Join()
+                    If (BackgroundWorkerLocalConnection.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        CancelTestCloudCon = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 If i = 10 Then
                     If ValidInternetCon Then
@@ -1438,6 +1563,12 @@ Public Class SettingsForm
                 End If
                 For Each t In threadListConCloud
                     t.Join()
+                    If (BackgroundWorkerLocalConnection.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        CancelTestCloudCon = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
             Next
         Catch ex As Exception
@@ -1448,7 +1579,9 @@ Public Class SettingsForm
 
     Private Sub BackgroundWorkerCloudConnection_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerCloudConnection.ProgressChanged
         Try
-            ToolStripProgressBar2.Value = e.ProgressPercentage
+            If CancelTestCloudCon = False Then
+                ToolStripProgressBar2.Value = e.ProgressPercentage
+            End If
         Catch ex As Exception
         End Try
     End Sub
@@ -2546,84 +2679,87 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Query = ""
-        Dim array() As String = {"loc_coupon_data", "loc_daily_transaction", "loc_daily_transaction_details", "loc_deposit", "loc_expense_details", "loc_expense_list",
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            Query = ""
+            Dim array() As String = {"loc_coupon_data", "loc_daily_transaction", "loc_daily_transaction_details", "loc_deposit", "loc_expense_details", "loc_expense_list",
             "loc_fm_stock", "loc_hold_inventory", "loc_inv_temp_data", "loc_pending_orders", "loc_refund_return_details", "loc_senior_details",
             "loc_system_logs", "loc_send_bug_report", "loc_transaction_mode_details", "loc_transfer_data", "loc_zread_inventory"}
-        Try
-            If CheckBoxCategories.Checked Then
-                TruncateTable("loc_admin_category")
-            End If
-            If CheckBoxProducts.Checked Then
-                TruncateTable("loc_admin_products")
-                TruncateTable("triggers_loc_admin_products")
-            End If
-            If CheckBoxCouponData.Checked Then
-                TruncateTable("loc_coupon_data")
-            End If
-            If CheckBoxSales.Checked Then
-                TruncateTable("loc_daily_transaction")
-                TruncateTable("loc_daily_transaction_details")
-                TruncateTable("loc_senior_details")
-                TruncateTable("loc_transaction_mode_details")
-            End If
-            If CheckBoxDeposits.Checked Then
-                TruncateTable("loc_deposit")
-            End If
-            If CheckBoxExpenses.Checked Then
-                TruncateTable("loc_expense_details")
-                TruncateTable("loc_expense_list")
-            End If
-            If CheckBoxFMStocks.Checked Then
-                TruncateTable("loc_fm_stock")
-            End If
-            If CheckBoxMessage.Checked Then
-                TruncateTable("loc_inbox_messages")
-            End If
-            If CheckBoxInvTempData.Checked Then
-                TruncateTable("loc_inv_temp_data")
-            End If
-            If CheckBoxPartners.Checked Then
-                TruncateTable("loc_partners_transaction")
-            End If
-            If CheckBoxPendingOrders.Checked Then
-                TruncateTable("loc_pending_orders")
-            End If
-            If CheckBoxInventory.Checked Then
-                TruncateTable("loc_pos_inventory")
-            End If
-            If CheckBoxPriceReq.Checked Then
-                TruncateTable("loc_price_request_change")
-            End If
-            If CheckBoxFormula.Checked Then
-                TruncateTable("loc_product_formula")
-            End If
-            If CheckBoxReturns.Checked Then
-                TruncateTable("loc_refund_return_details")
-            End If
-            If CheckBoxErrorLogs.Checked Then
-                TruncateTable("loc_send_bug_report")
-            End If
-            If CheckBoxStockAdjCat.Checked Then
-                TruncateTable("loc_stockadjustment_cat")
-            End If
-            If CheckBoxSystemLogs.Checked Then
-                TruncateTable("loc_system_logs")
-            End If
-            If CheckBoxTransferInventory.Checked Then
-                TruncateTable("loc_transfer_data")
-            End If
-            If CheckBoxUsers.Checked Then
-                TruncateTable("loc_users")
-                TruncateTable("triggers_loc_users")
-            End If
-            If CheckBoxZreadInventory.Checked Then
-                TruncateTable("loc_zread_inventory")
-            End If
-            If CheckBoxCoupons.Checked Then
-                TruncateTable("tbcoupon")
-            End If
+
+            With DataGridViewReset
+                If .Rows(0).Cells(1).Selected Then
+                    TruncateTable("loc_daily_transaction")
+                    TruncateTable("loc_daily_transaction_details")
+                    TruncateTable("loc_senior_details")
+                    TruncateTable("loc_transaction_mode_details")
+                End If
+                If .Rows(1).Cells(1).Selected Then
+                    TruncateTable("loc_deposit")
+                End If
+                If .Rows(2).Cells(1).Selected Then
+                    TruncateTable("loc_expense_details")
+                    TruncateTable("loc_expense_list")
+                End If
+                If .Rows(3).Cells(1).Selected Then
+                    TruncateTable("loc_fm_stock")
+                End If
+                If .Rows(4).Cells(1).Selected Then
+                    TruncateTable("loc_admin_category")
+                End If
+                If .Rows(5).Cells(1).Selected Then
+                    TruncateTable("loc_inbox_messages")
+                End If
+                If .Rows(6).Cells(1).Selected Then
+                    TruncateTable("loc_inv_temp_data")
+                End If
+                If .Rows(7).Cells(1).Selected Then
+                    TruncateTable("loc_pending_orders")
+                End If
+                If .Rows(8).Cells(1).Selected Then
+                    TruncateTable("loc_pos_inventory")
+                End If
+                If .Rows(9).Cells(1).Selected Then
+                    TruncateTable("loc_price_request_change")
+                End If
+                If .Rows(10).Cells(1).Selected Then
+                    TruncateTable("loc_product_formula")
+                End If
+                If .Rows(11).Cells(1).Selected Then
+                    TruncateTable("loc_refund_return_details")
+                End If
+                If .Rows(12).Cells(1).Selected Then
+                    TruncateTable("loc_send_bug_report")
+                End If
+                If .Rows(13).Cells(1).Selected Then
+                    TruncateTable("loc_stockadjustment_cat")
+                End If
+                If .Rows(14).Cells(1).Selected Then
+                    TruncateTable("loc_system_logs")
+                End If
+                If .Rows(15).Cells(1).Selected Then
+                    TruncateTable("loc_transfer_data")
+                End If
+                If .Rows(16).Cells(1).Selected Then
+                    TruncateTable("loc_users")
+                    TruncateTable("triggers_loc_users")
+                End If
+                If .Rows(17).Cells(1).Selected Then
+                    TruncateTable("loc_zread_inventory")
+                End If
+                If .Rows(18).Cells(1).Selected Then
+                    TruncateTable("tbcoupon")
+                End If
+                If .Rows(19).Cells(1).Selected Then
+                    TruncateTable("loc_admin_products")
+                    TruncateTable("triggers_loc_admin_products")
+                End If
+                If .Rows(20).Cells(1).Selected Then
+                    TruncateTable("loc_coupon_data")
+                End If
+                If .Rows(21).Cells(1).Selected Then
+                    TruncateTable("loc_partners_transaction")
+                End If
+            End With
             If CheckBoxAll.Checked Then
                 For Each value As String In array
                     TruncateTable(value)
@@ -2682,8 +2818,146 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
         End Try
+    End Sub
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
+        'Query = ""
+        'Dim array() As String = {"loc_coupon_data", "loc_daily_transaction", "loc_daily_transaction_details", "loc_deposit", "loc_expense_details", "loc_expense_list",
+        '    "loc_fm_stock", "loc_hold_inventory", "loc_inv_temp_data", "loc_pending_orders", "loc_refund_return_details", "loc_senior_details",
+        '    "loc_system_logs", "loc_send_bug_report", "loc_transaction_mode_details", "loc_transfer_data", "loc_zread_inventory"}
+        'Try
+        '    If CheckBoxCategories.Checked Then
+        '        'TruncateTable("loc_admin_category")
+        '    End If
+        '    If CheckBoxProducts.Checked Then
+        '        'TruncateTable("loc_admin_products")
+        '        'TruncateTable("triggers_loc_admin_products")
+        '    End If
+        '    If CheckBoxCouponData.Checked Then
+        '        'TruncateTable("loc_coupon_data")
+        '    End If
+        '    If CheckBoxSales.Checked Then
+        '        'TruncateTable("loc_daily_transaction")
+        '        'TruncateTable("loc_daily_transaction_details")
+        '        'TruncateTable("loc_senior_details")
+        '        'TruncateTable("loc_transaction_mode_details")
+        '    End If
+        '    If CheckBoxDeposits.Checked Then
+        '        'TruncateTable("loc_deposit")
+        '    End If
+        '    If CheckBoxExpenses.Checked Then
+        '        'TruncateTable("loc_expense_details")
+        '        'TruncateTable("loc_expense_list")
+        '    End If
+        '    If CheckBoxFMStocks.Checked Then
+        '        'TruncateTable("loc_fm_stock")
+        '    End If
+        '    If CheckBoxMessage.Checked Then
+        '        'TruncateTable("loc_inbox_messages")
+        '    End If
+        '    If CheckBoxInvTempData.Checked Then
+        '        'TruncateTable("loc_inv_temp_data")
+        '    End If
+        '    If CheckBoxPartners.Checked Then
+        '        'TruncateTable("loc_partners_transaction")
+        '    End If
+        '    If CheckBoxPendingOrders.Checked Then
+        '        'TruncateTable("loc_pending_orders")
+        '    End If
+        '    If CheckBoxInventory.Checked Then
+        '        'TruncateTable("loc_pos_inventory")
+        '    End If
+        '    If CheckBoxPriceReq.Checked Then
+        '        'TruncateTable("loc_price_request_change")
+        '    End If
+        '    If CheckBoxFormula.Checked Then
+        '        'TruncateTable("loc_product_formula")
+        '    End If
+        '    If CheckBoxReturns.Checked Then
+        '        'TruncateTable("loc_refund_return_details")
+        '    End If
+        '    If CheckBoxErrorLogs.Checked Then
+        '        'TruncateTable("loc_send_bug_report")
+        '    End If
+        '    If CheckBoxStockAdjCat.Checked Then
+        '        'TruncateTable("loc_stockadjustment_cat")
+        '    End If
+        '    If CheckBoxSystemLogs.Checked Then
+        '        'TruncateTable("loc_system_logs")
+        '    End If
+        '    If CheckBoxTransferInventory.Checked Then
+        '        'TruncateTable("loc_transfer_data")
+        '    End If
+        '    If CheckBoxUsers.Checked Then
+        '        'TruncateTable("loc_users")
+        '        'TruncateTable("triggers_loc_users")
+        '    End If
+        '    If CheckBoxZreadInventory.Checked Then
+        '        'TruncateTable("loc_zread_inventory")
+        '    End If
+        '    If CheckBoxCoupons.Checked Then
+        '        'TruncateTable("tbcoupon")
+        '    End If
+        '    If CheckBoxAll.Checked Then
+        '        For Each value As String In array
+        '            TruncateTable(value)
+        '        Next
+        '    End If
+        '    Dim msg = MessageBox.Show("Are you sure you want to truncate all selected table(s)?", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        '    If msg = DialogResult.Yes Then
+        '        Dim counterValue = 0
+        '        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+        '        Dim cmd As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
+        '        Dim res = cmd.ExecuteNonQuery()
+        '        If CheckBoxAll.Checked Then
+        '            Dim ReturnBool As Boolean = False
+
+        '            Query = "SELECT counter_value FROM `tbcountertable` WHERE counter_id = 1"
+        '            cmd = New MySqlCommand(Query, ConnectionLocal)
+        '            Using reader As MySqlDataReader = cmd.ExecuteReader
+        '                If reader.HasRows Then
+        '                    ReturnBool = True
+        '                    While reader.Read
+        '                        counterValue = reader("counter_value")
+        '                    End While
+        '                Else
+        '                    ReturnBool = False
+        '                End If
+        '            End Using
+
+        '            If ReturnBool Then
+        '                counterValue += 1
+        '                Query = "UPDATE `tbcountertable` SET counter_value = '" & counterValue & "' WHERE counter_id = 1"
+        '                cmd = New MySqlCommand(Query, ConnectionLocal)
+        '                cmd.ExecuteNonQuery()
+
+        '                Query = "UPDATE `loc_pos_inventory` SET stock_primary = 0, stock_secondary = 0, stock_no_of_servings = 0, date_modified = '" & FullDate24HR() & "'"
+        '                cmd = New MySqlCommand(Query, ConnectionLocal)
+        '                cmd.ExecuteNonQuery()
+        '            Else
+        '                counterValue = 1
+        '                Query = "INSERT INTO `tbcountertable` (counter_value, date_created) VALUES ('" & counterValue & "', '" & FullDate24HR() & "')"
+        '                cmd = New MySqlCommand(Query, ConnectionLocal)
+        '                cmd.ExecuteNonQuery()
+
+        '                Query = "UPDATE `loc_pos_inventory` SET stock_primary = 0, stock_secondary = 0, stock_no_of_servings = 0, date_modified = '" & FullDate24HR() & "'"
+        '                cmd = New MySqlCommand(Query, ConnectionLocal)
+        '                cmd.ExecuteNonQuery()
+        '            End If
+        '        End If
+        '        LabelResetStatus.Text = counterValue
+        '        MsgBox("Complete")
+        '        POS.LoadCategory()
+        '        For Each btn As Button In POS.Panel3.Controls.OfType(Of Button)()
+        '            If btn.Text = "Simply Perfect" Then
+        '                btn.PerformClick()
+        '            End If
+        '        Next
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.ToString)
+        '    SendErrorReport(ex.ToString)
+        'End Try
     End Sub
     Dim Autobackup As Boolean
     Private Sub RadioButtonYearly_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
@@ -3096,6 +3370,19 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

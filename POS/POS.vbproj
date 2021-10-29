@@ -166,12 +166,6 @@
     <Compile Include="SUBFORMS\AddUser.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\AdminConfirmation.Designer.vb">
-      <DependentUpon>AdminConfirmation.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\AdminConfirmation.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MAIN FORMS\Loading.Designer.vb">
       <DependentUpon>Loading.vb</DependentUpon>
     </Compile>
@@ -332,22 +326,10 @@
     <Compile Include="SUBFORMS\HoldOrder.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\ImportandExport.Designer.vb">
-      <DependentUpon>ImportandExport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\ImportandExport.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\PaymentForm.Designer.vb">
       <DependentUpon>PaymentForm.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\PaymentForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SUBFORMS\Refund.Designer.vb">
-      <DependentUpon>Refund.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\Refund.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MAIN FORMS\Leaderboards.Designer.vb">
@@ -445,9 +427,6 @@
     <EmbeddedResource Include="SUBFORMS\AddUser.resx">
       <DependentUpon>AddUser.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\AdminConfirmation.resx">
-      <DependentUpon>AdminConfirmation.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Loading.resx">
       <DependentUpon>Loading.vb</DependentUpon>
     </EmbeddedResource>
@@ -529,14 +508,8 @@
     <EmbeddedResource Include="SUBFORMS\HoldOrder.resx">
       <DependentUpon>HoldOrder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\ImportandExport.resx">
-      <DependentUpon>ImportandExport.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\PaymentForm.resx">
       <DependentUpon>PaymentForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\Refund.resx">
-      <DependentUpon>Refund.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Leaderboards.resx">
       <DependentUpon>Leaderboards.vb</DependentUpon>

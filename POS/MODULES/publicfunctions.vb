@@ -249,17 +249,25 @@ Module publicfunctions
         Dim iMonth As Integer = Month(dat)
         GetMonthName = MonthName(iMonth)
     End Function
-
     Public resetinventory As Boolean
-    Public Function FirstDayOfMonth(ByVal sourceDate As DateTime) As DateTime
-        Return New DateTime(sourceDate.Year, sourceDate.Month, 1)
+    Public Function FirstDayOfMonth(ByVal sourceDate As DateTime)
+        Dim displaythis = ""
+        Try
+            Dim FirstDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
+            Dim FormatDay As String = "yyyy-MM-dd"
+            displaythis = FirstDay.ToString(FormatDay)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return displaythis
     End Function
     Dim dtRESET As DataTable
     Public Function CheckIfNeedToReset() As Boolean
         Try
             Dim cmd As MySqlCommand
             Dim da As MySqlDataAdapter
-            Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
+            Dim firstday = FirstDayOfMonth(Date.Now)
             Try
                 Dim sql = "SELECT * FROM loc_inv_temp_data WHERE created_at = '" & firstday & "'"
                 cmd = New MySqlCommand(sql, LocalhostConn)
@@ -567,8 +575,6 @@ Module publicfunctions
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
-
     Public Sub GetPorts(ToFill)
         Try
             ToFill.items.clear
@@ -580,4 +586,5 @@ Module publicfunctions
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
 End Module

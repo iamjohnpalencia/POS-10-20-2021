@@ -1999,6 +1999,9 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.ReadOnly = True
         '
+        'BackgroundWorker2
+        '
+        '
         'BackgroundWorker3
         '
         '
@@ -2035,7 +2038,7 @@ Partial Class POS
         Me.MinimizeBox = False
         Me.Name = "POS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Point Of Sales"
+        Me.Text = "POS | HOME"
         Me.Panel8.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
         Me.Panel24.PerformLayout()

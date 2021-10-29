@@ -39,17 +39,17 @@ Partial Class UserSettings
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridViewUserSettings = New System.Windows.Forms.DataGridView()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridViewUserSettings, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControl1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel13
@@ -191,6 +191,7 @@ Partial Class UserSettings
         Me.DataGridViewUserSettings.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewUserSettings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewUserSettings.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewUserSettings.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 11.0!)
@@ -216,17 +217,6 @@ Partial Class UserSettings
         Me.DataGridViewUserSettings.Size = New System.Drawing.Size(1117, 454)
         Me.DataGridViewUserSettings.TabIndex = 3
         '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 11.0!)
-        Me.TabControl1.Location = New System.Drawing.Point(20, 43)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1131, 516)
-        Me.TabControl1.TabIndex = 25
-        '
         'ToolStrip1
         '
         Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
@@ -237,6 +227,30 @@ Partial Class UserSettings
         Me.ToolStrip1.Size = New System.Drawing.Size(1117, 25)
         Me.ToolStrip1.TabIndex = 4
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton3.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(75, 22)
+        Me.ToolStripButton3.Text = "Delete User"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton2.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(60, 22)
+        Me.ToolStripButton2.Text = "Edit User"
         '
         'ToolStripButton1
         '
@@ -250,29 +264,16 @@ Partial Class UserSettings
         Me.ToolStripButton1.Size = New System.Drawing.Size(75, 22)
         Me.ToolStripButton1.Text = "Create User"
         '
-        'ToolStripButton2
+        'TabControl1
         '
-        Me.ToolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton2.ForeColor = System.Drawing.Color.White
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(60, 22)
-        Me.ToolStripButton2.Text = "Edit User"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton3.ForeColor = System.Drawing.Color.White
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(75, 22)
-        Me.ToolStripButton3.Text = "Delete User"
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 11.0!)
+        Me.TabControl1.Location = New System.Drawing.Point(20, 43)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(1131, 516)
+        Me.TabControl1.TabIndex = 25
         '
         'UserSettings
         '
@@ -294,9 +295,9 @@ Partial Class UserSettings
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.DataGridViewUserSettings, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabControl1.ResumeLayout(False)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

@@ -221,7 +221,7 @@ Partial Class TakeOut
         '
         'ButtonTakeOut
         '
-        Me.ButtonTakeOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonTakeOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonTakeOut.FlatAppearance.BorderSize = 0
         Me.ButtonTakeOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonTakeOut.Font = New System.Drawing.Font("Tahoma", 9.0!)

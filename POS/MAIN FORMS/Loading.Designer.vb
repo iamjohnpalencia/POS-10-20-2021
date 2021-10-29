@@ -76,30 +76,30 @@ Partial Class Loading
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(359, 15)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(19, 14)
+        Me.Label3.Size = New System.Drawing.Size(20, 16)
         Me.Label3.TabIndex = 27
         Me.Label3.Text = "%"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(336, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(14, 14)
+        Me.Label2.Size = New System.Drawing.Size(15, 16)
         Me.Label2.TabIndex = 26
         Me.Label2.Text = "0"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(48, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(42, 14)
+        Me.Label1.Size = New System.Drawing.Size(45, 16)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Label1"
         '
@@ -128,12 +128,12 @@ Partial Class Loading
         '
         Me.LabelFOOTER.AutoSize = True
         Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(339, 3)
+        Me.LabelFOOTER.Location = New System.Drawing.Point(337, 3)
         Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(43, 14)
+        Me.LabelFOOTER.Size = New System.Drawing.Size(45, 16)
         Me.LabelFOOTER.TabIndex = 17
         Me.LabelFOOTER.Text = "Footer"
         Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -142,12 +142,12 @@ Partial Class Loading
         '
         Me.LabelVersion.AutoSize = True
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelVersion.ForeColor = System.Drawing.Color.White
         Me.LabelVersion.Location = New System.Drawing.Point(0, 3)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(47, 14)
+        Me.LabelVersion.Size = New System.Drawing.Size(51, 16)
         Me.LabelVersion.TabIndex = 16
         Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -194,7 +194,7 @@ Partial Class Loading
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Loading"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Load"
+        Me.Text = "POS | LOADING"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)

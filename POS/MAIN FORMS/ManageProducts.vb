@@ -49,7 +49,6 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub ButtonPriceChange_Click(sender As Object, e As EventArgs) Handles ButtonPriceChange.Click
         Try
             If DataGridViewProductList.SelectedRows.Count = 1 Then
@@ -149,7 +148,6 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub ManageProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
 
@@ -229,7 +227,6 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonEditCustomProduct.Click
         Try
             With DataGridViewOthersPending
@@ -269,7 +266,6 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub ButtonDeletePending_Click(sender As Object, e As EventArgs) Handles ButtonDeletePending.Click
         Try
             If DataGridViewOthersPending.SelectedRows.Count <> 0 Then
@@ -342,7 +338,6 @@ Public Class ManageProducts
                     If res = 1 Then
                         GLOBAL_SYSTEM_LOGS("PRICE REQUEST DELETE", "Deleted by: " & returnfullname(ClientCrewID) & ", Date: " & FullDate24HR())
                         LoadPriceChange()
-                        MsgBox("Complete")
                     Else
                         GLOBAL_SYSTEM_LOGS("ERROR PRICE REQUEST DELETE", "Deleted by: " & returnfullname(ClientCrewID) & ", Date: " & FullDate24HR())
                         LoadPriceChange()
@@ -355,7 +350,6 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub TextBoxSearchProductList_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchProductList.KeyPress, TextBox1.KeyPress, TextBox2.KeyPress, TextBox3.KeyPress, TextBox4.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
