@@ -1536,7 +1536,7 @@ Public Class SettingsForm
             For i = 0 To 100
                 BackgroundWorkerCloudConnection.ReportProgress(i)
                 Thread.Sleep(20)
-                ToolStripStatusLabel3.Text = "Checking Connection " & i & " %"
+
                 If i = 0 Then
                     threadConCloud = New Thread(Sub() ValidInternetCon = CheckForInternetConnection())
                     threadConCloud.Start()
@@ -1581,6 +1581,7 @@ Public Class SettingsForm
         Try
             If CancelTestCloudCon = False Then
                 ToolStripProgressBar2.Value = e.ProgressPercentage
+                ToolStripStatusLabel3.Text = "Checking Connection " & e.ProgressPercentage & " %"
             End If
         Catch ex As Exception
         End Try
