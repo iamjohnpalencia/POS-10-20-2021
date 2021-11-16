@@ -1436,9 +1436,11 @@ Public Class SettingsForm
     End Function
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles ButtonTestLocCon.Click
         Try
-            BackgroundWorkerLocalConnection.WorkerReportsProgress = True
-            BackgroundWorkerLocalConnection.WorkerSupportsCancellation = True
-            BackgroundWorkerLocalConnection.RunWorkerAsync()
+            If Not BackgroundWorkerLocalConnection.IsBusy Then
+                BackgroundWorkerLocalConnection.WorkerReportsProgress = True
+                BackgroundWorkerLocalConnection.WorkerSupportsCancellation = True
+                BackgroundWorkerLocalConnection.RunWorkerAsync()
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -1517,9 +1519,11 @@ Public Class SettingsForm
 
     Private Sub ButtonTestCloudCon_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudCon.Click
         Try
-            BackgroundWorkerCloudConnection.WorkerReportsProgress = True
-            BackgroundWorkerCloudConnection.WorkerSupportsCancellation = True
-            BackgroundWorkerCloudConnection.RunWorkerAsync()
+            If Not BackgroundWorkerCloudConnection.IsBusy Then
+                BackgroundWorkerCloudConnection.WorkerReportsProgress = True
+                BackgroundWorkerCloudConnection.WorkerSupportsCancellation = True
+                BackgroundWorkerCloudConnection.RunWorkerAsync()
+            End If
         Catch ex As Exception
             ValidCloudConnection = False
             MsgBox(ex.ToString)
