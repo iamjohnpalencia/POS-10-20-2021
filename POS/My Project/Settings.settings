@@ -29,5 +29,8 @@
     <Setting Name="zcounter" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="PrintSize" Type="System.String" Scope="User">
+      <Value Profile="(Default)">57mm</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -97,7 +97,6 @@ Partial Class Reports
         Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ComboBoxTransactionType = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
@@ -117,14 +116,14 @@ Partial Class Reports
         Me.DateTimePicker10 = New System.Windows.Forms.DateTimePicker()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.DataGridViewSales = New System.Windows.Forms.DataGridView()
+        Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonPrintSales = New System.Windows.Forms.ToolStripButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.ButtonPrintSales = New System.Windows.Forms.Button()
         Me.ButtonSearchTotalDailySales = New System.Windows.Forms.Button()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -191,8 +190,6 @@ Partial Class Reports
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.ComboBoxUserIDS = New System.Windows.Forms.ComboBox()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.DateTimePicker5 = New System.Windows.Forms.DateTimePicker()
         Me.ButtonSearchCrewSales = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -200,10 +197,10 @@ Partial Class Reports
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.Panel32 = New System.Windows.Forms.Panel()
         Me.DataGridViewReturns = New System.Windows.Forms.DataGridView()
+        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.CheckBoxPRINTALL = New System.Windows.Forms.CheckBox()
-        Me.Panel33 = New System.Windows.Forms.Panel()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.DateTimePicker13 = New System.Windows.Forms.DateTimePicker()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -219,18 +216,17 @@ Partial Class Reports
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewZreadInvData = New System.Windows.Forms.DataGridView()
+        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
+        Me.ButtonPrintZreading = New System.Windows.Forms.ToolStripButton()
+        Me.ButtonZread = New System.Windows.Forms.ToolStripButton()
+        Me.ButtonZreadAdmin = New System.Windows.Forms.ToolStripButton()
+        Me.ButtonPrintxreadingdate = New System.Windows.Forms.ToolStripButton()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.ButtonPrintxreadingdate = New System.Windows.Forms.Button()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.DataGridViewZreadInventory = New System.Windows.Forms.DataGridView()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.DateTimePickerZXreading = New System.Windows.Forms.DateTimePicker()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.ButtonPrintZreading = New System.Windows.Forms.Button()
-        Me.ButtonZread = New System.Windows.Forms.Button()
-        Me.ButtonZreadAdmin = New System.Windows.Forms.Button()
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
@@ -258,9 +254,9 @@ Partial Class Reports
         Me.Panel7.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         CType(Me.DataGridViewSales, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip3.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel16.SuspendLayout()
-        Me.Panel27.SuspendLayout()
         Me.TabPage10.SuspendLayout()
         CType(Me.DataGridViewCustomReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -282,12 +278,11 @@ Partial Class Reports
         CType(Me.DataGridViewCrewSales, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel12.SuspendLayout()
         Me.Panel24.SuspendLayout()
-        Me.Panel25.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.Panel32.SuspendLayout()
         CType(Me.DataGridViewReturns, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip5.SuspendLayout()
         Me.Panel8.SuspendLayout()
-        Me.Panel33.SuspendLayout()
         Me.TabPage9.SuspendLayout()
         CType(Me.DataGridViewDeposits, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel34.SuspendLayout()
@@ -295,11 +290,9 @@ Partial Class Reports
         Me.TableLayoutPanel4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip4.SuspendLayout()
         Me.Panel20.SuspendLayout()
-        Me.Panel9.SuspendLayout()
         CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox9.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -615,7 +608,7 @@ Partial Class Reports
         'ToolStrip2
         '
         Me.ToolStrip2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4, Me.ToolStripButton5, Me.ComboBoxTransactionType, Me.ToolStripButton6, Me.ToolStripButton7})
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4, Me.ComboBoxTransactionType, Me.ToolStripButton6, Me.ToolStripButton7})
         Me.ToolStrip2.Location = New System.Drawing.Point(3, 40)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(1117, 25)
@@ -634,19 +627,6 @@ Partial Class Reports
         Me.ToolStripButton4.Name = "ToolStripButton4"
         Me.ToolStripButton4.Size = New System.Drawing.Size(81, 22)
         Me.ToolStripButton4.Text = "Reprint Sales"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton5.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripButton5.ForeColor = System.Drawing.Color.White
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(73, 22)
-        Me.ToolStripButton5.Text = "Reset Sales"
         '
         'ComboBoxTransactionType
         '
@@ -669,7 +649,7 @@ Partial Class Reports
         'ToolStripButton7
         '
         Me.ToolStripButton7.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton7.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ToolStripButton7.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripButton7.ForeColor = System.Drawing.Color.White
         Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
@@ -838,6 +818,7 @@ Partial Class Reports
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.DataGridViewSales)
+        Me.TabPage4.Controls.Add(Me.ToolStrip3)
         Me.TabPage4.Controls.Add(Me.Panel2)
         Me.TabPage4.Controls.Add(Me.Panel16)
         Me.TabPage4.Location = New System.Drawing.Point(4, 27)
@@ -879,10 +860,31 @@ Partial Class Reports
         Me.DataGridViewSales.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewSales.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewSales.EnableHeadersVisualStyles = False
-        Me.DataGridViewSales.Location = New System.Drawing.Point(3, 40)
+        Me.DataGridViewSales.Location = New System.Drawing.Point(3, 65)
         Me.DataGridViewSales.Name = "DataGridViewSales"
-        Me.DataGridViewSales.Size = New System.Drawing.Size(1117, 400)
+        Me.DataGridViewSales.Size = New System.Drawing.Size(1117, 375)
         Me.DataGridViewSales.TabIndex = 7
+        '
+        'ToolStrip3
+        '
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonPrintSales})
+        Me.ToolStrip3.Location = New System.Drawing.Point(3, 40)
+        Me.ToolStrip3.Name = "ToolStrip3"
+        Me.ToolStrip3.Size = New System.Drawing.Size(1117, 25)
+        Me.ToolStrip3.TabIndex = 21
+        Me.ToolStrip3.Text = "ToolStrip3"
+        '
+        'ToolStripButtonPrintSales
+        '
+        Me.ToolStripButtonPrintSales.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButtonPrintSales.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ToolStripButtonPrintSales.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButtonPrintSales.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButtonPrintSales.Image = CType(resources.GetObject("ToolStripButtonPrintSales.Image"), System.Drawing.Image)
+        Me.ToolStripButtonPrintSales.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonPrintSales.Name = "ToolStripButtonPrintSales"
+        Me.ToolStripButtonPrintSales.Size = New System.Drawing.Size(36, 22)
+        Me.ToolStripButtonPrintSales.Text = "Print"
         '
         'Panel2
         '
@@ -944,7 +946,6 @@ Partial Class Reports
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel16.Controls.Add(Me.Panel27)
         Me.Panel16.Controls.Add(Me.ButtonSearchTotalDailySales)
         Me.Panel16.Controls.Add(Me.DateTimePicker3)
         Me.Panel16.Controls.Add(Me.Label6)
@@ -954,27 +955,6 @@ Partial Class Reports
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(1117, 37)
         Me.Panel16.TabIndex = 6
-        '
-        'Panel27
-        '
-        Me.Panel27.Controls.Add(Me.ButtonPrintSales)
-        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel27.Location = New System.Drawing.Point(953, 0)
-        Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(164, 37)
-        Me.Panel27.TabIndex = 14
-        '
-        'ButtonPrintSales
-        '
-        Me.ButtonPrintSales.BackColor = System.Drawing.Color.White
-        Me.ButtonPrintSales.FlatAppearance.BorderSize = 0
-        Me.ButtonPrintSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPrintSales.Location = New System.Drawing.Point(12, 4)
-        Me.ButtonPrintSales.Name = "ButtonPrintSales"
-        Me.ButtonPrintSales.Size = New System.Drawing.Size(148, 29)
-        Me.ButtonPrintSales.TabIndex = 1
-        Me.ButtonPrintSales.Text = "Print"
-        Me.ButtonPrintSales.UseVisualStyleBackColor = False
         '
         'ButtonSearchTotalDailySales
         '
@@ -1701,7 +1681,6 @@ Partial Class Reports
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel24.Controls.Add(Me.ComboBoxUserIDS)
-        Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Controls.Add(Me.DateTimePicker5)
         Me.Panel24.Controls.Add(Me.ButtonSearchCrewSales)
         Me.Panel24.Controls.Add(Me.Label11)
@@ -1722,30 +1701,6 @@ Partial Class Reports
         Me.ComboBoxUserIDS.Name = "ComboBoxUserIDS"
         Me.ComboBoxUserIDS.Size = New System.Drawing.Size(105, 22)
         Me.ComboBoxUserIDS.TabIndex = 20
-        '
-        'Panel25
-        '
-        Me.Panel25.Controls.Add(Me.Button6)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(953, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(164, 37)
-        Me.Panel25.TabIndex = 19
-        '
-        'Button6
-        '
-        Me.Button6.BackColor = System.Drawing.Color.White
-        Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.Button6.ForeColor = System.Drawing.Color.Black
-        Me.Button6.Location = New System.Drawing.Point(12, 4)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(148, 29)
-        Me.Button6.TabIndex = 17
-        Me.Button6.Text = "Print"
-        Me.Button6.UseVisualStyleBackColor = False
         '
         'DateTimePicker5
         '
@@ -1802,6 +1757,7 @@ Partial Class Reports
         'Panel32
         '
         Me.Panel32.Controls.Add(Me.DataGridViewReturns)
+        Me.Panel32.Controls.Add(Me.ToolStrip5)
         Me.Panel32.Controls.Add(Me.Panel8)
         Me.Panel32.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel32.Location = New System.Drawing.Point(3, 3)
@@ -1840,16 +1796,36 @@ Partial Class Reports
         Me.DataGridViewReturns.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewReturns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewReturns.EnableHeadersVisualStyles = False
-        Me.DataGridViewReturns.Location = New System.Drawing.Point(0, 37)
+        Me.DataGridViewReturns.Location = New System.Drawing.Point(0, 62)
         Me.DataGridViewReturns.Name = "DataGridViewReturns"
-        Me.DataGridViewReturns.Size = New System.Drawing.Size(1117, 430)
+        Me.DataGridViewReturns.Size = New System.Drawing.Size(1117, 405)
         Me.DataGridViewReturns.TabIndex = 8
+        '
+        'ToolStrip5
+        '
+        Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9})
+        Me.ToolStrip5.Location = New System.Drawing.Point(0, 37)
+        Me.ToolStrip5.Name = "ToolStrip5"
+        Me.ToolStrip5.Size = New System.Drawing.Size(1117, 25)
+        Me.ToolStrip5.TabIndex = 22
+        Me.ToolStrip5.Text = "ToolStrip5"
+        '
+        'ToolStripButton9
+        '
+        Me.ToolStripButton9.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton9.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton9.ForeColor = System.Drawing.Color.White
+        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
+        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton9.Name = "ToolStripButton9"
+        Me.ToolStripButton9.Size = New System.Drawing.Size(36, 22)
+        Me.ToolStripButton9.Text = "Print"
         '
         'Panel8
         '
         Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel8.Controls.Add(Me.CheckBoxPRINTALL)
-        Me.Panel8.Controls.Add(Me.Panel33)
         Me.Panel8.Controls.Add(Me.DateTimePicker13)
         Me.Panel8.Controls.Add(Me.Button3)
         Me.Panel8.Controls.Add(Me.Label16)
@@ -1864,36 +1840,12 @@ Partial Class Reports
         '
         Me.CheckBoxPRINTALL.AutoSize = True
         Me.CheckBoxPRINTALL.Dock = System.Windows.Forms.DockStyle.Right
-        Me.CheckBoxPRINTALL.Location = New System.Drawing.Point(880, 0)
+        Me.CheckBoxPRINTALL.Location = New System.Drawing.Point(1044, 0)
         Me.CheckBoxPRINTALL.Name = "CheckBoxPRINTALL"
         Me.CheckBoxPRINTALL.Size = New System.Drawing.Size(73, 37)
         Me.CheckBoxPRINTALL.TabIndex = 18
         Me.CheckBoxPRINTALL.Text = "Print All"
         Me.CheckBoxPRINTALL.UseVisualStyleBackColor = True
-        '
-        'Panel33
-        '
-        Me.Panel33.Controls.Add(Me.Button9)
-        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel33.Location = New System.Drawing.Point(953, 0)
-        Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(164, 37)
-        Me.Panel33.TabIndex = 19
-        '
-        'Button9
-        '
-        Me.Button9.BackColor = System.Drawing.Color.White
-        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.Button9.ForeColor = System.Drawing.Color.Black
-        Me.Button9.Location = New System.Drawing.Point(12, 4)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(148, 29)
-        Me.Button9.TabIndex = 17
-        Me.Button9.Text = "Print"
-        Me.Button9.UseVisualStyleBackColor = False
         '
         'DateTimePicker13
         '
@@ -2054,25 +2006,25 @@ Partial Class Reports
         Me.TableLayoutPanel4.ColumnCount = 1
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel4.Controls.Add(Me.GroupBox7, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox9, 0, 1)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 2
+        Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel4.Size = New System.Drawing.Size(1117, 467)
         Me.TableLayoutPanel4.TabIndex = 8
         '
         'GroupBox7
         '
         Me.GroupBox7.Controls.Add(Me.DataGridViewZreadInvData)
+        Me.GroupBox7.Controls.Add(Me.ToolStrip4)
         Me.GroupBox7.Controls.Add(Me.Panel20)
         Me.GroupBox7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1111, 401)
+        Me.GroupBox7.Size = New System.Drawing.Size(1111, 461)
         Me.GroupBox7.TabIndex = 164
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Inventory(Zreading)"
@@ -2108,10 +2060,64 @@ Partial Class Reports
         Me.DataGridViewZreadInvData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewZreadInvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewZreadInvData.EnableHeadersVisualStyles = False
-        Me.DataGridViewZreadInvData.Location = New System.Drawing.Point(3, 59)
+        Me.DataGridViewZreadInvData.Location = New System.Drawing.Point(3, 84)
         Me.DataGridViewZreadInvData.Name = "DataGridViewZreadInvData"
-        Me.DataGridViewZreadInvData.Size = New System.Drawing.Size(1105, 339)
+        Me.DataGridViewZreadInvData.Size = New System.Drawing.Size(1105, 374)
         Me.DataGridViewZreadInvData.TabIndex = 7
+        '
+        'ToolStrip4
+        '
+        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonPrintZreading, Me.ButtonZread, Me.ButtonZreadAdmin, Me.ButtonPrintxreadingdate})
+        Me.ToolStrip4.Location = New System.Drawing.Point(3, 59)
+        Me.ToolStrip4.Name = "ToolStrip4"
+        Me.ToolStrip4.Size = New System.Drawing.Size(1105, 25)
+        Me.ToolStrip4.TabIndex = 8
+        Me.ToolStrip4.Text = "ToolStrip4"
+        '
+        'ButtonPrintZreading
+        '
+        Me.ButtonPrintZreading.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonPrintZreading.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ButtonPrintZreading.ForeColor = System.Drawing.Color.White
+        Me.ButtonPrintZreading.Image = CType(resources.GetObject("ButtonPrintZreading.Image"), System.Drawing.Image)
+        Me.ButtonPrintZreading.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtonPrintZreading.Name = "ButtonPrintZreading"
+        Me.ButtonPrintZreading.Size = New System.Drawing.Size(66, 22)
+        Me.ButtonPrintZreading.Text = "X-Reading"
+        '
+        'ButtonZread
+        '
+        Me.ButtonZread.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonZread.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ButtonZread.ForeColor = System.Drawing.Color.White
+        Me.ButtonZread.Image = CType(resources.GetObject("ButtonZread.Image"), System.Drawing.Image)
+        Me.ButtonZread.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtonZread.Name = "ButtonZread"
+        Me.ButtonZread.Size = New System.Drawing.Size(66, 22)
+        Me.ButtonZread.Text = "Z-Reading"
+        '
+        'ButtonZreadAdmin
+        '
+        Me.ButtonZreadAdmin.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonZreadAdmin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ButtonZreadAdmin.ForeColor = System.Drawing.Color.White
+        Me.ButtonZreadAdmin.Image = CType(resources.GetObject("ButtonZreadAdmin.Image"), System.Drawing.Image)
+        Me.ButtonZreadAdmin.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtonZreadAdmin.Name = "ButtonZreadAdmin"
+        Me.ButtonZreadAdmin.Size = New System.Drawing.Size(110, 22)
+        Me.ButtonZreadAdmin.Text = "Z-Reading(Admin)"
+        '
+        'ButtonPrintxreadingdate
+        '
+        Me.ButtonPrintxreadingdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ButtonPrintxreadingdate.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonPrintxreadingdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ButtonPrintxreadingdate.ForeColor = System.Drawing.Color.White
+        Me.ButtonPrintxreadingdate.Image = CType(resources.GetObject("ButtonPrintxreadingdate.Image"), System.Drawing.Image)
+        Me.ButtonPrintxreadingdate.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ButtonPrintxreadingdate.Name = "ButtonPrintxreadingdate"
+        Me.ButtonPrintxreadingdate.Size = New System.Drawing.Size(36, 22)
+        Me.ButtonPrintxreadingdate.Text = "Print"
         '
         'Panel20
         '
@@ -2129,27 +2135,11 @@ Partial Class Reports
         '
         'Panel9
         '
-        Me.Panel9.Controls.Add(Me.ButtonPrintxreadingdate)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel9.Location = New System.Drawing.Point(941, 0)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(164, 37)
         Me.Panel9.TabIndex = 20
-        '
-        'ButtonPrintxreadingdate
-        '
-        Me.ButtonPrintxreadingdate.BackColor = System.Drawing.Color.White
-        Me.ButtonPrintxreadingdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ButtonPrintxreadingdate.FlatAppearance.BorderSize = 0
-        Me.ButtonPrintxreadingdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPrintxreadingdate.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.ButtonPrintxreadingdate.ForeColor = System.Drawing.Color.Black
-        Me.ButtonPrintxreadingdate.Location = New System.Drawing.Point(12, 4)
-        Me.ButtonPrintxreadingdate.Name = "ButtonPrintxreadingdate"
-        Me.ButtonPrintxreadingdate.Size = New System.Drawing.Size(148, 29)
-        Me.ButtonPrintxreadingdate.TabIndex = 19
-        Me.ButtonPrintxreadingdate.Text = "Print"
-        Me.ButtonPrintxreadingdate.UseVisualStyleBackColor = False
         '
         'Label19
         '
@@ -2193,75 +2183,6 @@ Partial Class Reports
         Me.DateTimePickerZXreading.Name = "DateTimePickerZXreading"
         Me.DateTimePickerZXreading.Size = New System.Drawing.Size(260, 22)
         Me.DateTimePickerZXreading.TabIndex = 4
-        '
-        'GroupBox9
-        '
-        Me.GroupBox9.Controls.Add(Me.Panel3)
-        Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox9.Location = New System.Drawing.Point(3, 410)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(1111, 54)
-        Me.GroupBox9.TabIndex = 166
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Action"
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.ButtonPrintZreading)
-        Me.Panel3.Controls.Add(Me.ButtonZread)
-        Me.Panel3.Controls.Add(Me.ButtonZreadAdmin)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(3, 22)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1105, 29)
-        Me.Panel3.TabIndex = 6
-        '
-        'ButtonPrintZreading
-        '
-        Me.ButtonPrintZreading.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.ButtonPrintZreading.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ButtonPrintZreading.FlatAppearance.BorderSize = 0
-        Me.ButtonPrintZreading.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPrintZreading.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonPrintZreading.ForeColor = System.Drawing.Color.White
-        Me.ButtonPrintZreading.Location = New System.Drawing.Point(0, 0)
-        Me.ButtonPrintZreading.Name = "ButtonPrintZreading"
-        Me.ButtonPrintZreading.Size = New System.Drawing.Size(134, 29)
-        Me.ButtonPrintZreading.TabIndex = 0
-        Me.ButtonPrintZreading.Text = "X Reading"
-        Me.ButtonPrintZreading.UseVisualStyleBackColor = False
-        '
-        'ButtonZread
-        '
-        Me.ButtonZread.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.ButtonZread.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ButtonZread.FlatAppearance.BorderSize = 0
-        Me.ButtonZread.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonZread.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonZread.ForeColor = System.Drawing.Color.White
-        Me.ButtonZread.Location = New System.Drawing.Point(767, 0)
-        Me.ButtonZread.Name = "ButtonZread"
-        Me.ButtonZread.Size = New System.Drawing.Size(134, 29)
-        Me.ButtonZread.TabIndex = 1
-        Me.ButtonZread.Text = "Z Reading"
-        Me.ButtonZread.UseVisualStyleBackColor = False
-        '
-        'ButtonZreadAdmin
-        '
-        Me.ButtonZreadAdmin.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.ButtonZreadAdmin.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ButtonZreadAdmin.FlatAppearance.BorderSize = 0
-        Me.ButtonZreadAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonZreadAdmin.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonZreadAdmin.ForeColor = System.Drawing.Color.White
-        Me.ButtonZreadAdmin.Location = New System.Drawing.Point(901, 0)
-        Me.ButtonZreadAdmin.Name = "ButtonZreadAdmin"
-        Me.ButtonZreadAdmin.Size = New System.Drawing.Size(204, 29)
-        Me.ButtonZreadAdmin.TabIndex = 2
-        Me.ButtonZreadAdmin.Text = "Z Reading (Current Date) Admin"
-        Me.ButtonZreadAdmin.UseVisualStyleBackColor = False
-        Me.ButtonZreadAdmin.Visible = False
         '
         'Panel15
         '
@@ -2371,12 +2292,14 @@ Partial Class Reports
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         CType(Me.DataGridViewSales, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip3.ResumeLayout(False)
+        Me.ToolStrip3.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
-        Me.Panel27.ResumeLayout(False)
         Me.TabPage10.ResumeLayout(False)
         Me.TabPage10.PerformLayout()
         CType(Me.DataGridViewCustomReport, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2407,13 +2330,14 @@ Partial Class Reports
         Me.Panel12.PerformLayout()
         Me.Panel24.ResumeLayout(False)
         Me.Panel24.PerformLayout()
-        Me.Panel25.ResumeLayout(False)
         Me.TabPage8.ResumeLayout(False)
         Me.Panel32.ResumeLayout(False)
+        Me.Panel32.PerformLayout()
         CType(Me.DataGridViewReturns, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip5.ResumeLayout(False)
+        Me.ToolStrip5.PerformLayout()
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
-        Me.Panel33.ResumeLayout(False)
         Me.TabPage9.ResumeLayout(False)
         CType(Me.DataGridViewDeposits, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel34.ResumeLayout(False)
@@ -2421,13 +2345,13 @@ Partial Class Reports
         Me.TabPage1.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip4.ResumeLayout(False)
+        Me.ToolStrip4.PerformLayout()
         Me.Panel20.ResumeLayout(False)
         Me.Panel20.PerformLayout()
-        Me.Panel9.ResumeLayout(False)
         CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -2512,9 +2436,6 @@ Partial Class Reports
     Friend WithEvents DateTimePicker16 As DateTimePicker
     Friend WithEvents DataGridViewDeposits As DataGridView
     Friend WithEvents TabPage9 As TabPage
-    Friend WithEvents ButtonPrintZreading As Button
-    Friend WithEvents ButtonZread As Button
-    Friend WithEvents ButtonZreadAdmin As Button
     Friend WithEvents DataGridViewZreadInventory As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
@@ -2522,17 +2443,11 @@ Partial Class Reports
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents Panel20 As Panel
-    Friend WithEvents GroupBox9 As GroupBox
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents Label19 As Label
     Friend WithEvents Button7 As Button
     Friend WithEvents DateTimePickerZXreading As DateTimePicker
     Friend WithEvents DataGridViewZreadInvData As DataGridView
-    Friend WithEvents Panel27 As Panel
-    Friend WithEvents ButtonPrintSales As Button
-    Friend WithEvents Button9 As Button
     Friend WithEvents CheckBoxPRINTALL As CheckBox
-    Friend WithEvents Panel33 As Panel
     Friend WithEvents Column21 As DataGridViewTextBoxColumn
     Friend WithEvents Column22 As DataGridViewTextBoxColumn
     Friend WithEvents Column23 As DataGridViewTextBoxColumn
@@ -2544,8 +2459,6 @@ Partial Class Reports
     Friend WithEvents DataGridViewCrewSales As DataGridView
     Friend WithEvents Panel24 As Panel
     Friend WithEvents ComboBoxUserIDS As ComboBox
-    Friend WithEvents Panel25 As Panel
-    Friend WithEvents Button6 As Button
     Friend WithEvents DateTimePicker5 As DateTimePicker
     Friend WithEvents ButtonSearchCrewSales As Button
     Friend WithEvents Label11 As Label
@@ -2561,7 +2474,6 @@ Partial Class Reports
     Friend WithEvents LabelCrewSalesQty As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Panel9 As Panel
-    Friend WithEvents ButtonPrintxreadingdate As Button
     Friend WithEvents TabPage10 As TabPage
     Friend WithEvents DateTimePicker17 As DateTimePicker
     Friend WithEvents Label14 As Label
@@ -2610,7 +2522,6 @@ Partial Class Reports
     Friend WithEvents Column40 As DataGridViewTextBoxColumn
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents ToolStripButton4 As ToolStripButton
-    Friend WithEvents ToolStripButton5 As ToolStripButton
     Friend WithEvents ComboBoxTransactionType As ToolStripComboBox
     Friend WithEvents ToolStripButton6 As ToolStripButton
     Friend WithEvents ToolStripButton7 As ToolStripButton
@@ -2618,4 +2529,13 @@ Partial Class Reports
     Friend WithEvents StatusStrip2 As StatusStrip
     Friend WithEvents ToolStripStatusLabel3 As ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
+    Friend WithEvents ToolStrip3 As ToolStrip
+    Friend WithEvents ToolStripButtonPrintSales As ToolStripButton
+    Friend WithEvents ToolStrip5 As ToolStrip
+    Friend WithEvents ToolStripButton9 As ToolStripButton
+    Friend WithEvents ToolStrip4 As ToolStrip
+    Friend WithEvents ButtonPrintZreading As ToolStripButton
+    Friend WithEvents ButtonZread As ToolStripButton
+    Friend WithEvents ButtonZreadAdmin As ToolStripButton
+    Friend WithEvents ButtonPrintxreadingdate As ToolStripButton
 End Class

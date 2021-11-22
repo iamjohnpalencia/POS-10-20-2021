@@ -65,10 +65,10 @@ Public Class Reports
             LoadCrewSales(False)
             If ClientRole = "Admin" Then
                 ButtonZreadAdmin.Visible = True
-                ToolStripButton5.Visible = True
+
             Else
                 ButtonZreadAdmin.Visible = False
-                ToolStripButton5.Visible = False
+
             End If
 
 
@@ -443,7 +443,7 @@ Public Class Reports
                     ElseIf TransactionType = "All(Others)" Then
                         sql = "SELECT product_name, transaction_number, quantity, price, total, created_at, product_sku FROM loc_daily_transaction_details WHERE date(created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND active = 1 AND transaction_type NOT IN('Walk-In','Registered')"
                     Else
-                        sql = "SELECT product_name, transaction_number, quantity, price, total, created_at, product_sku FROM loc_daily_transaction_details WHERE date(created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND transaction_type = '" & TransactionType & "' AND active = 1"
+                        sql = "SELECT product_name, transaction_number, quantity, price, total, created_at, product_sku FROM loc_daily_transaction_details WHERE date(created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND active = 1 AND transaction_type = '" & TransactionType & "' "
                     End If
                 Else
                     If TaxType = "VAT" Then
@@ -452,7 +452,7 @@ Public Class Reports
                         ElseIf TransactionType = "All(Others)" Then
                             sql = "SELECT LDT.product_name as PName, LDT.transaction_number as TN, LDT.quantity as QTY, LDT.price as P, LDT.total as T, LDT.created_at as CA, LDT.product_sku as SKU FROM loc_daily_transaction_details LDT INNER JOIN loc_daily_transaction LD ON LDT.transaction_number = LD.transaction_number WHERE date(LD.created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(LD.created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND LD.discount_type = 'N/A' AND LD.zeroratedsales = 0 AND LD.active = 1 AND LD.transaction_type NOT IN('Walk-In','Registered')"
                         Else
-                            sql = "SELECT LDT.product_name as PName, LDT.transaction_number as TN, LDT.quantity as QTY, LDT.price as P, LDT.total as T, LDT.created_at as CA, LDT.product_sku as SKU FROM loc_daily_transaction_details LDT INNER JOIN loc_daily_transaction LD ON LDT.transaction_number = LD.transaction_number WHERE date(LD.created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(LD.created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND LD.discount_type = 'N/A' AND LD.zeroratedsales = 0 AND LD.transaction_type = '" & TransactionType & "' AND LD.active = 1"
+                            sql = "SELECT LDT.product_name as PName, LDT.transaction_number as TN, LDT.quantity as QTY, LDT.price as P, LDT.total as T, LDT.created_at as CA, LDT.product_sku as SKU FROM loc_daily_transaction_details LDT INNER JOIN loc_daily_transaction LD ON LDT.transaction_number = LD.transaction_number WHERE date(LD.created_at) >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND date(LD.created_at) <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND LD.discount_type = 'N/A' AND LD.zeroratedsales = 0 AND LD.active = 1 AND LD.transaction_type = '" & TransactionType & "' "
                         End If
                     ElseIf TaxType = "NONVAT" Then
                         If TransactionType = "All(Cash)" Then
@@ -688,13 +688,13 @@ Public Class Reports
                         If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
                             AddLine += 40
                         End If
-                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b + AddLine)
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 520 + b + AddLine)
                     Else
                         Dim AddLine As Integer = 0
                         If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
                             AddLine += 40
                         End If
-                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 540 + b + AddLine)
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 540 + b + AddLine)
                     End If
 
                     If S_Reprint = "YES" Then
@@ -972,7 +972,7 @@ Public Class Reports
             XreadOrZread = "X-READ"
             ReadingOR = "X" & Format(Now, "yyddMMHHmmssyy")
 
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 205, 1000)
+            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1000)
 
             If S_Print_XZRead = "YES" Then
                 printdocXread.Print()
@@ -989,24 +989,9 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonPrintZreading.Click
-        Try
-            returnxreadingdateprint = False
-            xreadingprint()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub ButtonPrintxreadingdate_Click(sender As Object, e As EventArgs) Handles ButtonPrintxreadingdate.Click
-        Try
-            returnxreadingdateprint = True
-            xreadingprint()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
+    Dim ThreadZXRead As Thread
+    Dim ThreadlistZXRead As List(Of Thread) = New List(Of Thread)
+
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
             Dim ZreadDateFormat
@@ -1018,31 +1003,168 @@ Public Class Reports
             Dim font As New Font("tahoma", 6)
             Dim font2 As New Font("tahoma", 6, FontStyle.Bold)
             Dim brandfont As New Font("tahoma", 8, FontStyle.Bold)
-            Dim GrossSale = sum("grosssales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim LessVat = sum("lessvat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = zreading AND active = 1 Limit 1")
+            Dim GrossSale
+            ThreadZXRead = New Thread(Sub() GrossSale = sum("grosssales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim LessVat
+            ThreadZXRead = New Thread(Sub() LessVat = sum("lessvat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim TotalDiscount
+            ThreadZXRead = New Thread(Sub() TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim begORNm
+            ThreadZXRead = New Thread(Sub() begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = zreading AND active = 1 Limit 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
-            Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
-            Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
-            Dim OLDgrandtotal = sum("total", "loc_daily_transaction_details WHERE zreading <> '" & ZreadDateFormat & "' AND active = 1")
-            Dim NEWgrandtotal = sum("total", "loc_daily_transaction_details WHERE active = 1")
-            Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-            Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND active = 1")
-            Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim totalExpenses = sum("total_amount", "loc_expense_list WHERE zreading = '" & ZreadDateFormat & "'")
-            Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND active = 1")
-            Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
-            Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
-            Dim vat12percent = sum("vatpercentage", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim DailySales = GrossSale - LessVat - TotalDiscount
-            Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab')")
-            Dim CashInDrawer = DailySales + BeginningBalance - totalExpenses
-            Dim CashTotal = CashInDrawer
-            Dim TotalNewGrandTotal = CashInDrawer + OLDgrandtotal
-
+            Dim ReturnsTotal
+            ThreadZXRead = New Thread(Sub() sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim ReturnsExchange
+            ThreadZXRead = New Thread(Sub() ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim OLDgrandtotal
+            ThreadZXRead = New Thread(Sub() OLDgrandtotal = sum("total", "loc_daily_transaction_details WHERE zreading <> '" & ZreadDateFormat & "' AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim NEWgrandtotal
+            ThreadZXRead = New Thread(Sub() NEWgrandtotal = sum("total", "loc_daily_transaction_details WHERE active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim TotalGuest
+            ThreadZXRead = New Thread(Sub() TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim TotalQuantity
+            ThreadZXRead = New Thread(Sub() TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim SrDiscount
+            ThreadZXRead = New Thread(Sub() SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim totalExpenses
+            ThreadZXRead = New Thread(Sub() totalExpenses = sum("total_amount", "loc_expense_list WHERE zreading = '" & ZreadDateFormat & "'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim VatExempt
+            ThreadZXRead = New Thread(Sub() VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim zeroratedsales
+            ThreadZXRead = New Thread(Sub() zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim vatablesales
+            ThreadZXRead = New Thread(Sub() vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim DepositSlip
+            ThreadZXRead = New Thread(Sub() DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim BegBalance
+            ThreadZXRead = New Thread(Sub() BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim vat12percent
+            ThreadZXRead = New Thread(Sub() vat12percent = sum("vatpercentage", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim DailySales
+            ThreadZXRead = New Thread(Sub() DailySales = GrossSale - LessVat - TotalDiscount)
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim NetSales
+            ThreadZXRead = New Thread(Sub() NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab')"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim CashInDrawer
+            ThreadZXRead = New Thread(Sub() CashInDrawer = DailySales + BeginningBalance - totalExpenses)
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim CashTotal
+            ThreadZXRead = New Thread(Sub() CashTotal = CashInDrawer)
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim TotalNewGrandTotal
+            ThreadZXRead = New Thread(Sub() TotalNewGrandTotal = CashInDrawer + OLDgrandtotal)
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
             '============================================================================================================================
             CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
@@ -1099,19 +1221,61 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 385, "DEPOSIT", NUMBERFORMAT(DepositSlip), font, 10, 0)
             RightToLeftDisplay(sender, e, 395, "CASH IN DRAWER", NUMBERFORMAT(CashInDrawer), font, 10, 0)
             '============================================================================================================================
-            Dim CASHLESS = sum("amountdue", "loc_daily_transaction WHERE active IN (1,3) AND zreading = '" & ZreadDateFormat & "' AND transaction_type NOT IN ('Walk-in','Grab') ")
+            Dim CASHLESS
+            ThreadZXRead = New Thread(Sub() CASHLESS = sum("amountdue", "loc_daily_transaction WHERE active IN (1,3) AND zreading = '" & ZreadDateFormat & "' AND transaction_type NOT IN ('Walk-in','Grab') "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 410, "CASHLESS", CASHLESS, font, 10, 0)
-            Dim GCASH = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Gcash' ")
+            Dim GCASH
+            ThreadZXRead = New Thread(Sub() GCASH = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Gcash' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 420, "GCASH", GCASH, font, 10, 0)
-            Dim PAYMAYA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Paymaya' ")
+            Dim PAYMAYA
+            ThreadZXRead = New Thread(Sub() PAYMAYA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Paymaya' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 430, "PAYMAYA", PAYMAYA, font, 10, 0)
-            Dim lalafood = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Lalafood' ")
+            Dim lalafood
+            ThreadZXRead = New Thread(Sub() lalafood = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Lalafood' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 440, "LALAFOOD", lalafood, font, 10, 0)
-            Dim FOODPANDA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Food Panda' ")
+            Dim FOODPANDA
+            ThreadZXRead = New Thread(Sub() FOODPANDA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Food Panda' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 450, "FOOD PANDA", FOODPANDA, font, 10, 0)
-            Dim REPEX = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Representation Expenses' ")
+            Dim REPEX
+            ThreadZXRead = New Thread(Sub() REPEX = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Representation Expenses' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 460, "REPEXPENSE", REPEX, font, 10, 0)
-            Dim Others = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Others' ")
+            Dim Others
+            ThreadZXRead = New Thread(Sub() Others = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Others' "))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             RightToLeftDisplay(sender, e, 470, "OTHERS", Others, font, 10, 0)
             '============================================================================================================================
             RightToLeftDisplay(sender, e, 485, "ITEM VOID E/C", ReturnsExchange, font, 10, 0)
@@ -1135,10 +1299,17 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 655, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font, 10, 0)
             RightToLeftDisplay(sender, e, 665, "NEW GRAND TOTAL", NUMBERFORMAT(TotalNewGrandTotal), font, 10, 0)
 
-            Dim ResetCounter = GLOBAL_SELECT_FUNCTION_RETURN("tbcountertable", "counter_value", "counter_id = 1", "counter_value")
+
 
             Dim ZreadOrXread As Integer = 0
             If XreadOrZread = "Z-READ" Then
+                Dim ResetCounter
+                ThreadZXRead = New Thread(Sub() ResetCounter = GLOBAL_SELECT_FUNCTION_RETURN("tbcountertable", "counter_value", "counter_id = 1", "counter_value"))
+                ThreadZXRead.Start()
+                ThreadlistZXRead.Add(ThreadZXRead)
+                For Each t In ThreadlistZXRead
+                    t.Join()
+                Next
                 RightToLeftDisplay(sender, e, 675, "RESET COUNTER", ResetCounter, font, 10, 0)
                 RightToLeftDisplay(sender, e, 685, "Z-COUNTER", My.Settings.zcounter, font, 10, 0)
                 ZreadOrXread += 20
@@ -1147,14 +1318,55 @@ Public Class Reports
                 ZreadOrXread += 10
             End If
 
-            Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")
-            Dim BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'")
-            Dim COMBO = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Combo'")
-            Dim PERFECTC = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Perfect Combination'")
-            Dim PREMIUM = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Premium'")
-            Dim SAVORY = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Savory'")
-            Dim SIMPERF = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Simply Perfect'")
-
+            Dim ADDONS
+            ThreadZXRead = New Thread(Sub() ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim BLENDS
+            ThreadZXRead = New Thread(Sub() BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim COMBO
+            ThreadZXRead = New Thread(Sub() COMBO = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Combo'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim PERFECTC
+            ThreadZXRead = New Thread(Sub() PERFECTC = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Perfect Combination'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim PREMIUM
+            ThreadZXRead = New Thread(Sub() PREMIUM = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Premium'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim SAVORY
+            ThreadZXRead = New Thread(Sub() SAVORY = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Savory'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
+            Dim SIMPERF
+            ThreadZXRead = New Thread(Sub() SIMPERF = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Simply Perfect'"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             SimpleTextDisplay(sender, e, "-------------------------------------------------------------", font, 0, 665 + ZreadOrXread)
             SimpleTextDisplay(sender, e, "SALES BY CLASS", font2, 0, 675 + ZreadOrXread)
             RightToLeftDisplay(sender, e, 685 + 20 + ZreadOrXread, "ADD ONS", ADDONS, font, 10, 0)
@@ -1168,107 +1380,6 @@ Public Class Reports
             SimpleTextDisplay(sender, e, "-------------------------------------------------------------", font, 0, 755 + ZreadOrXread)
             CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 810)
 
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
-        Try
-            Dim msg = MessageBox.Show("Are you sure you want to generate Z-READ ? Press Yes to continue or No to cancel", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-
-            If msg = DialogResult.Yes Then
-                My.Settings.zcounter += 1
-                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-                'Fill dgv inv
-                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-                'Update inventory
-                MainInventorySub()
-                'Fill again
-                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-                'Print zread
-                XreadOrZread = "Z-READ"
-                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-
-                If S_Print_XZRead = "YES" Then
-                    printdocXread.Print()
-                Else
-                    PrintPreviewDialogXread.Document = printdocXread
-                    PrintPreviewDialogXread.ShowDialog()
-                End If
-
-                'Update Zread
-
-                S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-                sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-                cmd = New MySqlCommand(sql, ConnectionLocal)
-                cmd.ExecuteNonQuery()
-                cmd.Dispose()
-
-                sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
-                LocalhostConn.Close()
-                cmd = New MySqlCommand(sql, ConnectionLocal)
-                cmd.ExecuteNonQuery()
-
-                cmd.Dispose()
-                'Insert to local zread inv
-                XZreadingInventory(S_Zreading)
-                If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                    ButtonZread.Enabled = False
-                    ButtonZreadAdmin.Enabled = False
-                End If
-                Button7.PerformClick()
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles ButtonZreadAdmin.Click
-        Try
-            Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = DialogResult.Yes Then
-                Try
-                    'Fill dgv inv
-                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-                    'Update inventory
-                    MainInventorySub()
-                    'Fill again
-                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-                    'Print zread
-                    XreadOrZread = "Z-READ"
-                    ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-                    printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-
-                    If S_Print_XZRead = "YES" Then
-                        printdocXread.Print()
-                    Else
-                        PrintPreviewDialogXread.Document = printdocXread
-                        PrintPreviewDialogXread.ShowDialog()
-                    End If
-
-                    'Update Zread
-                    S_Zreading = Format(Now, "yyyy-MM-dd")
-                    sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-                    cmd = New MySqlCommand(sql, LocalhostConn())
-                    cmd.ExecuteNonQuery()
-                    cmd.Dispose()
-                    LocalhostConn.Close()
-                    'Insert to local zread inv
-                    XZreadingInventory(S_Zreading)
-                    If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                        ButtonZread.Enabled = False
-                        ButtonZreadAdmin.Enabled = False
-                    End If
-                    Button7.PerformClick()
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-
-            Else
-                MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -1408,26 +1519,27 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
-        Try
-            Dim msg = MessageBox.Show("Are you sure you want to reset the sales ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-            If msg = DialogResult.Yes Then
-                Dim sql = "TRUNCATE `loc_daily_transaction`; TRUNCATE `loc_daily_transaction_details`;"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-                cmd.ExecuteNonQuery()
-                reportsdailytransaction(False)
-                DataGridViewTransactionDetails.DataSource = Nothing
-                DataGridViewTransactionDetails.Rows.Clear()
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs)
+        'Handles ToolStripButton5.Click
+        'Try
+        '    Dim msg = MessageBox.Show("Are you sure you want to reset the sales ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        '    If msg = DialogResult.Yes Then
+        '        Dim sql = "TRUNCATE `loc_daily_transaction`; TRUNCATE `loc_daily_transaction_details`;"
+        '        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+        '        cmd.ExecuteNonQuery()
+        '        reportsdailytransaction(False)
+        '        DataGridViewTransactionDetails.DataSource = Nothing
+        '        DataGridViewTransactionDetails.Rows.Clear()
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.ToString)
+        '    SendErrorReport(ex.ToString)
+        'End Try
     End Sub
     Dim loopb = 20
     Dim loopa = 20
     Dim PrintSalesDatatable As DataTable
-    Private Sub ButtonPrintSales_Click(sender As Object, e As EventArgs) Handles ButtonPrintSales.Click
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButtonPrintSales.Click
         Try
             loopa = 100
             loopb = 0
@@ -1439,7 +1551,8 @@ Public Class Reports
             For i As Integer = 0 To PrintSalesDatatable.Rows.Count - 1 Step +1
                 loopb += 10
             Next
-            printsales.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300 + loopb)
+
+            printsales.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 300 + loopb)
             previewsales.Document = printsales
             previewsales.ShowDialog()
         Catch ex As Exception
@@ -1453,11 +1566,11 @@ Public Class Reports
             Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
 
             ReceiptHeader(sender, e, False)
-            SimpleTextDisplay(sender, e, "PRODUCT CODE", font1, 0, 120)
-            SimpleTextDisplay(sender, e, "QUANTITY", font1, 70, 120)
-            SimpleTextDisplay(sender, e, "TOTAL SALES", font1, 120, 120)
+            SimpleTextDisplay(sender, e, "PRODUCT CODE", font1, 0, 130)
+            SimpleTextDisplay(sender, e, "QUANTITY", font1, 70, 130)
+            SimpleTextDisplay(sender, e, "TOTAL SALES", font1, 120, 130)
 
-            loopa += 20
+            loopa += 30
             Dim TotalSales As Decimal = 0
             For i As Integer = 0 To PrintSalesDatatable.Rows.Count - 1 Step +1
                 SimpleTextDisplay(sender, e, PrintSalesDatatable(i)(0), font, 0, loopa + 20)
@@ -1542,11 +1655,12 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
         If DataGridViewReturns.Rows.Count > 0 Then
+
             Dim B As Integer = 0
             If CheckBoxPRINTALL.Checked = False Then
-                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320)
+                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 320)
                 If S_Print_Returns = "YES" Then
                     printdocReturns.Print()
                 Else
@@ -1557,7 +1671,7 @@ Public Class Reports
                 For i As Integer = 0 To DataGridViewReturns.Rows.Count - 1 Step +1
                     B += 65
                 Next
-                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320 + B)
+                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 320 + B)
                 If S_Print_Returns = "YES" Then
                     printdocReturns.Print()
                 Else
@@ -2174,6 +2288,131 @@ Public Class Reports
             connectionlocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton8_Click_1(sender As Object, e As EventArgs) Handles ButtonPrintZreading.Click
+        Try
+            returnxreadingdateprint = False
+            xreadingprint()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
+        Try
+            Dim msg = MessageBox.Show("Are you sure you want to generate Z-READ ? Press Yes to continue or No to cancel", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+            If msg = DialogResult.Yes Then
+                My.Settings.zcounter += 1
+                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                'Fill dgv inv
+                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                'Update inventory
+                MainInventorySub()
+                'Fill again
+                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                'Print zread
+                XreadOrZread = "Z-READ"
+                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+
+                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1000)
+
+                If S_Print_XZRead = "YES" Then
+                    printdocXread.Print()
+                Else
+                    PrintPreviewDialogXread.Document = printdocXread
+                    PrintPreviewDialogXread.ShowDialog()
+                End If
+
+                'Update Zread
+
+                S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+                sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.ExecuteNonQuery()
+                cmd.Dispose()
+
+                sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
+                LocalhostConn.Close()
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.ExecuteNonQuery()
+
+                cmd.Dispose()
+                'Insert to local zread inv
+                XZreadingInventory(S_Zreading)
+                If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                    ButtonZread.Enabled = False
+                    ButtonZreadAdmin.Enabled = False
+                End If
+                Button7.PerformClick()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ButtonZreadAdmin.Click
+        Try
+            Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                Try
+                    'Fill dgv inv
+                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                    'Update inventory
+                    MainInventorySub()
+                    'Fill again
+                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                    'Print zread
+                    XreadOrZread = "Z-READ"
+                    ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+
+                    printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1000)
+
+                    If S_Print_XZRead = "YES" Then
+                        printdocXread.Print()
+                    Else
+                        PrintPreviewDialogXread.Document = printdocXread
+                        PrintPreviewDialogXread.ShowDialog()
+                    End If
+
+                    'Update Zread
+                    S_Zreading = Format(Now, "yyyy-MM-dd")
+                    sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+                    cmd = New MySqlCommand(sql, LocalhostConn())
+                    cmd.ExecuteNonQuery()
+                    cmd.Dispose()
+                    LocalhostConn.Close()
+                    'Insert to local zread inv
+                    XZreadingInventory(S_Zreading)
+                    If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                        ButtonZread.Enabled = False
+                        ButtonZreadAdmin.Enabled = False
+                    End If
+                    Button7.PerformClick()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+
+            Else
+                MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton8_Click_2(sender As Object, e As EventArgs) Handles ButtonPrintxreadingdate.Click
+        Try
+            returnxreadingdateprint = True
+            xreadingprint()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

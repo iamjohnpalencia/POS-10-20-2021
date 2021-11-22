@@ -452,6 +452,8 @@ Partial Class SettingsForm
         Me.TabPage17 = New System.Windows.Forms.TabPage()
         Me.BackgroundWorkerLocalConnection = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerCloudConnection = New System.ComponentModel.BackgroundWorker()
+        Me.Label109 = New System.Windows.Forms.Label()
+        Me.ComboBoxPrintSize = New System.Windows.Forms.ComboBox()
         Me.TabPage6.SuspendLayout()
         CType(Me.DataGridViewReset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel35.SuspendLayout()
@@ -4210,6 +4212,8 @@ Partial Class SettingsForm
         '
         'Panel34
         '
+        Me.Panel34.Controls.Add(Me.ComboBoxPrintSize)
+        Me.Panel34.Controls.Add(Me.Label109)
         Me.Panel34.Controls.Add(Me.NumericUpDownPrintCount)
         Me.Panel34.Controls.Add(Me.Label80)
         Me.Panel34.Location = New System.Drawing.Point(7, 179)
@@ -4222,7 +4226,7 @@ Partial Class SettingsForm
         Me.NumericUpDownPrintCount.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.NumericUpDownPrintCount.Location = New System.Drawing.Point(93, 7)
         Me.NumericUpDownPrintCount.Name = "NumericUpDownPrintCount"
-        Me.NumericUpDownPrintCount.Size = New System.Drawing.Size(206, 23)
+        Me.NumericUpDownPrintCount.Size = New System.Drawing.Size(51, 23)
         Me.NumericUpDownPrintCount.TabIndex = 293
         '
         'Label80
@@ -4996,6 +5000,28 @@ Partial Class SettingsForm
         'BackgroundWorkerCloudConnection
         '
         '
+        'Label109
+        '
+        Me.Label109.AutoSize = True
+        Me.Label109.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label109.Location = New System.Drawing.Point(150, 10)
+        Me.Label109.Name = "Label109"
+        Me.Label109.Size = New System.Drawing.Size(61, 14)
+        Me.Label109.TabIndex = 294
+        Me.Label109.Text = "Print Size:"
+        '
+        'ComboBoxPrintSize
+        '
+        Me.ComboBoxPrintSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxPrintSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBoxPrintSize.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.ComboBoxPrintSize.FormattingEnabled = True
+        Me.ComboBoxPrintSize.Items.AddRange(New Object() {"57mm", "80mm"})
+        Me.ComboBoxPrintSize.Location = New System.Drawing.Point(217, 7)
+        Me.ComboBoxPrintSize.Name = "ComboBoxPrintSize"
+        Me.ComboBoxPrintSize.Size = New System.Drawing.Size(82, 22)
+        Me.ComboBoxPrintSize.TabIndex = 295
+        '
         'SettingsForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5555,4 +5581,6 @@ Partial Class SettingsForm
     Friend WithEvents Label105 As Label
     Friend WithEvents Label104 As Label
     Friend WithEvents Label103 As Label
+    Friend WithEvents Label109 As Label
+    Friend WithEvents ComboBoxPrintSize As ComboBox
 End Class

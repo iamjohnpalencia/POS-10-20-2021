@@ -127,14 +127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.exe" size="5913088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.exe" size="5926400">
       <assemblyIdentity name="POS" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nHFPalxxtDNBDep+xa1T/HYcI2jPrw1/w+wOLiUqrck=</dsig:DigestValue>
+        <dsig:DigestValue>TJUSEmYZLdCx2vTA3fjS26KIOMJwbce8LgU6TKJl0yY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -198,13 +198,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="POS.exe.config" size="1979">
+  <file name="POS.exe.config" size="2081">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>gBPG4yBggjwTkTWNBYkRe5iZx9i4AqT9peYtRyBJwiA=</dsig:DigestValue>
+      <dsig:DigestValue>CdqzqiAG6N8qhEIoVYZamWr5Erdpohen+tLUlLU0tqM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="posicon.ico" size="115117">

@@ -3376,6 +3376,20 @@ Public Class SettingsForm
         End Try
     End Sub
 
+    Private Sub ComboBoxPrintSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxPrintSize.SelectedIndexChanged
+        Try
+            If ComboBoxPrintSize.Text = "57mm" Then
+                My.Settings.PrintSize = "57mm"
+                My.Settings.Save()
+            Else
+                My.Settings.PrintSize = "80mm"
+                My.Settings.Save()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
 
 
 

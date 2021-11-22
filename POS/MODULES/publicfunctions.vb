@@ -443,22 +443,24 @@ Module publicfunctions
             '============================================================================================================================
             CenterTextDisplay(sender, e, "PTUN : " & ClientPTUN, font, 51 + AddLine)
             CenterTextDisplay(sender, e, ClientAddress, font, 61 + AddLine)
-            CenterTextDisplay(sender, e, ClientBrgy & ", " & getmunicipality & ", " & getprovince, font, 71 + AddLine)
-            CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 81 + AddLine)
+            CenterTextDisplay(sender, e, ClientBrgy & ", ", font, 71 + AddLine)
+            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 81 + AddLine)
+            CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 91 + AddLine)
 
-            SimpleTextDisplay(sender, e, "Name:", font, 0, 75 + AddLine)
+
 
             If SENIORDETAILSBOOL = True Then
-                SimpleTextDisplay(sender, e, SeniorDetailsName, font, 30, 72 + AddLine)
+                SimpleTextDisplay(sender, e, SeniorDetailsName, font, 30, 82 + AddLine)
             End If
 
-            e.Graphics.DrawLine(Pens.Black, 40, 102 + AddLine, 180, 102 + AddLine)
-            SimpleTextDisplay(sender, e, "Tin:", font, 0, 85 + AddLine)
-            e.Graphics.DrawLine(Pens.Black, 28, 112 + AddLine, 180, 112 + AddLine)
-            SimpleTextDisplay(sender, e, "Address:", font, 0, 95 + AddLine)
-            e.Graphics.DrawLine(Pens.Black, 49, 122 + AddLine, 180, 122 + AddLine)
-            SimpleTextDisplay(sender, e, "Business Style:", font, 0, 105 + AddLine)
-            e.Graphics.DrawLine(Pens.Black, 75, 132 + AddLine, 180, 132 + AddLine)
+            SimpleTextDisplay(sender, e, "Name:", font, 0, 85 + AddLine)
+            e.Graphics.DrawLine(Pens.Black, 40, 112 + AddLine, 180, 112 + AddLine)
+            SimpleTextDisplay(sender, e, "Tin:", font, 0, 95 + AddLine)
+            e.Graphics.DrawLine(Pens.Black, 28, 122 + AddLine, 180, 122 + AddLine)
+            SimpleTextDisplay(sender, e, "Address:", font, 0, 105 + AddLine)
+            e.Graphics.DrawLine(Pens.Black, 49, 132 + AddLine, 180, 132 + AddLine)
+            SimpleTextDisplay(sender, e, "Business Style:", font, 0, 115 + AddLine)
+            e.Graphics.DrawLine(Pens.Black, 75, 142 + AddLine, 180, 142 + AddLine)
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -517,14 +519,7 @@ Module publicfunctions
             .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Total), "###,###,##0.00")
         End With
     End Sub
-    Public Sub LedDisplayTotal()
-        Try
 
-
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
     Public Sub LedDisplay(TextToDisplay As String, TotalOrChange As Boolean)
         Try
             Dim ComPort As String = My.Settings.SpPort
@@ -587,4 +582,13 @@ Module publicfunctions
         End Try
     End Sub
 
+    Public Function ReturnPrintSize() As Integer
+        Dim PrintSize = 0
+        If My.Settings.PrintSize = "57mm" Then
+            PrintSize = 200
+        Else
+            PrintSize = 230
+        End If
+        Return PrintSize
+    End Function
 End Module

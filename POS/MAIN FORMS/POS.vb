@@ -1204,10 +1204,11 @@ Public Class POS
                         b += 10
                     End If
                 Next
+
                 If CouponApplied Then
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 540 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 550 + b)
                 Else
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 510 + b)
                 End If
 
                 If S_Print = "YES" Then
@@ -1286,14 +1287,14 @@ Public Class POS
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
             With Me
-                a = 30
+                a = 40
                 Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
                 Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
                 Dim font As New Font("Tahoma", 6)
                 Dim fontaddon As New Font("Tahoma", 5)
                 ReceiptHeader(sender, e, False)
                 Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                Dim abc As Integer = 30
+                Dim abc As Integer = 40
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                     Dim rect1st As RectangleF = New RectangleF(10.0F, 145 + abc, 173.0F, 100.0F)
                     Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "###,###,##0.00")

@@ -666,7 +666,8 @@ Public Class Inventory
             For i As Integer = 0 To DataGridViewINVVIEW.Rows.Count - 1 Step +1
                 b += 10
             Next
-            printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300 + b)
+
+            printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 300 + b)
             PrintPreviewDialog1.Document = printdoc
             PrintPreviewDialog1.ShowDialog()
             ' printdoc.Print()
@@ -684,7 +685,7 @@ Public Class Inventory
             Dim font As New Font("Tahoma", 5)
             Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
             Dim b = 0
-            Dim a = 117
+            Dim a = 130
             ReceiptHeader(sender, e, False)
             SimpleTextDisplay(sender, e, "INGREDIENTS", font1, 0, a)
             SimpleTextDisplay(sender, e, "PRIMARY", font1, 70, a)
