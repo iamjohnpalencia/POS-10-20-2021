@@ -315,6 +315,18 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub filldatagridviewsenior()
+        Try
+            Dim fields = "*"
+            Dim table = "loc_senior_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DatagridviewSenior)
+            gettablesize(tablename:="loc_senior_details")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub countrows(ByVal tablename As String)
         Try
             Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
@@ -620,6 +632,19 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
+
+                ThreadLoaddata = New Thread(AddressOf filldatagridviewsenior)
+                ThreadLoaddata.Start()
+                Threadlist.Add(ThreadLoaddata)
+                For Each t In Threadlist
+                    t.Join()
+                    If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
                 ThreadLoaddata = New Thread(AddressOf LoadData2)
                 ThreadLoaddata.Start()
                 Threadlist.Add(ThreadLoaddata)
@@ -888,6 +913,17 @@ Public Class SynctoCloud
                             thread1.Start()
                             threadListErrors.Add(thread1)
                         End If
+                        If i = 75 Then
+                            'Errors
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelSeniorDetails.Text = "Syncing Senior Details"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertseniordetails)
+                            thread1.Start()
+                            threadListErrors.Add(thread1)
+                        End If
+
                     Next
                 Else
                     Dim t1 As New Task(New Action(Sub()
@@ -2034,6 +2070,72 @@ Public Class SynctoCloud
                     Dim t As New Task(New Action(Sub()
                                                      LabelError.Text = "Synced Error logs"
                                                      LabelErrorTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
+            End With
+            'truncatetable(tablename:="loc_expense_list")
+        Catch ex As Exception
+            Unsuccessful = True
+            BackgroundWorkerSYNCTOCLOUD.CancelAsync()
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub insertseniordetails()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            With DatagridviewSenior
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
+                    cmd = New MySqlCommand("INSERT INTO triggers_admin_senior_details(`loc_id`,`transaction_number`,`senior_id`,`senior_name`,`active`,`crew_id`,`store_id`,`guid`,`date_created`) VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)", server)
+
+                    cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
+
+                    '====================================================================
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelSeniorDetailsItem.Text = Val(LabelSeniorDetailsItem.Text) + 1
+                    POS.Instance.Invoke(Sub()
+                                            POS.ProgressBar1.Value += 1
+                                        End Sub)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    '====================================================================
+                    cmd.ExecuteNonQuery()
+                    Dim table = " loc_senior_details "
+                    Dim where = " id = " & .Rows(i).Cells(0).Value.ToString & ""
+                    Dim fields = " `synced`='Synced' "
+                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                    '====================================================================
+                Next
+                server.Close()
+                local.Close()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelSeniorDetails.Text = "Synced Error seniordetails"
+                                                     LabelSeniorDetailsTime.Text = LabelTime.Text & " Seconds"
                                                  End Sub))
                     t.Start()
                 End If

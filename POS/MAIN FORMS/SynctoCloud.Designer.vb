@@ -293,6 +293,10 @@ Partial Class SynctoCloud
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LabelSeniorDetails = New System.Windows.Forms.Label()
+        Me.LabelSeniorDetailsTime = New System.Windows.Forms.Label()
+        Me.LabelSeniorDetailsItem = New System.Windows.Forms.Label()
+        Me.DatagridviewSenior = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -317,6 +321,7 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BackgroundWorkerSYNCTOCLOUD
@@ -515,9 +520,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 315)
+        Me.Panel7.Location = New System.Drawing.Point(0, 313)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(492, 31)
+        Me.Panel7.Size = New System.Drawing.Size(491, 31)
         Me.Panel7.TabIndex = 24
         '
         'Label8
@@ -538,7 +543,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(492, 0)
+        Me.Label5.Location = New System.Drawing.Point(491, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 16)
         Me.Label5.TabIndex = 28
@@ -594,7 +599,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 20)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(492, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(491, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -825,9 +830,9 @@ Partial Class SynctoCloud
         Me.LabelZREADINVITEM.AutoSize = True
         Me.LabelZREADINVITEM.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelZREADINVITEM.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelZREADINVITEM.Location = New System.Drawing.Point(475, 60)
+        Me.LabelZREADINVITEM.Location = New System.Drawing.Point(475, 56)
         Me.LabelZREADINVITEM.Name = "LabelZREADINVITEM"
-        Me.LabelZREADINVITEM.Size = New System.Drawing.Size(14, 15)
+        Me.LabelZREADINVITEM.Size = New System.Drawing.Size(14, 14)
         Me.LabelZREADINVITEM.TabIndex = 56
         Me.LabelZREADINVITEM.Text = "0"
         '
@@ -835,7 +840,7 @@ Partial Class SynctoCloud
         '
         Me.LabelZREADINVTIME.AutoSize = True
         Me.LabelZREADINVTIME.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelZREADINVTIME.Location = New System.Drawing.Point(175, 60)
+        Me.LabelZREADINVTIME.Location = New System.Drawing.Point(175, 56)
         Me.LabelZREADINVTIME.Name = "LabelZREADINVTIME"
         Me.LabelZREADINVTIME.Size = New System.Drawing.Size(165, 14)
         Me.LabelZREADINVTIME.TabIndex = 55
@@ -845,7 +850,7 @@ Partial Class SynctoCloud
         '
         Me.LabelZREADINV.AutoSize = True
         Me.LabelZREADINV.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelZREADINV.Location = New System.Drawing.Point(3, 60)
+        Me.LabelZREADINV.Location = New System.Drawing.Point(3, 56)
         Me.LabelZREADINV.Name = "LabelZREADINV"
         Me.LabelZREADINV.Size = New System.Drawing.Size(95, 14)
         Me.LabelZREADINV.TabIndex = 54
@@ -856,9 +861,9 @@ Partial Class SynctoCloud
         Me.LabelErrorItem.AutoSize = True
         Me.LabelErrorItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelErrorItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelErrorItem.Location = New System.Drawing.Point(475, 210)
+        Me.LabelErrorItem.Location = New System.Drawing.Point(475, 196)
         Me.LabelErrorItem.Name = "LabelErrorItem"
-        Me.LabelErrorItem.Size = New System.Drawing.Size(14, 17)
+        Me.LabelErrorItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelErrorItem.TabIndex = 53
         Me.LabelErrorItem.Text = "0"
         '
@@ -866,7 +871,7 @@ Partial Class SynctoCloud
         '
         Me.LabelErrorTime.AutoSize = True
         Me.LabelErrorTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelErrorTime.Location = New System.Drawing.Point(175, 210)
+        Me.LabelErrorTime.Location = New System.Drawing.Point(175, 196)
         Me.LabelErrorTime.Name = "LabelErrorTime"
         Me.LabelErrorTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelErrorTime.TabIndex = 52
@@ -876,7 +881,7 @@ Partial Class SynctoCloud
         '
         Me.LabelError.AutoSize = True
         Me.LabelError.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelError.Location = New System.Drawing.Point(3, 210)
+        Me.LabelError.Location = New System.Drawing.Point(3, 196)
         Me.LabelError.Name = "LabelError"
         Me.LabelError.Size = New System.Drawing.Size(38, 14)
         Me.LabelError.TabIndex = 51
@@ -887,9 +892,9 @@ Partial Class SynctoCloud
         Me.LabelCouponItem.AutoSize = True
         Me.LabelCouponItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelCouponItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCouponItem.Location = New System.Drawing.Point(475, 195)
+        Me.LabelCouponItem.Location = New System.Drawing.Point(475, 182)
         Me.LabelCouponItem.Name = "LabelCouponItem"
-        Me.LabelCouponItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelCouponItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelCouponItem.TabIndex = 50
         Me.LabelCouponItem.Text = "0"
         '
@@ -897,7 +902,7 @@ Partial Class SynctoCloud
         '
         Me.LabelCouponTime.AutoSize = True
         Me.LabelCouponTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCouponTime.Location = New System.Drawing.Point(175, 195)
+        Me.LabelCouponTime.Location = New System.Drawing.Point(175, 182)
         Me.LabelCouponTime.Name = "LabelCouponTime"
         Me.LabelCouponTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelCouponTime.TabIndex = 49
@@ -907,7 +912,7 @@ Partial Class SynctoCloud
         '
         Me.LabelCoupon.AutoSize = True
         Me.LabelCoupon.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCoupon.Location = New System.Drawing.Point(3, 195)
+        Me.LabelCoupon.Location = New System.Drawing.Point(3, 182)
         Me.LabelCoupon.Name = "LabelCoupon"
         Me.LabelCoupon.Size = New System.Drawing.Size(54, 14)
         Me.LabelCoupon.TabIndex = 48
@@ -918,9 +923,9 @@ Partial Class SynctoCloud
         Me.LabelPRICEREQItem.AutoSize = True
         Me.LabelPRICEREQItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelPRICEREQItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPRICEREQItem.Location = New System.Drawing.Point(475, 180)
+        Me.LabelPRICEREQItem.Location = New System.Drawing.Point(475, 168)
         Me.LabelPRICEREQItem.Name = "LabelPRICEREQItem"
-        Me.LabelPRICEREQItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelPRICEREQItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelPRICEREQItem.TabIndex = 47
         Me.LabelPRICEREQItem.Text = "0"
         '
@@ -928,7 +933,7 @@ Partial Class SynctoCloud
         '
         Me.LabelPRICEREQTime.AutoSize = True
         Me.LabelPRICEREQTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPRICEREQTime.Location = New System.Drawing.Point(175, 180)
+        Me.LabelPRICEREQTime.Location = New System.Drawing.Point(175, 168)
         Me.LabelPRICEREQTime.Name = "LabelPRICEREQTime"
         Me.LabelPRICEREQTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelPRICEREQTime.TabIndex = 46
@@ -938,7 +943,7 @@ Partial Class SynctoCloud
         '
         Me.LabelPRICEREQ.AutoSize = True
         Me.LabelPRICEREQ.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPRICEREQ.Location = New System.Drawing.Point(3, 180)
+        Me.LabelPRICEREQ.Location = New System.Drawing.Point(3, 168)
         Me.LabelPRICEREQ.Name = "LabelPRICEREQ"
         Me.LabelPRICEREQ.Size = New System.Drawing.Size(127, 14)
         Me.LabelPRICEREQ.TabIndex = 45
@@ -949,9 +954,9 @@ Partial Class SynctoCloud
         Me.LabelDEPOSITItem.AutoSize = True
         Me.LabelDEPOSITItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelDEPOSITItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDEPOSITItem.Location = New System.Drawing.Point(475, 165)
+        Me.LabelDEPOSITItem.Location = New System.Drawing.Point(475, 154)
         Me.LabelDEPOSITItem.Name = "LabelDEPOSITItem"
-        Me.LabelDEPOSITItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelDEPOSITItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelDEPOSITItem.TabIndex = 44
         Me.LabelDEPOSITItem.Text = "0"
         '
@@ -959,7 +964,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDEPOSITTime.AutoSize = True
         Me.LabelDEPOSITTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDEPOSITTime.Location = New System.Drawing.Point(175, 165)
+        Me.LabelDEPOSITTime.Location = New System.Drawing.Point(175, 154)
         Me.LabelDEPOSITTime.Name = "LabelDEPOSITTime"
         Me.LabelDEPOSITTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelDEPOSITTime.TabIndex = 43
@@ -969,7 +974,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDEPOSIT.AutoSize = True
         Me.LabelDEPOSIT.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDEPOSIT.Location = New System.Drawing.Point(3, 165)
+        Me.LabelDEPOSIT.Location = New System.Drawing.Point(3, 154)
         Me.LabelDEPOSIT.Name = "LabelDEPOSIT"
         Me.LabelDEPOSIT.Size = New System.Drawing.Size(48, 14)
         Me.LabelDEPOSIT.TabIndex = 42
@@ -980,9 +985,9 @@ Partial Class SynctoCloud
         Me.LabelMODETItem.AutoSize = True
         Me.LabelMODETItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelMODETItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMODETItem.Location = New System.Drawing.Point(475, 150)
+        Me.LabelMODETItem.Location = New System.Drawing.Point(475, 140)
         Me.LabelMODETItem.Name = "LabelMODETItem"
-        Me.LabelMODETItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelMODETItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelMODETItem.TabIndex = 41
         Me.LabelMODETItem.Text = "0"
         '
@@ -990,7 +995,7 @@ Partial Class SynctoCloud
         '
         Me.LabelMODETTime.AutoSize = True
         Me.LabelMODETTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMODETTime.Location = New System.Drawing.Point(175, 150)
+        Me.LabelMODETTime.Location = New System.Drawing.Point(175, 140)
         Me.LabelMODETTime.Name = "LabelMODETTime"
         Me.LabelMODETTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelMODETTime.TabIndex = 40
@@ -1000,7 +1005,7 @@ Partial Class SynctoCloud
         '
         Me.LabelMODET.AutoSize = True
         Me.LabelMODET.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMODET.Location = New System.Drawing.Point(3, 150)
+        Me.LabelMODET.Location = New System.Drawing.Point(3, 140)
         Me.LabelMODET.Name = "LabelMODET"
         Me.LabelMODET.Size = New System.Drawing.Size(119, 14)
         Me.LabelMODET.TabIndex = 39
@@ -1011,9 +1016,9 @@ Partial Class SynctoCloud
         Me.LabelCPRODItem.AutoSize = True
         Me.LabelCPRODItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelCPRODItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCPRODItem.Location = New System.Drawing.Point(475, 135)
+        Me.LabelCPRODItem.Location = New System.Drawing.Point(475, 126)
         Me.LabelCPRODItem.Name = "LabelCPRODItem"
-        Me.LabelCPRODItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelCPRODItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelCPRODItem.TabIndex = 38
         Me.LabelCPRODItem.Text = "0"
         '
@@ -1021,7 +1026,7 @@ Partial Class SynctoCloud
         '
         Me.LabelCPRODTime.AutoSize = True
         Me.LabelCPRODTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCPRODTime.Location = New System.Drawing.Point(175, 135)
+        Me.LabelCPRODTime.Location = New System.Drawing.Point(175, 126)
         Me.LabelCPRODTime.Name = "LabelCPRODTime"
         Me.LabelCPRODTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelCPRODTime.TabIndex = 37
@@ -1031,7 +1036,7 @@ Partial Class SynctoCloud
         '
         Me.LabelCPROD.AutoSize = True
         Me.LabelCPROD.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCPROD.Location = New System.Drawing.Point(3, 135)
+        Me.LabelCPROD.Location = New System.Drawing.Point(3, 126)
         Me.LabelCPROD.Name = "LabelCPROD"
         Me.LabelCPROD.Size = New System.Drawing.Size(100, 14)
         Me.LabelCPROD.TabIndex = 36
@@ -1042,9 +1047,9 @@ Partial Class SynctoCloud
         Me.LabelRETItem.AutoSize = True
         Me.LabelRETItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelRETItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRETItem.Location = New System.Drawing.Point(475, 120)
+        Me.LabelRETItem.Location = New System.Drawing.Point(475, 112)
         Me.LabelRETItem.Name = "LabelRETItem"
-        Me.LabelRETItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelRETItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelRETItem.TabIndex = 35
         Me.LabelRETItem.Text = "0"
         '
@@ -1052,7 +1057,7 @@ Partial Class SynctoCloud
         '
         Me.LabelRETTime.AutoSize = True
         Me.LabelRETTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRETTime.Location = New System.Drawing.Point(175, 120)
+        Me.LabelRETTime.Location = New System.Drawing.Point(175, 112)
         Me.LabelRETTime.Name = "LabelRETTime"
         Me.LabelRETTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelRETTime.TabIndex = 34
@@ -1062,7 +1067,7 @@ Partial Class SynctoCloud
         '
         Me.LabelRET.AutoSize = True
         Me.LabelRET.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRET.Location = New System.Drawing.Point(3, 120)
+        Me.LabelRET.Location = New System.Drawing.Point(3, 112)
         Me.LabelRET.Name = "LabelRET"
         Me.LabelRET.Size = New System.Drawing.Size(49, 14)
         Me.LabelRET.TabIndex = 33
@@ -1075,7 +1080,7 @@ Partial Class SynctoCloud
         Me.LabelSYS1Item.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelSYS1Item.Location = New System.Drawing.Point(475, 0)
         Me.LabelSYS1Item.Name = "LabelSYS1Item"
-        Me.LabelSYS1Item.Size = New System.Drawing.Size(14, 15)
+        Me.LabelSYS1Item.Size = New System.Drawing.Size(14, 14)
         Me.LabelSYS1Item.TabIndex = 29
         Me.LabelSYS1Item.Text = "0"
         '
@@ -1084,9 +1089,9 @@ Partial Class SynctoCloud
         Me.LabelACCItem.AutoSize = True
         Me.LabelACCItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelACCItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelACCItem.Location = New System.Drawing.Point(475, 105)
+        Me.LabelACCItem.Location = New System.Drawing.Point(475, 98)
         Me.LabelACCItem.Name = "LabelACCItem"
-        Me.LabelACCItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelACCItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelACCItem.TabIndex = 27
         Me.LabelACCItem.Text = "0"
         '
@@ -1095,9 +1100,9 @@ Partial Class SynctoCloud
         Me.LabelEXPDItem.AutoSize = True
         Me.LabelEXPDItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelEXPDItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXPDItem.Location = New System.Drawing.Point(475, 90)
+        Me.LabelEXPDItem.Location = New System.Drawing.Point(475, 84)
         Me.LabelEXPDItem.Name = "LabelEXPDItem"
-        Me.LabelEXPDItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelEXPDItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelEXPDItem.TabIndex = 26
         Me.LabelEXPDItem.Text = "0"
         '
@@ -1106,9 +1111,9 @@ Partial Class SynctoCloud
         Me.LabelEXPItem.AutoSize = True
         Me.LabelEXPItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelEXPItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXPItem.Location = New System.Drawing.Point(475, 75)
+        Me.LabelEXPItem.Location = New System.Drawing.Point(475, 70)
         Me.LabelEXPItem.Name = "LabelEXPItem"
-        Me.LabelEXPItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelEXPItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelEXPItem.TabIndex = 25
         Me.LabelEXPItem.Text = "0"
         '
@@ -1117,9 +1122,9 @@ Partial Class SynctoCloud
         Me.LabelINVItem.AutoSize = True
         Me.LabelINVItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelINVItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelINVItem.Location = New System.Drawing.Point(475, 45)
+        Me.LabelINVItem.Location = New System.Drawing.Point(475, 42)
         Me.LabelINVItem.Name = "LabelINVItem"
-        Me.LabelINVItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelINVItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelINVItem.TabIndex = 24
         Me.LabelINVItem.Text = "0"
         '
@@ -1128,9 +1133,9 @@ Partial Class SynctoCloud
         Me.LabelDTransactDItem.AutoSize = True
         Me.LabelDTransactDItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelDTransactDItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransactDItem.Location = New System.Drawing.Point(475, 30)
+        Me.LabelDTransactDItem.Location = New System.Drawing.Point(475, 28)
         Me.LabelDTransactDItem.Name = "LabelDTransactDItem"
-        Me.LabelDTransactDItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelDTransactDItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelDTransactDItem.TabIndex = 23
         Me.LabelDTransactDItem.Text = "0"
         '
@@ -1139,9 +1144,9 @@ Partial Class SynctoCloud
         Me.LabelDTransacItem.AutoSize = True
         Me.LabelDTransacItem.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelDTransacItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransacItem.Location = New System.Drawing.Point(475, 15)
+        Me.LabelDTransacItem.Location = New System.Drawing.Point(475, 14)
         Me.LabelDTransacItem.Name = "LabelDTransacItem"
-        Me.LabelDTransacItem.Size = New System.Drawing.Size(14, 15)
+        Me.LabelDTransacItem.Size = New System.Drawing.Size(14, 14)
         Me.LabelDTransacItem.TabIndex = 22
         Me.LabelDTransacItem.Text = "0"
         '
@@ -1169,7 +1174,7 @@ Partial Class SynctoCloud
         '
         Me.LabelACCTime.AutoSize = True
         Me.LabelACCTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelACCTime.Location = New System.Drawing.Point(175, 105)
+        Me.LabelACCTime.Location = New System.Drawing.Point(175, 98)
         Me.LabelACCTime.Name = "LabelACCTime"
         Me.LabelACCTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelACCTime.TabIndex = 12
@@ -1179,7 +1184,7 @@ Partial Class SynctoCloud
         '
         Me.LabelEXPDTime.AutoSize = True
         Me.LabelEXPDTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXPDTime.Location = New System.Drawing.Point(175, 90)
+        Me.LabelEXPDTime.Location = New System.Drawing.Point(175, 84)
         Me.LabelEXPDTime.Name = "LabelEXPDTime"
         Me.LabelEXPDTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelEXPDTime.TabIndex = 11
@@ -1189,7 +1194,7 @@ Partial Class SynctoCloud
         '
         Me.LabelEXPTime.AutoSize = True
         Me.LabelEXPTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXPTime.Location = New System.Drawing.Point(175, 75)
+        Me.LabelEXPTime.Location = New System.Drawing.Point(175, 70)
         Me.LabelEXPTime.Name = "LabelEXPTime"
         Me.LabelEXPTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelEXPTime.TabIndex = 10
@@ -1199,7 +1204,7 @@ Partial Class SynctoCloud
         '
         Me.LabelINVTime.AutoSize = True
         Me.LabelINVTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelINVTime.Location = New System.Drawing.Point(175, 45)
+        Me.LabelINVTime.Location = New System.Drawing.Point(175, 42)
         Me.LabelINVTime.Name = "LabelINVTime"
         Me.LabelINVTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelINVTime.TabIndex = 9
@@ -1209,7 +1214,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDTransactDTime.AutoSize = True
         Me.LabelDTransactDTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransactDTime.Location = New System.Drawing.Point(175, 30)
+        Me.LabelDTransactDTime.Location = New System.Drawing.Point(175, 28)
         Me.LabelDTransactDTime.Name = "LabelDTransactDTime"
         Me.LabelDTransactDTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelDTransactDTime.TabIndex = 8
@@ -1219,7 +1224,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDTransacTime.AutoSize = True
         Me.LabelDTransacTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransacTime.Location = New System.Drawing.Point(175, 15)
+        Me.LabelDTransacTime.Location = New System.Drawing.Point(175, 14)
         Me.LabelDTransacTime.Name = "LabelDTransacTime"
         Me.LabelDTransacTime.Size = New System.Drawing.Size(165, 14)
         Me.LabelDTransacTime.TabIndex = 7
@@ -1229,7 +1234,7 @@ Partial Class SynctoCloud
         '
         Me.LabelACC.AutoSize = True
         Me.LabelACC.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelACC.Location = New System.Drawing.Point(3, 105)
+        Me.LabelACC.Location = New System.Drawing.Point(3, 98)
         Me.LabelACC.Name = "LabelACC"
         Me.LabelACC.Size = New System.Drawing.Size(58, 14)
         Me.LabelACC.TabIndex = 5
@@ -1239,7 +1244,7 @@ Partial Class SynctoCloud
         '
         Me.LabelEXPD.AutoSize = True
         Me.LabelEXPD.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXPD.Location = New System.Drawing.Point(3, 90)
+        Me.LabelEXPD.Location = New System.Drawing.Point(3, 84)
         Me.LabelEXPD.Name = "LabelEXPD"
         Me.LabelEXPD.Size = New System.Drawing.Size(92, 14)
         Me.LabelEXPD.TabIndex = 4
@@ -1249,7 +1254,7 @@ Partial Class SynctoCloud
         '
         Me.LabelEXP.AutoSize = True
         Me.LabelEXP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXP.Location = New System.Drawing.Point(3, 75)
+        Me.LabelEXP.Location = New System.Drawing.Point(3, 70)
         Me.LabelEXP.Name = "LabelEXP"
         Me.LabelEXP.Size = New System.Drawing.Size(75, 14)
         Me.LabelEXP.TabIndex = 3
@@ -1259,7 +1264,7 @@ Partial Class SynctoCloud
         '
         Me.LabelINV.AutoSize = True
         Me.LabelINV.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelINV.Location = New System.Drawing.Point(3, 45)
+        Me.LabelINV.Location = New System.Drawing.Point(3, 42)
         Me.LabelINV.Name = "LabelINV"
         Me.LabelINV.Size = New System.Drawing.Size(60, 14)
         Me.LabelINV.TabIndex = 2
@@ -1269,7 +1274,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDTransactD.AutoSize = True
         Me.LabelDTransactD.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransactD.Location = New System.Drawing.Point(3, 30)
+        Me.LabelDTransactD.Location = New System.Drawing.Point(3, 28)
         Me.LabelDTransactD.Name = "LabelDTransactD"
         Me.LabelDTransactD.Size = New System.Drawing.Size(137, 14)
         Me.LabelDTransactD.TabIndex = 1
@@ -1279,7 +1284,7 @@ Partial Class SynctoCloud
         '
         Me.LabelDTransac.AutoSize = True
         Me.LabelDTransac.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDTransac.Location = New System.Drawing.Point(3, 15)
+        Me.LabelDTransac.Location = New System.Drawing.Point(3, 14)
         Me.LabelDTransac.Name = "LabelDTransac"
         Me.LabelDTransac.Size = New System.Drawing.Size(98, 14)
         Me.LabelDTransac.TabIndex = 0
@@ -1288,6 +1293,7 @@ Partial Class SynctoCloud
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.DataGridViewZREADINVENTORY)
+        Me.GroupBox1.Controls.Add(Me.DatagridviewSenior)
         Me.GroupBox1.Controls.Add(Me.DataGridViewERRORS)
         Me.GroupBox1.Controls.Add(Me.DataGridViewCoupons)
         Me.GroupBox1.Controls.Add(Me.LabelTime)
@@ -1309,9 +1315,9 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG4)
         Me.GroupBox1.Controls.Add(Me.DataGridViewEXPDET)
         Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG3)
-        Me.GroupBox1.Location = New System.Drawing.Point(506, 121)
+        Me.GroupBox1.Location = New System.Drawing.Point(506, 127)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(228, 19)
+        Me.GroupBox1.Size = New System.Drawing.Size(228, 15)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
@@ -2333,9 +2339,9 @@ Partial Class SynctoCloud
         Me.Panel1.Controls.Add(Me.RadioButton2)
         Me.Panel1.Controls.Add(Me.RadioButton1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 234)
+        Me.Panel1.Location = New System.Drawing.Point(0, 232)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(492, 71)
+        Me.Panel1.Size = New System.Drawing.Size(491, 71)
         Me.Panel1.TabIndex = 59
         '
         'Button2
@@ -2378,9 +2384,9 @@ Partial Class SynctoCloud
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 305)
+        Me.Panel3.Location = New System.Drawing.Point(0, 303)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(492, 10)
+        Me.Panel3.Size = New System.Drawing.Size(491, 10)
         Me.Panel3.TabIndex = 61
         '
         'TableLayoutPanel1
@@ -2389,6 +2395,9 @@ Partial Class SynctoCloud
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelSeniorDetailsItem, 2, 15)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelSeniorDetailsTime, 1, 15)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelSeniorDetails, 0, 15)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelErrorItem, 2, 14)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelACCItem, 2, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelCouponItem, 2, 13)
@@ -2436,30 +2445,75 @@ Partial Class SynctoCloud
         Me.TableLayoutPanel1.Controls.Add(Me.LabelEXPTime, 1, 5)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(-1, 1)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 15
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666!))
+        Me.TableLayoutPanel1.RowCount = 16
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(492, 227)
         Me.TableLayoutPanel1.TabIndex = 62
+        '
+        'LabelSeniorDetails
+        '
+        Me.LabelSeniorDetails.AutoSize = True
+        Me.LabelSeniorDetails.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeniorDetails.Location = New System.Drawing.Point(3, 210)
+        Me.LabelSeniorDetails.Name = "LabelSeniorDetails"
+        Me.LabelSeniorDetails.Size = New System.Drawing.Size(93, 14)
+        Me.LabelSeniorDetails.TabIndex = 57
+        Me.LabelSeniorDetails.Text = "Discount Details"
+        '
+        'LabelSeniorDetailsTime
+        '
+        Me.LabelSeniorDetailsTime.AutoSize = True
+        Me.LabelSeniorDetailsTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeniorDetailsTime.Location = New System.Drawing.Point(175, 210)
+        Me.LabelSeniorDetailsTime.Name = "LabelSeniorDetailsTime"
+        Me.LabelSeniorDetailsTime.Size = New System.Drawing.Size(165, 14)
+        Me.LabelSeniorDetailsTime.TabIndex = 58
+        Me.LabelSeniorDetailsTime.Text = "Estimating Time. Please Wait"
+        '
+        'LabelSeniorDetailsItem
+        '
+        Me.LabelSeniorDetailsItem.AutoSize = True
+        Me.LabelSeniorDetailsItem.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelSeniorDetailsItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeniorDetailsItem.Location = New System.Drawing.Point(475, 210)
+        Me.LabelSeniorDetailsItem.Name = "LabelSeniorDetailsItem"
+        Me.LabelSeniorDetailsItem.Size = New System.Drawing.Size(14, 17)
+        Me.LabelSeniorDetailsItem.TabIndex = 54
+        Me.LabelSeniorDetailsItem.Text = "0"
+        '
+        'DatagridviewSenior
+        '
+        Me.DatagridviewSenior.AllowUserToAddRows = False
+        Me.DatagridviewSenior.AllowUserToDeleteRows = False
+        Me.DatagridviewSenior.AllowUserToResizeColumns = False
+        Me.DatagridviewSenior.AllowUserToResizeRows = False
+        Me.DatagridviewSenior.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DatagridviewSenior.Location = New System.Drawing.Point(6, 19)
+        Me.DatagridviewSenior.Name = "DatagridviewSenior"
+        Me.DatagridviewSenior.RowHeadersVisible = False
+        Me.DatagridviewSenior.Size = New System.Drawing.Size(230, 80)
+        Me.DatagridviewSenior.TabIndex = 63
         '
         'SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(492, 346)
+        Me.ClientSize = New System.Drawing.Size(491, 344)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Panel3)
@@ -2500,6 +2554,7 @@ Partial Class SynctoCloud
         Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2772,4 +2827,8 @@ Partial Class SynctoCloud
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents Panel3 As Panel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents LabelSeniorDetailsItem As Label
+    Friend WithEvents LabelSeniorDetailsTime As Label
+    Friend WithEvents LabelSeniorDetails As Label
+    Friend WithEvents DatagridviewSenior As DataGridView
 End Class

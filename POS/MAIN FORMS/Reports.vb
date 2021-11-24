@@ -1031,7 +1031,13 @@ Public Class Reports
             For Each t In ThreadlistZXRead
                 t.Join()
             Next
-            Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
+            Dim EndORNumber
+            ThreadZXRead = New Thread(Sub() EndORNumber = returnselect("transaction_number", "loc_daily_transaction WHERE date(zreading) = zreading AND active = 1 ORDER by `transaction_number` desc limit 1"))
+            ThreadZXRead.Start()
+            ThreadlistZXRead.Add(ThreadZXRead)
+            For Each t In ThreadlistZXRead
+                t.Join()
+            Next
             Dim ReturnsTotal
             ThreadZXRead = New Thread(Sub() sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' "))
             ThreadZXRead.Start()
