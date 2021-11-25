@@ -158,4 +158,5 @@ Module publicVariables
     Public ProductTotalPrice As Double = 0
     Public HASOTHERSLOCALPRODUCT As Boolean = False
     Public HASOTHERSSERVERPRODUCT As Boolean = False
+
 End Module

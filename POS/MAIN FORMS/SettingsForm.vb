@@ -88,7 +88,7 @@ Public Class SettingsForm
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             End With
-
+            ComboBoxPrintSize.SelectedItem = My.Settings.PrintSize
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

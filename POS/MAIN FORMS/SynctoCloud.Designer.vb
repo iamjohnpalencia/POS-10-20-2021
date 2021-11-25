@@ -154,6 +154,7 @@ Partial Class SynctoCloud
         Me.Column130 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column131 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column132 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatagridviewSenior = New System.Windows.Forms.DataGridView()
         Me.DataGridViewERRORS = New System.Windows.Forms.DataGridView()
         Me.DataGridViewCoupons = New System.Windows.Forms.DataGridView()
         Me.LabelTime = New System.Windows.Forms.Label()
@@ -293,10 +294,9 @@ Partial Class SynctoCloud
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.LabelSeniorDetails = New System.Windows.Forms.Label()
-        Me.LabelSeniorDetailsTime = New System.Windows.Forms.Label()
         Me.LabelSeniorDetailsItem = New System.Windows.Forms.Label()
-        Me.DatagridviewSenior = New System.Windows.Forms.DataGridView()
+        Me.LabelSeniorDetailsTime = New System.Windows.Forms.Label()
+        Me.LabelSeniorDetails = New System.Windows.Forms.Label()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,6 +306,7 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewTRAN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridViewZREADINVENTORY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewPriceChangeRequest, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -321,7 +322,6 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BackgroundWorkerSYNCTOCLOUD
@@ -1439,6 +1439,19 @@ Partial Class SynctoCloud
         Me.Column132.Name = "Column132"
         Me.Column132.ReadOnly = True
         '
+        'DatagridviewSenior
+        '
+        Me.DatagridviewSenior.AllowUserToAddRows = False
+        Me.DatagridviewSenior.AllowUserToDeleteRows = False
+        Me.DatagridviewSenior.AllowUserToResizeColumns = False
+        Me.DatagridviewSenior.AllowUserToResizeRows = False
+        Me.DatagridviewSenior.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DatagridviewSenior.Location = New System.Drawing.Point(6, 19)
+        Me.DatagridviewSenior.Name = "DatagridviewSenior"
+        Me.DatagridviewSenior.RowHeadersVisible = False
+        Me.DatagridviewSenior.Size = New System.Drawing.Size(230, 80)
+        Me.DatagridviewSenior.TabIndex = 63
+        '
         'DataGridViewERRORS
         '
         Me.DataGridViewERRORS.AllowUserToAddRows = False
@@ -2465,26 +2478,6 @@ Partial Class SynctoCloud
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(492, 227)
         Me.TableLayoutPanel1.TabIndex = 62
         '
-        'LabelSeniorDetails
-        '
-        Me.LabelSeniorDetails.AutoSize = True
-        Me.LabelSeniorDetails.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSeniorDetails.Location = New System.Drawing.Point(3, 210)
-        Me.LabelSeniorDetails.Name = "LabelSeniorDetails"
-        Me.LabelSeniorDetails.Size = New System.Drawing.Size(93, 14)
-        Me.LabelSeniorDetails.TabIndex = 57
-        Me.LabelSeniorDetails.Text = "Discount Details"
-        '
-        'LabelSeniorDetailsTime
-        '
-        Me.LabelSeniorDetailsTime.AutoSize = True
-        Me.LabelSeniorDetailsTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSeniorDetailsTime.Location = New System.Drawing.Point(175, 210)
-        Me.LabelSeniorDetailsTime.Name = "LabelSeniorDetailsTime"
-        Me.LabelSeniorDetailsTime.Size = New System.Drawing.Size(165, 14)
-        Me.LabelSeniorDetailsTime.TabIndex = 58
-        Me.LabelSeniorDetailsTime.Text = "Estimating Time. Please Wait"
-        '
         'LabelSeniorDetailsItem
         '
         Me.LabelSeniorDetailsItem.AutoSize = True
@@ -2496,18 +2489,25 @@ Partial Class SynctoCloud
         Me.LabelSeniorDetailsItem.TabIndex = 54
         Me.LabelSeniorDetailsItem.Text = "0"
         '
-        'DatagridviewSenior
+        'LabelSeniorDetailsTime
         '
-        Me.DatagridviewSenior.AllowUserToAddRows = False
-        Me.DatagridviewSenior.AllowUserToDeleteRows = False
-        Me.DatagridviewSenior.AllowUserToResizeColumns = False
-        Me.DatagridviewSenior.AllowUserToResizeRows = False
-        Me.DatagridviewSenior.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DatagridviewSenior.Location = New System.Drawing.Point(6, 19)
-        Me.DatagridviewSenior.Name = "DatagridviewSenior"
-        Me.DatagridviewSenior.RowHeadersVisible = False
-        Me.DatagridviewSenior.Size = New System.Drawing.Size(230, 80)
-        Me.DatagridviewSenior.TabIndex = 63
+        Me.LabelSeniorDetailsTime.AutoSize = True
+        Me.LabelSeniorDetailsTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeniorDetailsTime.Location = New System.Drawing.Point(175, 210)
+        Me.LabelSeniorDetailsTime.Name = "LabelSeniorDetailsTime"
+        Me.LabelSeniorDetailsTime.Size = New System.Drawing.Size(165, 14)
+        Me.LabelSeniorDetailsTime.TabIndex = 58
+        Me.LabelSeniorDetailsTime.Text = "Estimating Time. Please Wait"
+        '
+        'LabelSeniorDetails
+        '
+        Me.LabelSeniorDetails.AutoSize = True
+        Me.LabelSeniorDetails.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSeniorDetails.Location = New System.Drawing.Point(3, 210)
+        Me.LabelSeniorDetails.Name = "LabelSeniorDetails"
+        Me.LabelSeniorDetails.Size = New System.Drawing.Size(93, 14)
+        Me.LabelSeniorDetails.TabIndex = 57
+        Me.LabelSeniorDetails.Text = "Discount Details"
         '
         'SynctoCloud
         '
@@ -2537,6 +2537,7 @@ Partial Class SynctoCloud
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.DataGridViewZREADINVENTORY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewPriceChangeRequest, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2554,7 +2555,6 @@ Partial Class SynctoCloud
         Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

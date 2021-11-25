@@ -59,6 +59,9 @@ Public Class TakeOut
                         SSecondary = ISecondary - TotalExtraS
                         SNServing = INServing - TotalExtraN
                         GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id =  " & SugarPackets)
+
+
+                        GLOBAL_SYSTEM_LOGS("EXTRA", "SUGAR PACKETS")
                     Catch ex As Exception
                         MsgBox(ex.ToString)
                         SendErrorReport(ex.ToString)
@@ -101,7 +104,7 @@ Public Class TakeOut
                         SNServing = INServing - TotalExtraN
 
                         GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id = " & WaffleBagID)
-
+                        GLOBAL_SYSTEM_LOGS("EXTRA", "PACKAGING")
                     Catch ex As Exception
                         MsgBox(ex.ToString)
                         SendErrorReport(ex.ToString)

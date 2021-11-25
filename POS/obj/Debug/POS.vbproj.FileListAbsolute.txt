@@ -140,3 +140,4 @@ C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.application
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.exe
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.xml
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.pdb
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbprojResolveAssemblyReference.cache

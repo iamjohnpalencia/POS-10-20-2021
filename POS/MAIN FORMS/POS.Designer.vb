@@ -43,7 +43,6 @@ Partial Class POS
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -209,7 +208,6 @@ Partial Class POS
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
         Me.Panel22.SuspendLayout()
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
@@ -375,8 +373,11 @@ Partial Class POS
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.TableLayoutPanel3)
+        Me.Panel1.Controls.Add(Me.Label14)
+        Me.Panel1.Controls.Add(Me.Label5)
+        Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.LabelStorename)
+        Me.Panel1.Controls.Add(Me.Label9)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Panel22)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -385,33 +386,14 @@ Partial Class POS
         Me.Panel1.Size = New System.Drawing.Size(1366, 36)
         Me.Panel1.TabIndex = 0
         '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 1, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label5, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 1, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 1)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 0)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(391, 34)
-        Me.TableLayoutPanel3.TabIndex = 0
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(370, 17)
+        Me.Label13.Location = New System.Drawing.Point(359, 17)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(18, 17)
+        Me.Label13.Size = New System.Drawing.Size(18, 18)
         Me.Label13.TabIndex = 159
         Me.Label13.Text = "0"
         '
@@ -420,21 +402,20 @@ Partial Class POS
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(3, 0)
+        Me.Label5.Location = New System.Drawing.Point(211, -1)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(123, 17)
+        Me.Label5.Size = New System.Drawing.Size(123, 18)
         Me.Label5.TabIndex = 156
         Me.Label5.Text = "PREVIOUS CASH:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(370, 0)
+        Me.Label9.Location = New System.Drawing.Point(359, -1)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(18, 17)
+        Me.Label9.Size = New System.Drawing.Size(18, 18)
         Me.Label9.TabIndex = 157
         Me.Label9.Text = "0"
         '
@@ -443,9 +424,9 @@ Partial Class POS
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(3, 17)
+        Me.Label14.Location = New System.Drawing.Point(211, 17)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(143, 17)
+        Me.Label14.Size = New System.Drawing.Size(143, 18)
         Me.Label14.TabIndex = 158
         Me.Label14.Text = "PREVIOUS CHANGE:"
         '
@@ -2046,8 +2027,6 @@ Partial Class POS
         Me.Panel34.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
         Me.Panel22.ResumeLayout(False)
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel14.ResumeLayout(False)
@@ -2241,7 +2220,6 @@ Partial Class POS
     Friend WithEvents Column48 As DataGridViewTextBoxColumn
     Friend WithEvents Column49 As DataGridViewTextBoxColumn
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn

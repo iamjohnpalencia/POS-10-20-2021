@@ -5,13 +5,16 @@ Imports System.Data
 Imports System.Linq
 Public Class POS
     Private WithEvents printdoc As PrintDocument = New PrintDocument
+
     Private PrintPreviewDialog1 As New PrintPreviewDialog
+
     Private Count_control As Integer = 0
     Private Location_control As New Point(0, 0)
     Private datas
     Public ButtonClickCount As Integer = 0
-    Public a = 0
-    Public b = 0
+
+    Dim RowA = 0
+    Dim RowB = 0
 
     Public vat As Decimal
     Public SUPERAMOUNTDUE
@@ -22,6 +25,11 @@ Public Class POS
     Public WaffleUpgrade As Boolean = False
 
     Private Shared _instance As POS
+
+    Dim Font1Bold As New Font("Tahoma", 6, FontStyle.Bold)
+    Dim Font2Bold As New Font("Tahoma", 7, FontStyle.Bold)
+    Dim FontDefault As New Font("Tahoma", 6)
+    Dim FontAddOn As New Font("Tahoma", 5)
     Public ReadOnly Property Instance As POS
         Get
             Return _instance
@@ -59,11 +67,23 @@ Public Class POS
             Else
                 LabelCheckingUpdates.Text = "Invalid cloud server connection."
             End If
+
+            'printdoc1.DefaultPageSettings.PaperSize = New PaperSize("Custom", 100, 100)
+            'printdoc1.Print()
+
+
+            'PrintPreviewDialog2.Visible = False
+            'PrintPreviewDialog2.ShowDialog()
+
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+
+
     Public Sub LoadCategory()
         Try
             Panel3.Controls.Clear()
@@ -1199,16 +1219,16 @@ Public Class POS
         If DataGridViewOrders.Rows.Count > 0 Then
             Try
                 For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
-                    b += 10
+                    RowB += 10
                     If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
-                        b += 10
+                        RowB += 10
                     End If
                 Next
 
                 If CouponApplied Then
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 550 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 550 + RowB)
                 Else
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 510 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 510 + RowB)
                 End If
 
                 If S_Print = "YES" Then
@@ -1281,165 +1301,156 @@ Public Class POS
         Else
             MsgBox("Select Transaction First!")
         End If
-        a = 0
-        b = 0
+        RowA = 0
+        RowB = 0
     End Sub
+
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
-            With Me
-                a = 40
-                Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
-                Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
-                Dim font As New Font("Tahoma", 6)
-                Dim fontaddon As New Font("Tahoma", 5)
-                ReceiptHeader(sender, e, False)
-                Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                Dim abc As Integer = 40
-                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-                    Dim rect1st As RectangleF = New RectangleF(10.0F, 145 + abc, 173.0F, 100.0F)
-                    Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "###,###,##0.00")
-
-                    If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
-                        If DataGridViewOrders.Rows(i).Cells(13).Value.ToString = "Classic" Then
-                            RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
+            RowA = 40
+            ReceiptHeader(sender, e, False)
+            Dim abc As Integer = 40
+            With DataGridViewOrders
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim price = NUMBERFORMAT(.Rows(i).Cells(3).Value)
+                    If .Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
+                        If .Rows(i).Cells(13).Value.ToString = "Classic" Then
+                            RightToLeftDisplay(sender, e, abc + 115, "     @" & .Rows(i).Cells(0).Value, price, FontAddOn, 0, 0)
                         Else
-                            RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(1).Value & " " & DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
+                            RightToLeftDisplay(sender, e, abc + 115, .Rows(i).Cells(1).Value & " " & .Rows(i).Cells(0).Value, price, FontDefault, 0, 0)
                         End If
                     Else
-                        RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(1).Value & " " & DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
-                        If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
+                        RightToLeftDisplay(sender, e, abc + 115, .Rows(i).Cells(1).Value & " " & .Rows(i).Cells(0).Value, price, FontDefault, 0, 0)
+                        If .Rows(i).Cells(11).Value > 0 Then
                             abc += 10
-                            .a += 10
-
-                            RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewOrders.Rows(i).Cells(11).Value, "", fontaddon, 0, 0)
-
+                            RowA += 10
+                            RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & .Rows(i).Cells(11).Value, "", FontAddOn, 0, 0)
                         End If
                     End If
-                    .a += 10
+                    RowA += 10
                     abc += 10
                 Next
-
-
-                If CouponApplied = True Then
-                    a += 100
-                    If SeniorGCDiscount Then
-                        SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
-                    Else
-                        SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
-                    End If
-                    SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
-                    a += 40 + CouponLine
-                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & Format(CouponTotal, "###,###,##0.00"), font, 0, 0)
-                Else
-                    a += 120
-                End If
-                Dim Qty = SumOfColumnsToInt(.DataGridViewOrders, 1)
-
-                Dim NETSALES As Double = 0
-                If S_ZeroRated = "0" Then
-                    NETSALES = Format(SUPERAMOUNTDUE, "###,###,##0.00")
-                Else
-                    NETSALES = ZERORATEDNETSALES
-                End If
-                If Val(TextBoxDISCOUNT.Text) < 1 Then
-                    Dim aNumber As Double = TEXTBOXMONEYVALUE
-                    Dim cash = String.Format("{0:n2}", aNumber)
-                    Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
-                    Dim change = String.Format("{0:n2}", aNumber1)
-
-                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & NETSALES, font2, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1, 0, 0)
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 23)
-                    RightToLeftDisplay(sender, e, a + 52, "     VATable Sales", "    " & Format(VATABLESALES, "###,###,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 62, "     VAT Exempt Sales", "    " & Format(VATEXEMPTSALES, "###,###,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 72, "     Zero-Rated Sales", "    " & Format(ZERORATEDSALES, "###,###,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "###,###,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & Format(LESSVAT, "###,###,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), font, 0, 0)
-                    a += 4
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
-                    a += 1
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 100)
-                    SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 110)
-                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
-                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 110)
-                    SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, font, 0, a + 130)
-                    SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 110, a + 140)
-                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
-                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
-                    If Reprint = 1 Then
-                        SimpleTextDisplay(sender, e, "Customers Copy", font, 0, a + 160)
-                    Else
-                        SimpleTextDisplay(sender, e, "Reprint Copy", font, 0, a + 160)
-                    End If
-                    If S_TrainingMode Then
-                        SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", font, 0, a + 170)
-                    Else
-                        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 170)
-                    End If
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 184)
-                    ReceiptFooter(sender, e, a + 12, False)
-                Else
-                    Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
-                    Dim change = String.Format("{0:n2}", aNumber1)
-                    Dim aNumber As Double = TEXTBOXMONEYVALUE
-                    Dim cash = String.Format("{0:n2}", aNumber)
-                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "###,###,##0.00"), font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "###,###,##0.00") & "-", font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "###,###,##0.00"), font2, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & cash, font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & change, font1, 0, 0)
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
-                    RightToLeftDisplay(sender, e, a + 65, "     VATable Sales", "    " & Format(VATABLESALES, "###,###,##0.00"), font, 0, 0)
-                    If DISCOUNTTYPE = "Percentage(w/o vat)" Then
-                        RightToLeftDisplay(sender, e, a + 75, "     VAT Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
-                    Else
-                        If SeniorGCDiscount = False Then
-                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
-                        Else
-                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
-                        End If
-                    End If
-                    RightToLeftDisplay(sender, e, a + 85, "     Zero-Rated Sales", "    " & Format(ZERORATEDSALES, "0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 95, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "0.00"), font, 0, 0)
-                    If DISCOUNTTYPE = "Percentage(w/o vat)" Then
-                        RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
-                    Else
-                        If SeniorGCDiscount = False Then
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00", font, 0, 0)
-                        Else
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
-                        End If
-                    End If
-                    RightToLeftDisplay(sender, e, a + 115, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), font, 0, 0)
-                    a += 5
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
-                    a += 4
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)
-                    SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 120)
-                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 130)
-                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
-                    SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, font, 0, a + 140)
-                    SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
-                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 150)
-                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 160)
-                    If Reprint = 1 Then
-                        SimpleTextDisplay(sender, e, "Customers Copy", font, 0, a + 170)
-                    Else
-                        SimpleTextDisplay(sender, e, "Reprint Copy", font, 0, a + 170)
-                    End If
-                    If S_TrainingMode Then
-                        SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", font, 0, a + 180)
-                    Else
-                        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 180)
-                    End If
-                    a += 6
-                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 190)
-
-                    ReceiptFooter(sender, e, a + 20, False)
-                End If
             End With
+
+            If CouponApplied = True Then
+                RowA += 100
+                If SeniorGCDiscount Then
+                    SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", FontDefault, 0, RowA)
+                Else
+                    SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", FontDefault, 0, RowA)
+                End If
+                SimpleTextDisplay(sender, e, CouponDesc, FontDefault, 0, RowA + 10)
+                RowA += 40 + CouponLine
+                RightToLeftDisplay(sender, e, RowA - 18, "Total Discount:", "P" & Format(CouponTotal, "###,###,##0.00"), FontDefault, 0, 0)
+            Else
+                RowA += 120
+            End If
+
+            Dim Qty = SumOfColumnsToInt(DataGridViewOrders, 1)
+
+            Dim NETSALES As Double = 0
+            If S_ZeroRated = "0" Then
+                NETSALES = Format(SUPERAMOUNTDUE, "###,###,##0.00")
+            Else
+                NETSALES = ZERORATEDNETSALES
+            End If
+            If Val(TextBoxDISCOUNT.Text) < 1 Then
+                Dim aNumber As Double = TEXTBOXMONEYVALUE
+                Dim cash = String.Format("{0:n2}", aNumber)
+                Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+                Dim change = String.Format("{0:n2}", aNumber1)
+
+                RightToLeftDisplay(sender, e, RowA, "AMOUNT DUE:", "P" & NETSALES, Font2Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 15, "CASH:", "P" & cash, Font1Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 25, "CHANGE:", "P" & change, Font1Bold, 0, 0)
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 23)
+                RightToLeftDisplay(sender, e, RowA + 52, "     VATable Sales", "    " & Format(VATABLESALES, "###,###,##0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 62, "     VAT Exempt Sales", "    " & Format(VATEXEMPTSALES, "###,###,##0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 72, "     Zero-Rated Sales", "    " & Format(ZERORATEDSALES, "###,###,##0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 82, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "###,###,##0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 92, "     Less Vat", "    " & Format(LESSVAT, "###,###,##0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 102, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), FontDefault, 0, 0)
+                RowA += 4
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 92)
+                RowA += 1
+                SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), FontDefault, 0, RowA + 100)
+                SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, FontDefault, 0, RowA + 110)
+                SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), FontDefault, 0, RowA + 120)
+                SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, FontDefault, 110, RowA + 110)
+                SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, FontDefault, 0, RowA + 130)
+                SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, FontDefault, 110, RowA + 140)
+                SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, FontDefault, 0, RowA + 140)
+                SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, FontDefault, 0, RowA + 150)
+                If Reprint = 1 Then
+                    SimpleTextDisplay(sender, e, "Customers Copy", FontDefault, 0, RowA + 160)
+                Else
+                    SimpleTextDisplay(sender, e, "Reprint Copy", FontDefault, 0, RowA + 160)
+                End If
+                If S_TrainingMode Then
+                    SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", FontDefault, 0, RowA + 170)
+                Else
+                    SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", FontDefault, 0, RowA + 170)
+                End If
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 184)
+                ReceiptFooter(sender, e, RowA + 12, False)
+            Else
+                Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+                Dim change = String.Format("{0:n2}", aNumber1)
+                Dim aNumber As Double = TEXTBOXMONEYVALUE
+                Dim cash = String.Format("{0:n2}", aNumber)
+                RightToLeftDisplay(sender, e, RowA, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "###,###,##0.00"), Font1Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "###,###,##0.00") & "-", Font1Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "###,###,##0.00"), Font1Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 30, "CASH:", "P" & cash, Font1Bold, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 40, "CHANGE:", "P" & change, Font1Bold, 0, 0)
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 37)
+                RightToLeftDisplay(sender, e, RowA + 65, "     VATable Sales", "    " & Format(VATABLESALES, "###,###,##0.00"), FontDefault, 0, 0)
+                If DISCOUNTTYPE = "Percentage(w/o vat)" Then
+                    RightToLeftDisplay(sender, e, RowA + 75, "     VAT Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), FontDefault, 0, 0)
+                Else
+                    If SeniorGCDiscount = False Then
+                        RightToLeftDisplay(sender, e, RowA + 75, "     Vat Exempt Sales", "    " & "0.00", FontDefault, 0, 0)
+                    Else
+                        RightToLeftDisplay(sender, e, RowA + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), FontDefault, 0, 0)
+                    End If
+                End If
+                RightToLeftDisplay(sender, e, RowA + 85, "     Zero-Rated Sales", "    " & Format(ZERORATEDSALES, "0.00"), FontDefault, 0, 0)
+                RightToLeftDisplay(sender, e, RowA + 95, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "0.00"), FontDefault, 0, 0)
+                If DISCOUNTTYPE = "Percentage(w/o vat)" Then
+                    RightToLeftDisplay(sender, e, RowA + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), FontDefault, 0, 0)
+                Else
+                    If SeniorGCDiscount = False Then
+                        RightToLeftDisplay(sender, e, RowA + 105, "     Less Vat", "    " & "0.00", FontDefault, 0, 0)
+                    Else
+                        RightToLeftDisplay(sender, e, RowA + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), FontDefault, 0, 0)
+                    End If
+                End If
+                RightToLeftDisplay(sender, e, RowA + 115, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), FontDefault, 0, 0)
+                RowA += 5
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 101)
+                RowA += 4
+                SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), FontDefault, 0, RowA + 110)
+                SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, FontDefault, 0, RowA + 120)
+                SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), FontDefault, 0, RowA + 130)
+                SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, FontDefault, 120, RowA + 120)
+                SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, FontDefault, 0, RowA + 140)
+                SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, FontDefault, 120, RowA + 150)
+                SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, FontDefault, 0, RowA + 150)
+                SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, FontDefault, 0, RowA + 160)
+                If Reprint = 1 Then
+                    SimpleTextDisplay(sender, e, "Customers Copy", FontDefault, 0, RowA + 170)
+                Else
+                    SimpleTextDisplay(sender, e, "Reprint Copy", FontDefault, 0, RowA + 170)
+                End If
+                If S_TrainingMode Then
+                    SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", FontDefault, 0, RowA + 180)
+                Else
+                    SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", FontDefault, 0, RowA + 180)
+                End If
+                RowA += 6
+                SimpleTextDisplay(sender, e, "*************************************", FontDefault, 0, RowA + 190)
+                ReceiptFooter(sender, e, RowA + 20, False)
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
