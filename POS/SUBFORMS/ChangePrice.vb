@@ -5,7 +5,6 @@ Public Class ChangePrice
     Public Product
     Private Sub ChangePrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-
             Me.TopMost = True
             TextBoxPriceFrom.Text = PriceFrom
             Me.Text = Product
