@@ -41,10 +41,10 @@ Public Class ConfigManager
         Dim Conn As MySqlConnection = New MySqlConnection
         Try
             Conn.ConnectionString = "server=" & Trim(TextBoxLocalServer.Text) &
-            ";user id= " & Trim(TextBoxLocalUsername.Text) &
-            ";password=" & Trim(TextBoxLocalPassword.Text) &
-            ";database=" & Trim(TextBoxLocalDatabase.Text) &
-            ";port=" & Trim(TextBoxLocalPort.Text)
+                ";user id= " & Trim(TextBoxLocalUsername.Text) &
+                ";password=" & Trim(TextBoxLocalPassword.Text) &
+                ";database=" & Trim(TextBoxLocalDatabase.Text) &
+                ";port=" & Trim(TextBoxLocalPort.Text)
             Conn.Open()
             If Conn.State = ConnectionState.Open Then
                 ValidLocalConnection = True

@@ -43,11 +43,11 @@ Partial Class POS
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.LabelStorename = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.ButtonExpense = New System.Windows.Forms.Button()
@@ -386,16 +386,16 @@ Partial Class POS
         Me.Panel1.Size = New System.Drawing.Size(1366, 36)
         Me.Panel1.TabIndex = 0
         '
-        'Label13
+        'Label14
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(359, 17)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(18, 18)
-        Me.Label13.TabIndex = 159
-        Me.Label13.Text = "0"
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(211, 17)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(143, 18)
+        Me.Label14.TabIndex = 158
+        Me.Label14.Text = "PREVIOUS CHANGE:"
         '
         'Label5
         '
@@ -408,27 +408,16 @@ Partial Class POS
         Me.Label5.TabIndex = 156
         Me.Label5.Text = "PREVIOUS CASH:"
         '
-        'Label9
+        'Label13
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(359, -1)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(18, 18)
-        Me.Label9.TabIndex = 157
-        Me.Label9.Text = "0"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(211, 17)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(143, 18)
-        Me.Label14.TabIndex = 158
-        Me.Label14.Text = "PREVIOUS CHANGE:"
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.White
+        Me.Label13.Location = New System.Drawing.Point(359, 17)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(18, 18)
+        Me.Label13.TabIndex = 159
+        Me.Label13.Text = "0"
         '
         'LabelStorename
         '
@@ -441,6 +430,17 @@ Partial Class POS
         Me.LabelStorename.Size = New System.Drawing.Size(203, 33)
         Me.LabelStorename.TabIndex = 154
         Me.LabelStorename.Text = "STORE  NAME"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(359, -1)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(18, 18)
+        Me.Label9.TabIndex = 157
+        Me.Label9.Text = "0"
         '
         'Label11
         '

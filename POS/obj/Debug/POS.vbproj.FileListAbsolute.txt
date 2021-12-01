@@ -89,7 +89,6 @@ C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\bin\Debug\K4os.Compression.LZ4.dl
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\bin\Debug\MySql.Data.xml
-C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbproj.POS.exe.config
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.Auth.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.ConfigManager.resources
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.ChooseLayout.resources
@@ -140,4 +139,9 @@ C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.application
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.exe
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.xml
 C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.pdb
-C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbprojResolveAssemblyReference.cache
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\bin\Debug\System.Memory.dll
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbproj.AssemblyReference.cache
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbproj.SuggestedBindingRedirects.cache
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.exe.config
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbproj.CoreCompileInputs.cache
+C:\Users\jjrey\Source\Repos\POS-10-20-2021\POS\obj\Debug\POS.vbproj.CopyComplete

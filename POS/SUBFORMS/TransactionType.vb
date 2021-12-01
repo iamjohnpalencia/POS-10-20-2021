@@ -33,7 +33,7 @@
         End If
     End Sub
     Private Sub ButtonGrab_Click(sender As Object, e As EventArgs) Handles ButtonGrab.Click
-        modeoftransaction = False
+        modeoftransaction = True
         TransactionType(ButtonGrab)
         ButtonCancel.Enabled = False
         TransactionTypeInfo.Show()
